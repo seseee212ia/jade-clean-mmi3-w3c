@@ -14,15 +14,13 @@ Deadline de livraison :Vendredi 23 Octobre 2026 avant 20h00 sur le FilleZilla
 * Page Présentation (`presentation.html`) : Valeurs de l'entreprise, réassurance et positionnement luxe.
 
 # Sofiia 
-*
-*
+* Conditions Générales de Vente (`cgv.html`) : Cadre légal, mentions obligatoires et articles BtoB.
+* Espace interne (espace admin)
+* Page Compétences (`competences.html`) : Grilles de prestations détaillées et cartes de forfaits/abonnements annuels.
 
 # Velon
 * Page Contact (`contact.html`) : Formulaire de devis, coordonnées téléphoniques cliquables et validation JS.
 * Page client (`client.html`) : Tableaux de bord dynamiques pour la gestion des plannings et le suivi des missions.
 
 # Reste à se répartir les pages suivantes :
-* Espace interne (espace admin)
-* Conditions Générales de Vente (`cgv.html`) : Cadre légal, mentions obligatoires et articles BtoB.
-* Page Compétences (`competences.html`) : Grilles de prestations détaillées et cartes de forfaits/abonnements annuels.
 * Page avis client
