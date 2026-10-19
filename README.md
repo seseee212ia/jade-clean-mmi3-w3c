@@ -25,3 +25,4 @@ Deadline de livraison :Vendredi 23 Octobre 2026 avant 20h00 sur le FilleZilla
 * Espace interne (espace admin)
 * Conditions Générales de Vente (`cgv.html`) : Cadre légal, mentions obligatoires et articles BtoB.
 * Page Compétences (`competences.html`) : Grilles de prestations détaillées et cartes de forfaits/abonnements annuels.
+* Page avis client
