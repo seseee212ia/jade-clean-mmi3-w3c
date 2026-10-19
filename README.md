@@ -21,6 +21,4 @@ Deadline de livraison :Vendredi 23 Octobre 2026 avant 20h00 sur le FilleZilla
 # Velon
 * Page Contact (`contact.html`) : Formulaire de devis, coordonnées téléphoniques cliquables et validation JS.
 * Page client (`client.html`) : Tableaux de bord dynamiques pour la gestion des plannings et le suivi des missions.
-
-# Reste à se répartir les pages suivantes :
 * Page avis client
