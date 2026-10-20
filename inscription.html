@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="jadeclean-logo.webp">
+  <meta name="theme-color" content="#490009">
+  <meta name="description" content="Inscription à votre espace client Jade Clean.">
+  <title>Inscription</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/connexion.css">
+</head>
+
+<body>
+
+  <main class="page-connexion">
+    <div class="vitrine">
+      <div>
+        <a href="index.html">
+          <img src="jadeclean-logo.webp" alt="Jade Clean" class="logo">
+        </a>
+      </div>
+
+      <div class="mt-auto mb-4">
+        <h1>
+          et votre Espace <span class="accent">devient Beauté</span>
+        </h1>
+        <p class="description">
+          L'excellence discrète au service des palaces, hôtels 5 étoiles et maisons de caractère.
+        </p>
+      </div>
+
+      <div class="copyright">
+        &copy; 2026 JADE CLEAN
+      </div>
+    </div>
+
+    <div class="panneau-formulaire">
+      <div class="contenu">
+
+        <h2>INSCRIPTION</h2>
+        <p class="sous-titre">Inscrivez-vous à notre espace</p>
+
+        <div class="carte-connexion">
+          <form id="registerForm">
+            <div class="mb-3">
+              <label for="hotel_name">Nom de l'établissement</label>
+              <input type="text" id="hotel_name" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="email">Email professionnel</label>
+              <div class="champ-icone">
+                <i class="bi bi-envelope"></i>
+                <input type="email" id="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="password">Mot de passe</label>
+              <div class="champ-icone">
+                <i class="bi bi-lock"></i>
+                <input type="password" id="password" autocomplete="new-password" required>
+              </div>
+            </div>
+
+            <div id="registerSuccess" class="auth-message succes">
+              Inscription réussie ! Redirection en cours…
+            </div>
+
+            <button type="submit" id="registerBtn" class="bouton-validation">
+              S'inscrire
+            </button>
+          </form>
+        </div>
+
+        <div class="pied-formulaire">
+          Vous avez un compte ? <a href="connexion.html">Connectez vous ici</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
