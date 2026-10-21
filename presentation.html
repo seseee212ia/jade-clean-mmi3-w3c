@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="img/jadeclean-logo.webp">
+  <meta name="theme-color" content="#490009">
+  <meta name="description" content="Jade Clean, maison de services pensée pour l'hôtellerie de luxe : palaces, hôtels 5 étoiles et maisons de caractère.">
+  <title>Présentation — Jade Clean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/presentation.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top navbar-principale scrolled" id="mainNavbar">
+    <div class="container-fluid max-w-7xl px-4 px-lg-5">
+      <a class="navbar-brand py-0 d-flex align-items-center" href="index.html" aria-label="Jade Clean — accueil">
+        <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo">
+      </a>
+      <button id="menu-btn" class="burger d-lg-none" aria-label="Menu" aria-expanded="false" aria-controls="menu-mobile">
+        <span></span>
+        <span></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto align-items-lg-center gap-lg-4 my-3 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="presentation.html" aria-current="page">Présentation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="competences.html">Compétences</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <a href="connexion.html" class="nav-cta" id="navAuthBtn">Se connecter</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav id="menu-mobile" aria-label="Menu mobile">
+    <p class="titre">NAVIGATION</p>
+
+    <ul>
+      <li>
+        <a href="index.html">Accueil <span>00</span></a>
+      </li>
+      <li class="actif">
+        <a href="presentation.html">Présentation <span>01</span></a>
+      </li>
+      <li>
+        <a href="competences.html">Compétences <span>02</span></a>
+      </li>
+      <li>
+        <a href="contact.html">Contact <span>03</span></a>
+      </li>
+    </ul>
+
+    <a href="connexion.html" class="bouton-connexion">Se connecter</a>
+  </nav>
+
+
+  <section class="banniere banniere-presentation">
+    <div class="fond"></div>
+
+    <div class="container position-relative contenu">
+      <div class="reveal">
+        <p class="sur-titre">
+          <span>01</span>
+          <span class="trait"></span>
+          Présentation
+        </p>
+        <h1>
+          L'exigence au service <em>du prestige</em>.
+        </h1>
+        <p class="description">
+          Une maison de services pensée pour l'hôtellerie de luxe, où chaque détail compte.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="partie">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-lg-6 reveal">
+            <p class="intro">
+              Jade Clean accompagne les établissements de prestige dans l'entretien quotidien de leurs espaces —
+              <em>là où l'exigence ne tolère aucune approximation.</em>
+            </p>
+          </div>
+          <div class="col-lg-5 offset-lg-1 reveal reveal-d1">
+            <p class="texte">
+              Nos équipes sont formées aux codes de l'hôtellerie de luxe : discrétion absolue, tenue impeccable,
+              gestes précis et méthode constante.
+            </p>
+            <p class="texte mb-0">
+              Chaque prestation est contrôlée et documentée, pour que vos chambres affichent toujours le même niveau
+              d'excellence.
+            </p>
+          </div>
+        </div>
+
+        <!-- Image + citation : la carte (card Bootstrap) chevauche l'image dès la tablette -->
+        <div class="image-citation reveal">
+          <img src="img/housekeeper.png" alt="Une gouvernante Jade Clean prépare un lit dans une suite">
+          <div class="card carte-citation">
+            <div class="card-body">
+              <blockquote class="mb-2">« et votre Espace devient Beauté »</blockquote>
+              <p class="card-text">Une promesse tenue chambre après chambre, étage après étage, depuis notre première mission.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="partie fond-clair">
+      <div class="container">
+        <div class="reveal">
+          <p class="sur-titre"><span class="trait"></span>Pour qui</p>
+          <h2 class="titre-section">Les adresses qui nous <em>font confiance</em>.</h2>
+        </div>
+
+        <!-- Liste Bootstrap (list-group) ; chaque ligne utilise la grille -->
+        <ul class="list-group list-group-flush liste-adresses reveal reveal-d1">
+            <li class="list-group-item adresse">
+              <div class="row g-2 align-items-baseline">
+                <div class="col-2 col-md-1"><span class="numero">01</span></div>
+                <div class="col-10 col-md-5"><h3>Palaces</h3></div>
+                <div class="col-10 offset-2 col-md-6 offset-md-0"><p>Un niveau de finition à la mesure des plus grandes adresses.</p></div>
+              </div>
+            </li>
+            <li class="list-group-item adresse">
+              <div class="row g-2 align-items-baseline">
+                <div class="col-2 col-md-1"><span class="numero">02</span></div>
+                <div class="col-10 col-md-5"><h3>Hôtels 5 étoiles</h3></div>
+                <div class="col-10 offset-2 col-md-6 offset-md-0"><p>Des équipes dédiées, intégrées à vos process d'étage.</p></div>
+              </div>
+            </li>
+            <li class="list-group-item adresse">
+              <div class="row g-2 align-items-baseline">
+                <div class="col-2 col-md-1"><span class="numero">03</span></div>
+                <div class="col-10 col-md-5"><h3>Maisons de caractère</h3></div>
+                <div class="col-10 offset-2 col-md-6 offset-md-0"><p>Le respect des matières nobles et des lieux singuliers.</p></div>
+              </div>
+            </li>
+            <li class="list-group-item adresse">
+              <div class="row g-2 align-items-baseline">
+                <div class="col-2 col-md-1"><span class="numero">04</span></div>
+                <div class="col-10 col-md-5"><h3>Conciergeries</h3></div>
+                <div class="col-10 offset-2 col-md-6 offset-md-0"><p>Une réactivité absolue entre deux séjours.</p></div>
+              </div>
+            </li>
+        </ul>
+
+        <div class="mt-4 reveal">
+          <a href="avis-clients.html" class="lien-fleche">
+            <span class="cercle"><i class="bi bi-arrow-right"></i></span>
+            Lire les avis de nos clients
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="partie">
+      <div class="container">
+        <div class="reveal">
+          <p class="sur-titre"><span class="trait"></span>Nos valeurs</p>
+          <h2 class="titre-section">Ce qui nous <em>distingue</em>.</h2>
+        </div>
+
+        <!-- card-group : trois cards collées qui partagent leurs bordures (côte à côte dès 576px) -->
+        <div class="card-group valeurs reveal reveal-d1">
+          <div class="card carte-valeur">
+            <div class="card-body">
+              <span class="numero">01</span>
+              <h3 class="card-title">Réactivité absolue</h3>
+              <p class="card-text">Une demande d'urgence prise en charge en moins de deux heures, 7 jours sur 7.</p>
+              <span class="tiret"></span>
+            </div>
+          </div>
+
+          <div class="card carte-valeur">
+            <div class="card-body">
+              <span class="numero">02</span>
+              <h3 class="card-title">Discrétion totale</h3>
+              <p class="card-text">Des équipes formées aux codes de l'hôtellerie de prestige, en tenue, sans jamais croiser vos clients.</p>
+              <span class="tiret"></span>
+            </div>
+          </div>
+
+          <div class="card carte-valeur">
+            <div class="card-body">
+              <span class="numero">03</span>
+              <h3 class="card-title">Excellence constante</h3>
+              <p class="card-text">Un contrôle qualité documenté après chaque intervention, pour un niveau identique dans chaque chambre.</p>
+              <span class="tiret"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="py-5">
+    <div class="container py-4">
+      <p class="footer-tagline">
+        et votre Espace <span class="accent">devient Beauté</span>
+      </p>
+
+      <div class="footer-grid">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo mb-3">
+            <p class="description pe-lg-5" style="font-size: 14px; max-width: 400px;">
+              Prestations de ménage et d'entretien pour hôtels.
+            </p>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-heading">Navigation</div>
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html" class="footer-link">Accueil</a></li>
+              <li><a href="presentation.html" class="footer-link">Présentation</a></li>
+              <li><a href="competences.html" class="footer-link">Compétences</a></li>
+              <li><a href="avis-clients.html" class="footer-link">Avis clients</a></li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-heading">Contact</div>
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="tel:+33689967821" class="footer-link">
+                  <i class="bi bi-telephone"></i> +33 6 89 96 78 21
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@jadeclean.net" class="footer-link">
+                  <i class="bi bi-envelope"></i> info@jadeclean.net
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+        <span>© 2026 Jade Clean</span>
+        <div class="d-flex gap-4">
+          <a href="cgv.html" class="footer-link">CGV</a>
+          <span>Prestations hôtelières haut de gamme</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/global.js"></script>
+</body>
+
+</html>

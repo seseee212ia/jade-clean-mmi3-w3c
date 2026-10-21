@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
+  <link rel="icon" type="image/webp" href="img/jadeclean-logo.webp">
+  <meta name="theme-color" content="#490009">
+  <meta name="description" content="Contactez Jade Clean — devis, urgence ou information pour vos prestations hôtelières de luxe.">
+  <title>Contact — Jade Clean</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -21,9 +24,9 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-principale scrolled" id="mainNavbar">
     <div class="container-fluid max-w-7xl px-4 px-lg-5">
       <a class="navbar-brand py-0 d-flex align-items-center" href="index.html" aria-label="Jade Clean — accueil">
-        <img src="jadeclean-logo.webp" alt="Jade Clean" class="logo">
+        <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo">
       </a>
-      <button id="menu-btn" class="burger d-lg-none" aria-label="Menu" aria-expanded="false">
+      <button id="menu-btn" class="burger d-lg-none" aria-label="Menu" aria-expanded="false" aria-controls="menu-mobile">
         <span></span>
         <span></span>
       </button>
@@ -33,13 +36,13 @@
             <a class="nav-link" href="index.html">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Présentation</a>
+            <a class="nav-link" href="presentation.html">Présentation</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Compétences</a>
+            <a class="nav-link" href="competences.html">Compétences</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="contact.html">Contact</a>
+            <a class="nav-link active" href="contact.html" aria-current="page">Contact</a>
           </li>
         </ul>
         <div class="d-flex align-items-center gap-3">
@@ -57,10 +60,10 @@
         <a href="index.html">Accueil <span>00</span></a>
       </li>
       <li>
-        <a href="">Présentation <span>01</span></a>
+        <a href="presentation.html">Présentation <span>01</span></a>
       </li>
       <li>
-        <a href="">Compétences <span>02</span></a>
+        <a href="competences.html">Compétences <span>02</span></a>
       </li>
       <li class="actif">
         <a href="contact.html">Contact <span>03</span></a>
@@ -95,11 +98,11 @@
 
   <main class="py-5 py-lg-6">
     <div class="container py-4">
-      <div class="row g-5">
+      <div class="row g-4 g-lg-5">
         <div class="col-lg-5">
           <div class="reveal">
             <div class="cartes-contact">
-              <a href="tel:+33145000000" class="carte">
+              <a href="tel:+33689967821" class="carte">
                 <div class="icone">
                   <i class="bi bi-telephone"></i>
                 </div>
@@ -110,7 +113,7 @@
                 <i class="bi bi-arrow-up-right fleche"></i>
               </a>
 
-              <a href="mailto:contact@jade-clean.fr" class="carte">
+              <a href="mailto:info@jadeclean.net" class="carte">
                 <div class="icone">
                   <i class="bi bi-envelope"></i>
                 </div>
@@ -250,7 +253,7 @@
       <div class="footer-grid">
         <div class="row g-4">
           <div class="col-lg-6">
-            <img src="jadeclean-logo.webp" alt="Jade Clean" class="logo mb-3">
+            <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo mb-3">
             <p class="description pe-lg-5" style="font-size: 14px; max-width: 400px;">
               Prestations de ménage et d'entretien pour hôtels.
             </p>
@@ -260,8 +263,9 @@
             <div class="footer-heading">Navigation</div>
             <ul class="list-unstyled mb-0">
               <li><a href="index.html" class="footer-link">Accueil</a></li>
-              <li><a href="index.html#manifeste" class="footer-link">Présentation</a></li>
-              <li><a href="index.html#services" class="footer-link">Compétences</a></li>
+              <li><a href="presentation.html" class="footer-link">Présentation</a></li>
+              <li><a href="competences.html" class="footer-link">Compétences</a></li>
+              <li><a href="avis-clients.html" class="footer-link">Avis clients</a></li>
               <li><a href="contact.html" class="footer-link">Contact</a></li>
             </ul>
           </div>
@@ -270,12 +274,12 @@
             <div class="footer-heading">Contact</div>
             <ul class="list-unstyled mb-0">
               <li>
-                <a href="tel:+330689967821" class="footer-link">
+                <a href="tel:+33689967821" class="footer-link">
                   <i class="bi bi-telephone"></i> +33 6 89 96 78 21
                 </a>
               </li>
               <li>
-                <a href="mailto:contact@jade-clean.fr" class="footer-link">
+                <a href="mailto:info@jadeclean.net" class="footer-link">
                   <i class="bi bi-envelope"></i> info@jadeclean.net
                 </a>
               </li>
@@ -287,6 +291,7 @@
       <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
         <span>© 2026 Jade Clean</span>
         <div class="d-flex gap-4">
+          <a href="cgv.html" class="footer-link">CGV</a>
           <span>Prestations hôtelières haut de gamme</span>
         </div>
       </div>

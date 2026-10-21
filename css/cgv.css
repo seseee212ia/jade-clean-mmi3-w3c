@@ -1,0 +1,43 @@
+/* Image de la bannière (le reste de la bannière est dans global.css) */
+.banniere-cgv .fond {
+  background-image: url('../img/suite.png');
+}
+
+.texte-legal {
+  max-width: 62rem;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--jade-cream);
+}
+
+.texte-legal h2 {
+  margin: 2.5rem 0 .5rem;
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--jade-cream);
+}
+
+.texte-legal h2:first-child {
+  margin-top: 0;
+}
+
+.texte-legal p,
+.texte-legal ul {
+  margin: 0;
+}
+
+.texte-legal ul {
+  padding-left: 1.4rem;
+}
+
+.texte-legal a {
+  color: var(--jade-rose);
+}
+
+@media (max-width: 767px) {
+  .texte-legal {
+    font-size: 1.15rem;
+  }
+}

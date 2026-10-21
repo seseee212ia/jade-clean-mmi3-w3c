@@ -1,0 +1,457 @@
+.page-interne {
+  min-height: 100vh;
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+  background-color: var(--jade-ink);
+}
+
+/* --- En-tête de l'espace --- */
+.sur-titre-espace {
+  margin: 0;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: var(--jade-rose);
+}
+
+.entete-espace h1 {
+  margin: .3rem 0 .4rem;
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 4vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--jade-cream);
+}
+
+.entete-espace .bonjour {
+  margin: 0;
+  font-size: .95rem;
+  color: var(--jade-grey);
+}
+
+/* --- Onglets (composant Tab de Bootstrap) --- */
+.onglets {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  margin: 2rem 0 2.25rem;
+  border-bottom: 1px solid hsla(312, 20%, 24%, 0.6);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.onglets::-webkit-scrollbar {
+  display: none;
+}
+
+.onglets .nav-link {
+  padding: 0 0 1.1rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: none;
+  font-family: var(--font-body);
+  font-size: .85rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--jade-grey);
+}
+
+.onglets .nav-link:hover {
+  color: var(--jade-cream);
+}
+
+.onglets .nav-link.active {
+  color: var(--jade-rose);
+  border-bottom-color: var(--jade-rose);
+}
+
+/* --- Cartes --- */
+.carte-espace {
+  margin-bottom: 1rem;
+  padding: 1.4rem 1.6rem;
+  border-radius: 1.6rem;
+  border: 1px solid hsla(312, 20%, 24%, 0.6);
+  background: var(--jade-surface);
+}
+
+.titre-carte {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--jade-cream);
+}
+
+.texte-carte {
+  margin: .8rem 0 0;
+  font-size: .88rem;
+  line-height: 1.6;
+  color: var(--jade-grey);
+}
+
+.indicateur {
+  height: 100%;
+}
+
+.indicateur .chiffre {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--jade-cream);
+}
+
+.indicateur .libelle {
+  margin-top: .75rem;
+  font-size: .75rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--jade-grey);
+}
+
+.client-nom {
+  display: block;
+  margin-top: .2rem;
+  font-size: .6rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--jade-rose);
+}
+
+.infos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 2rem;
+  margin-top: .9rem;
+  font-size: .88rem;
+  color: var(--jade-grey);
+}
+
+.infos .en-retard {
+  color: var(--jade-rose);
+}
+
+.note {
+  margin-top: .8rem;
+  padding: .4rem 1rem;
+  border-radius: .4rem;
+  border: 1px solid var(--jade-plum);
+  background: var(--jade-ink);
+  font-size: .85rem;
+  color: var(--jade-cream);
+}
+
+.label-mini {
+  font-size: .6rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--jade-grey);
+}
+
+.vide {
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: .9rem;
+  color: var(--jade-grey);
+}
+
+/* --- Badges de statut --- */
+.statut {
+  display: inline-block;
+  padding: .25rem .75rem;
+  border-radius: 999px;
+  border: 1px solid var(--jade-rose);
+  font-size: .58rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--jade-cream);
+}
+
+.statut.plein {
+  border-color: var(--jade-wine);
+  background: var(--jade-wine);
+}
+
+.statut.vert {
+  border-color: #5fa77a;
+}
+
+.statut.orange {
+  border-color: #d9a25b;
+}
+
+.statut.gris {
+  border-color: var(--jade-plum);
+  color: var(--jade-grey);
+}
+
+/* --- Barres d'avancement --- */
+.avancement-global {
+  min-width: 220px;
+}
+
+.barre {
+  height: 4px;
+  margin-top: .5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.barre span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--jade-rose);
+  transition: width .4s ease;
+}
+
+.mission {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid hsla(312, 20%, 24%, 0.6);
+}
+
+.mission:first-child {
+  margin-top: 1rem;
+}
+
+.mission .titre-carte {
+  font-size: 1.2rem;
+}
+
+.mission .detail {
+  font-size: .8rem;
+  color: var(--jade-grey);
+}
+
+.mission .suivi {
+  width: 200px;
+}
+
+/* --- Boutons de filtre (même style que la page de connexion) --- */
+.toggle-group {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+.toggle-btn {
+  flex: 1;
+  min-height: 46px;
+  border-radius: 999px;
+  border: 1px solid var(--jade-plum);
+  background: transparent;
+  color: var(--jade-grey);
+  font-family: var(--font-body);
+  font-size: .62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.toggle-btn.active {
+  border-color: var(--jade-wine);
+  background: var(--jade-wine);
+  color: var(--jade-cream);
+}
+
+.toggle-btn:not(.active):hover {
+  border-color: var(--jade-rose);
+  color: var(--jade-cream);
+}
+
+.filtres {
+  margin-bottom: 1.5rem;
+}
+
+/* --- Champs (même style que le formulaire de contact) --- */
+.page-interne select,
+.modal form input,
+.modal form select {
+  width: 100%;
+  padding: .7rem 1rem;
+  border-radius: .6rem;
+  border: 1px solid var(--jade-plum);
+  background-color: var(--jade-ink);
+  color: var(--jade-cream);
+  font-family: var(--font-body);
+  font-size: .85rem;
+  transition: border-color .2s;
+}
+
+.page-interne select,
+.modal form select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23b1a9b1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 14px 10px;
+}
+
+.page-interne select:focus,
+.modal form input:focus,
+.modal form select:focus {
+  outline: none;
+  border-color: var(--jade-rose);
+}
+
+/* Petit menu déroulant « Statut » dans les cartes */
+.page-interne .select-statut {
+  width: auto;
+  padding: .2rem 1.8rem .2rem .6rem;
+  border-radius: .4rem;
+  font-size: .75rem;
+  background-position: right .5rem center;
+  background-size: 10px 8px;
+}
+
+.modal form label {
+  display: block;
+  margin-bottom: .4rem;
+  font-size: .82rem;
+  color: var(--jade-grey);
+}
+
+/* Curseur d'avancement (.form-range de Bootstrap) */
+.form-range {
+  max-width: 180px;
+}
+
+.form-range::-webkit-slider-thumb {
+  background-color: var(--jade-rose);
+}
+
+.form-range::-moz-range-thumb {
+  background-color: var(--jade-rose);
+}
+
+.form-range::-webkit-slider-runnable-track {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-range::-moz-range-track {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Boutons --- */
+.bouton-principal,
+.bouton-secondaire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  height: 46px;
+  padding: 0 1.6rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color .2s, border-color .2s;
+}
+
+.bouton-principal {
+  border: none;
+  background: var(--jade-wine);
+  color: var(--jade-cream);
+}
+
+.bouton-principal:hover {
+  background: var(--jade-action);
+}
+
+.bouton-secondaire {
+  border: 1px solid var(--jade-plum);
+  background: transparent;
+  color: var(--jade-cream);
+}
+
+.bouton-secondaire:hover {
+  border-color: var(--jade-rose);
+}
+
+.actions {
+  display: flex;
+  gap: .5rem;
+}
+
+.actions .bouton-principal,
+.actions .bouton-secondaire {
+  height: 38px;
+  padding: 0 1.1rem;
+  font-size: .6rem;
+}
+
+/* --- Message d'erreur (même style que la page de contact) --- */
+.auth-error {
+  display: none;
+  padding: .75rem 1rem;
+  border-radius: .5rem;
+  border: 1px solid var(--jade-deep);
+  background: hsla(353, 80%, 30%, 0.2);
+  color: var(--jade-rose);
+  font-size: .85rem;
+}
+
+/* --- Modales et notification Bootstrap aux couleurs du site --- */
+.modal-content {
+  border-radius: 1.5rem;
+  border: 1px solid hsla(312, 20%, 24%, 0.6);
+  background: var(--jade-surface);
+  color: var(--jade-cream);
+}
+
+.modal-header,
+.modal-footer {
+  border-color: hsla(312, 20%, 24%, 0.6);
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.modal .btn-close,
+.notification .btn-close {
+  filter: invert(1) grayscale(1) brightness(2);
+}
+
+.notification {
+  border: 1px solid var(--jade-plum);
+  background: var(--jade-surface);
+  color: var(--jade-cream);
+}
+
+@media (max-width: 767px) {
+  .page-interne {
+    padding-top: 7rem;
+  }
+
+  .onglets {
+    gap: 1.4rem;
+  }
+
+  .carte-espace {
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+  }
+
+  .mission .suivi {
+    width: 100%;
+  }
+}

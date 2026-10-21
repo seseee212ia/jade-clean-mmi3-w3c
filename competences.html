@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="img/jadeclean-logo.webp">
+  <meta name="theme-color" content="#490009">
+  <meta name="description" content="Grilles de prestations, forfaits et abonnements annuels Jade Clean pour l'hôtellerie de prestige.">
+  <title>Compétences & tarifs — Jade Clean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/competences.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top navbar-principale scrolled" id="mainNavbar">
+    <div class="container-fluid max-w-7xl px-4 px-lg-5">
+      <a class="navbar-brand py-0 d-flex align-items-center" href="index.html" aria-label="Jade Clean — accueil">
+        <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo">
+      </a>
+      <button id="menu-btn" class="burger d-lg-none" aria-label="Menu" aria-expanded="false" aria-controls="menu-mobile">
+        <span></span>
+        <span></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto align-items-lg-center gap-lg-4 my-3 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="presentation.html">Présentation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="competences.html" aria-current="page">Compétences</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <a href="connexion.html" class="nav-cta" id="navAuthBtn">Se connecter</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav id="menu-mobile" aria-label="Menu mobile">
+    <p class="titre">NAVIGATION</p>
+
+    <ul>
+      <li>
+        <a href="index.html">Accueil <span>00</span></a>
+      </li>
+      <li>
+        <a href="presentation.html">Présentation <span>01</span></a>
+      </li>
+      <li class="actif">
+        <a href="competences.html">Compétences <span>02</span></a>
+      </li>
+      <li>
+        <a href="contact.html">Contact <span>03</span></a>
+      </li>
+    </ul>
+
+    <a href="connexion.html" class="bouton-connexion">Se connecter</a>
+  </nav>
+
+
+  <section class="banniere banniere-competences">
+    <div class="fond"></div>
+
+    <div class="container position-relative contenu">
+      <div class="reveal">
+        <p class="sur-titre">
+          <span>02</span>
+          <span class="trait"></span>
+          Compétences &amp; tarifs
+        </p>
+        <h1>
+          Nos <em>prestations</em>.
+        </h1>
+        <p class="description">
+          Des grilles claires, des protocoles précis, des abonnements pensés pour l'hôtellerie de prestige.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="partie">
+      <div class="container">
+        <div class="reveal">
+          <p class="sur-titre"><span class="trait"></span>Grilles de prestations</p>
+          <h2 class="titre-section">À la carte, <em>sur mesure</em>.</h2>
+        </div>
+
+        <!-- Tableau Bootstrap. Sur téléphone, Fréquence et Durée passent sous le nom de la prestation -->
+        <div class="table-responsive reveal reveal-d1">
+          <table class="table table-hover grille-tarifs">
+            <caption class="visually-hidden">Tarifs indicatifs des prestations à la carte</caption>
+            <thead>
+              <tr>
+                <th scope="col">Prestation</th>
+                <th scope="col" class="d-none d-md-table-cell">Fréquence</th>
+                <th scope="col" class="d-none d-md-table-cell">Durée</th>
+                <th scope="col" class="text-end">Tarif indicatif</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="nom">Nettoyage quotidien</span>
+                  <span class="detail">Chambres, couloirs, parties communes</span>
+                  <span class="detail d-md-none">7j/7 · 2h - 4h</span>
+                </td>
+                <td class="d-none d-md-table-cell">7j/7</td>
+                <td class="d-none d-md-table-cell">2h - 4h</td>
+                <td class="tarif">à partir de 32 €/h</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="nom">Remise à blanc</span>
+                  <span class="detail">Chambre complète après départ</span>
+                  <span class="detail d-md-none">À la demande · 45 min / chambre</span>
+                </td>
+                <td class="d-none d-md-table-cell">À la demande</td>
+                <td class="d-none d-md-table-cell">45 min / chambre</td>
+                <td class="tarif">à partir de 38 €</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="nom">Traitement des textiles</span>
+                  <span class="detail">Linge de lit, serviettes, rideaux</span>
+                  <span class="detail d-md-none">2 à 3 fois / semaine · Sur mesure</span>
+                </td>
+                <td class="d-none d-md-table-cell">2 à 3 fois / semaine</td>
+                <td class="d-none d-md-table-cell">Sur mesure</td>
+                <td class="tarif">sur devis</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="nom">Nettoyage des vitres</span>
+                  <span class="detail">Baies, miroirs, surfaces vitrées</span>
+                  <span class="detail d-md-none">Mensuel · 1h - 3h</span>
+                </td>
+                <td class="d-none d-md-table-cell">Mensuel</td>
+                <td class="d-none d-md-table-cell">1h - 3h</td>
+                <td class="tarif">à partir de 42 €/h</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="nom">Entretien sanitaire</span>
+                  <span class="detail">Sanitaires communs et privatifs</span>
+                  <span class="detail d-md-none">Quotidien · 1h - 2h</span>
+                </td>
+                <td class="d-none d-md-table-cell">Quotidien</td>
+                <td class="d-none d-md-table-cell">1h - 2h</td>
+                <td class="tarif">à partir de 34 €/h</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="nom">Salles de bain</span>
+                  <span class="detail">Marbre, robinetterie, paroi de douche</span>
+                  <span class="detail d-md-none">Quotidien · 30 min / SDB</span>
+                </td>
+                <td class="d-none d-md-table-cell">Quotidien</td>
+                <td class="d-none d-md-table-cell">30 min / SDB</td>
+                <td class="tarif">à partir de 36 €</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="nom">Rangements</span>
+                  <span class="detail">Dressings, placards, linge</span>
+                  <span class="detail d-md-none">Hebdomadaire · 1h - 2h</span>
+                </td>
+                <td class="d-none d-md-table-cell">Hebdomadaire</td>
+                <td class="d-none d-md-table-cell">1h - 2h</td>
+                <td class="tarif">à partir de 30 €/h</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="partie fond-clair" id="forfaits">
+      <div class="container">
+        <div class="text-center reveal">
+          <p class="sur-titre justify-content-center"><span class="trait"></span>Forfaits &amp; abonnements annuels</p>
+          <h2 class="titre-section">Choisissez votre <em>niveau d'exigence</em>.</h2>
+          <p class="texte mt-3">Trois niveaux d'engagement, sans frais de dossier.</p>
+        </div>
+
+        <!-- Cards Bootstrap : 1 par ligne sur téléphone, 2 sur tablette, 3 sur ordinateur -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
+        <div class="col">
+          <div class="card h-100 carte-forfait reveal">
+            <div class="card-body d-flex flex-column">
+              <span class="sur-titre">Entretien quotidien</span>
+              <h3 class="card-title">Essentiel</h3>
+              <p class="prix">1 890 € <small>/ mois</small></p>
+              <ul class="inclus">
+                <li><i class="bi bi-check2"></i>Nettoyage quotidien des chambres</li>
+                <li><i class="bi bi-check2"></i>Parties communes et couloirs</li>
+                <li><i class="bi bi-check2"></i>Entretien des sanitaires</li>
+                <li><i class="bi bi-check2"></i>Équipe dédiée 6j/7</li>
+              </ul>
+              <a href="contact.html?forfait=Essentiel&amp;besoin=Abonnement" class="bouton-forfait mt-auto">
+                Demander un devis <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 carte-forfait mis-en-avant reveal">
+            <span class="badge rounded-pill badge-populaire">Le plus choisi</span>
+            <div class="card-body d-flex flex-column">
+              <span class="sur-titre">Excellence hôtelière</span>
+              <h3 class="card-title">Signature</h3>
+              <p class="prix">3 450 € <small>/ mois</small></p>
+              <ul class="inclus">
+                <li><i class="bi bi-check2"></i>Tout le forfait Essentiel</li>
+                <li><i class="bi bi-check2"></i>Remise à blanc après chaque départ</li>
+                <li><i class="bi bi-check2"></i>Traitement des textiles délicats</li>
+                <li><i class="bi bi-check2"></i>Rangements et dressings</li>
+                <li><i class="bi bi-check2"></i>Interlocuteur unique dédié</li>
+              </ul>
+              <a href="contact.html?forfait=Signature&amp;besoin=Abonnement" class="bouton-forfait mt-auto">
+                Demander un devis <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 carte-forfait reveal">
+            <div class="card-body d-flex flex-column">
+              <span class="sur-titre">Exigence 5 étoiles</span>
+              <h3 class="card-title">Prestige</h3>
+              <p class="prix">Sur mesure</p>
+              <ul class="inclus">
+                <li><i class="bi bi-check2"></i>Tout le forfait Signature</li>
+                <li><i class="bi bi-check2"></i>Vitres et surfaces vitrées</li>
+                <li><i class="bi bi-check2"></i>Astreinte urgence 24h/24</li>
+                <li><i class="bi bi-check2"></i>Contrôle qualité mensuel</li>
+                <li><i class="bi bi-check2"></i>Reporting et plan de progression</li>
+              </ul>
+              <a href="contact.html?forfait=Prestige&amp;besoin=Abonnement" class="bouton-forfait mt-auto">
+                Demander un devis <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="partie">
+      <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
+          <div class="col-lg-6 reveal">
+          <p class="sur-titre"><span class="trait"></span>Nos équipes</p>
+          <h2 class="titre-section">Formées <em>en interne</em>,<br>choisies avec soin.</h2>
+            <p class="texte mt-4">
+              Chaque gouvernante est formée aux protocoles de remise à blanc, au traitement des textiles délicats et au
+              respect des matières nobles.
+            </p>
+            <p class="texte">
+              Nous n'envoyons jamais sur site une équipe que nous n'aurions pas confiée à notre propre établissement.
+            </p>
+
+            <ul class="roles">
+              <li class="role">
+                <i class="bi bi-person-badge"></i>
+                <div>
+                  <h3>Gouvernantes générales</h3>
+                  <p>Elles encadrent les équipes sur site et restent votre interlocutrice unique.</p>
+                </div>
+              </li>
+              <li class="role">
+                <i class="bi bi-stars"></i>
+                <div>
+                  <h3>Équipiers d'étage</h3>
+                  <p>Chambres, suites et parties communes, selon vos protocoles.</p>
+                </div>
+              </li>
+              <li class="role">
+                <i class="bi bi-clipboard-check"></i>
+                <div>
+                  <h3>Contrôleurs qualité</h3>
+                  <p>Une vérification documentée après chaque intervention.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-8 col-lg-5 offset-lg-1 mx-auto reveal reveal-d1">
+            <img src="img/linen.png" alt="Linge de lit plié avec soin" class="image-arche">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="py-5">
+    <div class="container py-4">
+      <p class="footer-tagline">
+        et votre Espace <span class="accent">devient Beauté</span>
+      </p>
+
+      <div class="footer-grid">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo mb-3">
+            <p class="description pe-lg-5" style="font-size: 14px; max-width: 400px;">
+              Prestations de ménage et d'entretien pour hôtels.
+            </p>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-heading">Navigation</div>
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html" class="footer-link">Accueil</a></li>
+              <li><a href="presentation.html" class="footer-link">Présentation</a></li>
+              <li><a href="competences.html" class="footer-link">Compétences</a></li>
+              <li><a href="avis-clients.html" class="footer-link">Avis clients</a></li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-heading">Contact</div>
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="tel:+33689967821" class="footer-link">
+                  <i class="bi bi-telephone"></i> +33 6 89 96 78 21
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@jadeclean.net" class="footer-link">
+                  <i class="bi bi-envelope"></i> info@jadeclean.net
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+        <span>© 2026 Jade Clean</span>
+        <div class="d-flex gap-4">
+          <a href="cgv.html" class="footer-link">CGV</a>
+          <span>Prestations hôtelières haut de gamme</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/global.js"></script>
+</body>
+
+</html>
