@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/webp" href="jadeclean-logo.webp">
+  <link rel="icon" type="image/webp" href="img/jadeclean-logo.webp">
   <meta name="theme-color" content="#490009">
   <meta name="description"
     content="Espace client Jade Clean — Suivi de vos prestations de ménage hôtelier haut de gamme.">
@@ -22,14 +22,10 @@
 
 <body>
 
-  <div id="scrollProgress"
-    style="position: fixed; top: 0; left: 0; height: 2px; background: var(--jade-action); z-index: 2000; width: 0%; transition: width 0.1s linear;">
-  </div>
-
   <nav class="navbar navbar-expand-lg fixed-top navbar-principale scrolled" id="mainNavbar">
     <div class="container-fluid">
       <a class="navbar-brand py-0 d-flex align-items-center" href="index.html" aria-label="Jade Clean — accueil">
-        <img src="jadeclean-logo.webp" alt="Jade Clean" class="logo">
+        <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo">
       </a>
 
       <button id="menu-btn" class="burger d-lg-none" aria-label="Menu" aria-expanded="false">
@@ -43,10 +39,10 @@
             <a class="nav-link" href="index.html">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html#manifeste">Présentation</a>
+            <a class="nav-link" href="presentation.html">Présentation</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html#services">Compétences</a>
+            <a class="nav-link" href="competences.html">Compétences</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contact.html">Contact</a>
@@ -76,10 +72,10 @@
         <a href="index.html">Accueil <span>00</span></a>
       </li>
       <li>
-        <a href="index.html#manifeste">Présentation <span>01</span></a>
+        <a href="presentation.html">Présentation <span>01</span></a>
       </li>
       <li>
-        <a href="index.html#services">Compétences <span>02</span></a>
+        <a href="competences.html">Compétences <span>02</span></a>
       </li>
       <li>
         <a href="contact.html">Contact <span>03</span></a>
@@ -245,7 +241,7 @@
                   <i class="bi bi-calendar3 me-1 text-jade-rose"></i> Émis le 15 octobre 2026
                 </div>
                 <div class="resume-doc mt-3">
-                  Prestations 6j/7 · Chambres, suites VIP et parties communes · Référent dédié.
+                  Prestations 6j/7 · Chambres, suites et parties communes · Référent dédié.
                 </div>
               </div>
             </div>
@@ -273,7 +269,7 @@
                   2026
                 </div>
                 <div class="resume-doc mt-3">
-                  Prestations 6j/7 · Chambres, suites VIP et parties communes · Référent dédié Mme Leroy.
+                  Prestations 6j/7 · Chambres, suites et parties communes · Référent dédié.
                 </div>
               </div>
 
@@ -361,7 +357,7 @@
                   <i class="bi bi-calendar3 me-1 text-jade-rose"></i> Émis le 28 septembre 2026
                 </div>
                 <div class="resume-doc mt-3">
-                  Intervention après départ VIP : lustrage des marbres, traitement vapeur des rideaux et contrôle
+                  Intervention complète après départ : lustrage des marbres, traitement vapeur des rideaux et contrôle
                   qualité certifié.
                 </div>
               </div>
@@ -444,9 +440,10 @@
       <div class="footer-grid">
         <div class="row g-4">
           <div class="col-lg-6">
-            <img src="jadeclean-logo.webp" alt="Jade Clean" class="logo mb-3">
+            <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo mb-3">
             <p class="pe-lg-5" style="color: var(--jade-grey); font-size: 14px; max-width: 400px;">
-              Prestations de ménage et d'entretien pour hôtels. 
+              Prestations de ménage et d'entretien pour palaces, hôtels 5 étoiles, maisons de caractère et
+              conciergeries.
             </p>
           </div>
 
@@ -454,8 +451,9 @@
             <div class="footer-heading">Navigation</div>
             <ul class="list-unstyled mb-0">
               <li><a href="index.html" class="footer-link">Accueil</a></li>
-              <li><a href="" class="footer-link">Présentation</a></li>
-              <li><a href="" class="footer-link">Compétences</a></li>
+              <li><a href="presentation.html" class="footer-link">Présentation</a></li>
+              <li><a href="competences.html" class="footer-link">Compétences</a></li>
+              <li><a href="avis-clients.html" class="footer-link">Avis clients</a></li>
               <li><a href="contact.html" class="footer-link">Contact</a></li>
             </ul>
           </div>
@@ -464,13 +462,13 @@
             <div class="footer-heading">Contact</div>
             <ul class="list-unstyled mb-0">
               <li>
-                <a href="tel:+330689967821" class="footer-link">
+                <a href="tel:+33689967821" class="footer-link">
                   <i class="bi bi-telephone"></i> +33 6 89 96 78 21
                 </a>
               </li>
               <li>
-                <a href="mailto:contact@jade-clean.fr" class="footer-link">
-                  <i class="bi bi-envelope"></i> contact@jade-clean.fr
+                <a href="mailto:info@jadeclean.net" class="footer-link">
+                  <i class="bi bi-envelope"></i> info@jadeclean.net
                 </a>
               </li>
             </ul>
@@ -481,6 +479,7 @@
       <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
         <span>© 2026 Jade Clean</span>
         <div class="d-flex gap-4">
+          <a href="cgv.html" class="footer-link">CGV</a>
           <span>Prestations hôtelières haut de gamme</span>
         </div>
       </div>
