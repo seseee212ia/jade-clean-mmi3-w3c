@@ -1,0 +1,510 @@
+.banniere {
+  position: relative;
+  min-height: 440px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background-color: var(--jade-ink);
+}
+
+.banniere .fond {
+  position: absolute;
+  inset: 0;
+  background-image: url('../suite.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.banniere .fond::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--jade-ink) 0%, hsla(310, 22%, 9%, 0.85) 60%, hsla(310, 22%, 9%, 0.4) 100%);
+}
+
+.banniere .contenu {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 3.5rem;
+  padding-top: 8rem;
+}
+
+.banniere .sur-titre {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: var(--jade-rose);
+  font-weight: 500;
+}
+
+.banniere .trait {
+  height: 1px;
+  width: 40px;
+  background: hsla(350, 40%, 60%, 0.6);
+}
+
+.banniere h1 {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 6vw, 4.6rem);
+  line-height: 1.05;
+  color: var(--jade-cream);
+  font-weight: 500;
+}
+
+.banniere h1 em {
+  font-style: italic;
+  color: var(--jade-rose);
+}
+
+.banniere .description {
+  margin-top: 1.25rem;
+  max-width: 38rem;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--jade-grey);
+}
+
+.onglets {
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--jade-plum);
+  scrollbar-width: none;
+}
+
+.onglets::-webkit-scrollbar {
+  display: none;
+}
+
+.onglet {
+  background: transparent;
+  border: none !important;
+  color: var(--jade-grey);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.onglet:hover {
+  color: var(--jade-cream);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.onglet.actif {
+  background: var(--jade-wine);
+  border: none !important;
+  color: var(--jade-cream);
+}
+
+.panneau {
+  display: none;
+  padding-top: 2rem;
+}
+
+.panneau.actif {
+  display: block;
+}
+
+.stat-carte {
+  border-radius: 1.25rem;
+  border: 1px solid var(--jade-plum);
+  background: var(--jade-surface);
+  padding: 1.4rem;
+  transition: border-color 0.2s;
+}
+
+.stat-carte:hover {
+  border-color: var(--jade-wine);
+}
+
+.stat-valeur {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--jade-cream);
+  font-weight: 500;
+}
+
+.stat-libelle {
+  margin-top: 0.65rem;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--jade-grey);
+  font-weight: 600;
+}
+
+.carte-prestation {
+  border-radius: 1.25rem;
+  border: 1px solid var(--jade-plum);
+  background: var(--jade-surface);
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.carte-prestation:hover {
+  border-color: var(--jade-wine);
+}
+
+.titre-prestation {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  color: var(--jade-cream);
+  margin: 0;
+  font-weight: 500;
+}
+
+.meta-prestation {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  font-size: 0.82rem;
+  color: var(--jade-grey);
+}
+
+.meta-prestation span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.meta-prestation i {
+  color: var(--jade-rose);
+}
+
+.prix {
+  margin-top: 1rem;
+  font-family: var(--font-heading);
+  font-size: 2.1rem;
+  line-height: 1.2;
+  color: var(--jade-cream);
+}
+
+.periode {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: hsla(30, 18%, 96%, 0.6);
+}
+
+.resume-doc {
+  margin-top: 0.75rem;
+  background: var(--jade-ink);
+  border: 1px solid var(--jade-plum);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--jade-grey);
+}
+
+.calendrier {
+  border-radius: 1.25rem;
+  border: 1px solid var(--jade-plum);
+  background: var(--jade-surface);
+  padding: 1.5rem;
+}
+
+.cal-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.cal-titre {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--jade-cream);
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.cal-nav {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none !important;
+  background: var(--jade-ink);
+  color: var(--jade-cream);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.cal-nav:hover {
+  background: var(--jade-wine);
+  color: #fff;
+}
+
+.cal-grille {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.cal-jour-nom {
+  text-align: center;
+  padding: 0.6rem 0;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--jade-rose);
+  font-weight: 600;
+}
+
+.cal-jour {
+  text-align: center;
+  padding: 0.85rem 0.25rem;
+  font-size: 0.88rem;
+  color: var(--jade-grey);
+  border-radius: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  position: relative;
+  background: transparent;
+  border: none !important;
+  font-family: var(--font-body);
+}
+
+.cal-jour:hover {
+  background: hsla(312, 20%, 24%, 0.45);
+  color: var(--jade-cream);
+}
+
+.cal-jour.aujourdhui {
+  background: rgba(255, 255, 255, 0.08);
+  border: none !important;
+  color: var(--jade-cream);
+}
+
+.cal-jour.avec-evenement {
+  color: var(--jade-cream);
+  font-weight: 600;
+}
+
+.cal-jour.selectionne {
+  background: var(--jade-wine);
+  color: var(--jade-cream);
+  border: none !important;
+}
+
+.cal-point {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: var(--jade-rose);
+  border-radius: 50%;
+  margin: 4px auto 0;
+}
+
+.cal-jour.selectionne .cal-point {
+  background: var(--jade-cream);
+}
+
+.groupe-filtres {
+  display: inline-flex;
+  gap: 0.35rem;
+  background: var(--jade-ink);
+  border: 1px solid var(--jade-plum);
+  border-radius: 999px;
+  padding: 0.25rem;
+}
+
+.btn-filtre {
+  background: transparent;
+  border: none !important;
+  color: var(--jade-grey);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.btn-filtre:hover {
+  color: var(--jade-cream);
+}
+
+.btn-filtre.actif {
+  background: var(--jade-wine);
+  border: none !important;
+  color: var(--jade-cream);
+}
+
+.bouton-primaire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--jade-wine);
+  border: none !important;
+  color: var(--jade-cream);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.bouton-primaire:hover {
+  background: var(--jade-action);
+  color: #fff;
+}
+
+.bouton-secondaire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: none !important;
+  color: var(--jade-cream);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.bouton-secondaire:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+button,
+.btn,
+.nav-cta,
+.bouton-connexion,
+.bouton-primaire,
+.bouton-secondaire,
+.onglet,
+.btn-filtre,
+.cal-nav,
+.cal-jour {
+  border: none !important;
+  outline: none !important;
+}
+
+.champ-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--jade-rose);
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+
+.champ-texte,
+.champ-select,
+.champ-zone {
+  width: 100%;
+  background: var(--jade-ink);
+  border: 1px solid var(--jade-plum);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--jade-cream);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.champ-texte:focus,
+.champ-select:focus,
+.champ-zone:focus {
+  border-color: var(--jade-rose);
+}
+
+.champ-select option {
+  background: var(--jade-ink);
+  color: var(--jade-cream);
+}
+
+.encart-vide {
+  border-radius: 1.25rem;
+  border: 1px dashed var(--jade-plum);
+  background: var(--jade-surface);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--jade-grey);
+}
+
+.boite-detail {
+  background: var(--jade-surface);
+  border: 1px solid var(--jade-plum);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.notification-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 2000;
+  background: var(--jade-surface);
+  border: 1px solid var(--jade-rose);
+  color: var(--jade-cream);
+  padding: 0.9rem 1.4rem;
+  border-radius: 0.75rem;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+  .banniere {
+    min-height: 380px;
+  }
+  .banniere .contenu {
+    padding-top: 7rem;
+    padding-bottom: 2.5rem;
+  }
+  .stat-carte {
+    padding: 1.1rem;
+  }
+  .stat-valeur {
+    font-size: 2.2rem;
+  }
+  .carte-prestation {
+    padding: 1.1rem;
+  }
+  .titre-prestation {
+    font-size: 1.25rem;
+  }
+  .cal-jour {
+    padding: 0.6rem 0.1rem;
+    font-size: 0.8rem;
+  }
+}
