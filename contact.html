@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact – Jade Clean</title>
+    <meta name="description" content="Contactez Jade Clean : devis, urgence ou information pour vos prestations de ménage professionnel en hôtel haut de gamme.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital@0;1&amp;display=swap">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header class="site-header">
+        <div class="logo-container">
+            <a href="index.html" aria-label="Jade Clean – retour à l’accueil"><img src="images/logo_jade.svg" alt="" class="brand-logo" height="40"></a>
+        </div>
+        <nav class="main-nav" id="main-nav" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="presentation.html">Présentation</a><a href="competences.html">Compétences</a><a href="contact.html" class="active" aria-current="page">Contact</a><a href="avis.html">Avis</a></nav>
+        <div class="header-right-actions">
+            <a href="connexion.html" class="btn-login">SE CONNECTER</a>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle" aria-label="Activer le mode clair">
+                <span class="switch-track"><span class="icon-sun" aria-hidden="true">☀️</span><span class="icon-moon" aria-hidden="true">🌙</span></span>
+                <span class="switch-thumb"></span>
+            </label>
+            <button type="button" id="menu-btn" class="burger-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+                <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+            </button>
+        </div>
+    </header>
+    <main id="contenu">
+        <section class="hero_header" aria-labelledby="titre-contact">
+            <img src="images/fond_header.jpg" alt="" class="img_header">
+            <div class="hero_content">
+                <div class="subtitle_wrapper">
+                    <span class="number">03</span>
+                    <span class="line"></span>
+                    <span class="text">CONTACT</span>
+                </div>
+                <h1 class="main_title" id="titre-contact">
+                    Parlons de votre <br>
+                    <span class="highlight"><em>établissement.</em></span>
+                </h1>
+                <p class="description">
+                    Devis, urgence ou simple information : notre équipe vous répond personnellement.
+                </p>
+            </div>
+        </section>
+
+        <section class="cards_contact" aria-label="Nous joindre directement">
+            <a href="tel:+33145000000" class="card_item">
+                <img src="images/tel_icon.svg" alt="" class="contact_icon">
+                <span class="card_text">
+                    <span class="card_subtitle">APPELER DIRECTEMENT</span>
+                    <span class="card_title">+33 1 45 00 00 00</span>
+                </span>
+                <span class="card_arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a href="mailto:contact@jade-clean.fr" class="card_item">
+                <img src="images/mail_icon.svg" alt="" class="contact_icon">
+                <span class="card_text">
+                    <span class="card_subtitle">ÉCRIRE UN E-MAIL</span>
+                    <span class="card_title">contact@jade-clean.fr</span>
+                </span>
+                <span class="card_arrow" aria-hidden="true">↗</span>
+            </a>
+        </section>
+
+        <hr class="separator_line">
+
+        <section class="caracteristiques" aria-label="Nos engagements">
+            <div class="bloc_content">
+                <img src="images/24h.svg" alt="" class="bloc_icon">
+                <div class="bloc_text">
+                    <span class="title">Réponse sous 24 h ouvrées</span>
+                    <span class="subtitle">Une proposition adaptée à votre établissement.</span>
+                </div>
+            </div>
+            <div class="bloc_content">
+                <img src="images/urgences.svg" alt="" class="bloc_icon">
+                <div class="bloc_text">
+                    <span class="title">Urgences prioritaires</span>
+                    <span class="subtitle">Prise en charge en moins de deux heures, 7j/7.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="formulaire_section" aria-labelledby="titre-devis">
+            <div class="formulaire_text">
+                <span class="card_subtitle">DEMANDE DE DEVIS</span>
+                <h2 class="second_title" id="titre-devis">
+                    Votre projet, <span class="highlight"><em>en quelques lignes.</em></span>
+                </h2>
+            </div>
+            <p class="required_note">Les champs marqués d’un * sont obligatoires.</p>
+
+            <form id="devis-form" class="contact_form" action="#" method="post" novalidate>
+                <div class="form_group">
+                    <label for="etablissement">Nom de l’établissement *</label>
+                    <input type="text" id="etablissement" name="etablissement" autocomplete="organization" required data-required="Indiquez le nom de votre établissement.">
+                </div>
+
+                <div class="form_group">
+                    <label for="contact_name">Nom du contact *</label>
+                    <input type="text" id="contact_name" name="contact_name" autocomplete="name" required data-required="Indiquez votre nom.">
+                </div>
+
+                <div class="form_group">
+                    <label for="fonction">Fonction</label>
+                    <input type="text" id="fonction" name="fonction" autocomplete="organization-title">
+                </div>
+
+                <div class="form_group">
+                    <label for="telephone">Téléphone *</label>
+                    <input type="tel" id="telephone" name="telephone" autocomplete="tel" inputmode="tel"
+                        pattern="(?:0|\+33 ?|0033 ?)[1-9] ?(?:[0-9]{2} ?){4}"
+                        title="Entrez un numéro valide, par exemple 06 12 34 56 78 ou +33 6 12 34 56 78."
+                        placeholder="06 00 00 00 00" required data-required="Indiquez un numéro de téléphone.">
+                </div>
+
+                <div class="form_group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" autocomplete="email"
+                        title="Entrez une adresse e-mail valide, par exemple nom@exemple.com."
+                        placeholder="contact@exemple.com" required data-required="Indiquez votre adresse e-mail.">
+                </div>
+
+                <div class="form_group">
+                    <label for="besoin">Type de besoin</label>
+                    <select id="besoin" name="besoin" class="custom_select">
+                        <option value="abonnement">Abonnement annuel</option>
+                        <option value="forfait">Forfait</option>
+                        <option value="ponctuel">Ponctuel</option>
+                        <option value="urgence">Urgence</option>
+                    </select>
+                </div>
+
+                <div class="form_row">
+                    <div class="form_group">
+                        <label for="superficie">Superficie</label>
+                        <input type="number" id="superficie" name="superficie" min="0" inputmode="numeric" placeholder="m²" title="Entrez un nombre positif.">
+                    </div>
+                    <div class="form_group">
+                        <label for="chambres">Chambres</label>
+                        <input type="number" id="chambres" name="chambres" min="0" inputmode="numeric" placeholder="Nb" title="Entrez un nombre positif.">
+                    </div>
+                    <div class="form_group">
+                        <label for="salaries">Salariés</label>
+                        <input type="number" id="salaries" name="salaries" min="0" inputmode="numeric" placeholder="Nb" title="Entrez un nombre positif.">
+                    </div>
+                </div>
+
+                <fieldset class="form_group">
+                    <legend>Occasionnel ou régulier</legend>
+                    <div class="radio_group">
+                        <input type="radio" id="occasionnel" name="frequence" value="occasionnel">
+                        <label for="occasionnel" class="radio_btn">OCCASIONNEL</label>
+
+                        <input type="radio" id="regulier" name="frequence" value="regulier" checked>
+                        <label for="regulier" class="radio_btn">RÉGULIER</label>
+                    </div>
+                </fieldset>
+
+                <div class="form_group">
+                    <label for="message">Votre projet</label>
+                    <textarea id="message" name="message" rows="4" maxlength="1500" placeholder="Décrivez vos contraintes : horaires, étages, périodes de forte activité..."></textarea>
+                </div>
+
+                <div class="form_group consent">
+                    <input type="checkbox" id="consent" name="consent" required data-required="Veuillez accepter pour que nous puissions traiter votre demande.">
+                    <label for="consent" class="consent_label">J’accepte que Jade Clean utilise ces informations pour répondre à ma demande. *</label>
+                </div>
+
+                <!-- Champ piège anti-spam : doit rester vide -->
+                <div class="hp_field" aria-hidden="true">
+                    <label for="website">Ne pas remplir</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <p class="form_status" id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+
+                <button type="submit" class="submit_btn">ENVOYER MA DEMANDE</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p class="footer-quote">L’excellence, <span>dans les moindres détails.</span></p>
+        <div class="footer-divider-top"></div>
+        <div class="footer-container">
+            <div class="footer-col footer-brand-col">
+                <a href="index.html" class="footer-logo-link" aria-label="Jade Clean – accueil"><img src="images/logo_jade.svg" alt="" class="footer-logo-img"></a>
+                <p class="footer-brand-desc">Ménage professionnel pour l’hôtellerie haut de gamme.</p>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Navigation</span>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li>
+                    <li><a href="competences.html">Compétences</a></li><li><a href="contact.html">Contact</a></li><li><a href="avis.html">Avis</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Contact</span>
+                <div class="footer-contact-items">
+                    <a href="tel:+33145000000" class="footer-contact-link">+33 1 45 00 00 00</a>
+                    <a href="mailto:contact@jade-clean.fr" class="footer-contact-link">contact@jade-clean.fr</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 JADE CLEAN</span>
+            <span class="footer-right-tag">Ménage professionnel · Hôtellerie de prestige</span>
+        </div>
+    </footer>
+
+    <button type="button" class="mobile-theme-fab" id="theme-fab" aria-label="Passer en mode clair">☀️</button>
+</body>
+</html>

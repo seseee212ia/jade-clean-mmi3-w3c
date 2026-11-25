@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Espace client – Jade Clean</title>
+    <meta name="description" content="Espace client Jade Clean : suivez vos prestations, devis, contrats, factures et rapports d’intervention.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital@0;1&amp;display=swap">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header class="site-header">
+        <div class="logo-container">
+            <a href="index.html" aria-label="Jade Clean – retour à l’accueil"><img src="images/logo_jade.svg" alt="" class="brand-logo" height="40"></a>
+        </div>
+        <nav class="main-nav" id="main-nav" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="presentation.html">Présentation</a><a href="competences.html">Compétences</a><a href="contact.html">Contact</a><a href="avis.html">Avis</a><a href="espace_client.html" class="active" aria-current="page">Espace client</a><span class="menu-user" id="menu-user"></span><a href="espace_client.html" id="profile-btn">Mon profil</a></nav>
+        <div class="header-right-actions">
+            <a href="connexion.html" class="btn-login" id="logout-link">DÉCONNEXION</a>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle" aria-label="Activer le mode clair">
+                <span class="switch-track"><span class="icon-sun" aria-hidden="true">☀️</span><span class="icon-moon" aria-hidden="true">🌙</span></span>
+                <span class="switch-thumb"></span>
+            </label>
+            <button type="button" id="menu-btn" class="burger-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+                <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="contenu" class="client-main">
+        <div class="page-section">
+            <span class="section-tag">05 — ESPACE CLIENT</span>
+            <h1 class="section-title">Bonjour, <span id="client-name">Hôtel</span></h1>
+            <p class="lead">Voici l’activité de votre établissement.</p>
+            <p class="live" id="live" role="status" aria-live="polite"></p>
+            <nav class="tabs" id="tabs" aria-label="Sections de l’espace client"></nav>
+            <div class="view" id="view"></div>
+        </div>
+        <button type="button" class="btn-pill cta-fixed" id="ask"><span aria-hidden="true">+</span> Demander une prestation</button>
+    </main>
+
+    <dialog id="dlg" aria-labelledby="dlg-title">
+        <form method="dialog" id="form">
+            <h2 id="dlg-title">Demander une prestation</h2>
+            <div class="form-group"><label for="o-t">Prestation (grille)</label><select id="o-t"></select><p class="hint" id="o-h" aria-live="polite"></p></div>
+            <div class="form-group" id="o-qg"><label for="o-q" id="o-ql">Quantité</label><input type="number" id="o-q" min="1" max="5000" value="1" inputmode="numeric"></div>
+            <div class="form-group"><label for="o-z">Étage ou zone</label><input type="text" id="o-z" required placeholder="Ex. étage 4, spa"></div>
+            <div class="form-group"><label for="o-d">Date souhaitée</label><input type="date" id="o-d" required></div>
+            <div class="form-group"><label for="o-c">Créneau</label><select id="o-c"><option>Matin (7h - 12h)</option><option>Après-midi (12h - 18h)</option></select></div>
+            <div class="form-group"><label for="o-m">Précisions</label><textarea id="o-m" rows="3"></textarea></div>
+            <div class="actions"><button type="button" class="btn-pill ghost" id="o-x">Annuler</button><button type="submit" class="btn-pill">Envoyer la demande</button></div>
+        </form>
+    </dialog>
+    <footer class="site-footer">
+        <p class="footer-quote">L’excellence, <span>dans les moindres détails.</span></p>
+        <div class="footer-divider-top"></div>
+        <div class="footer-container">
+            <div class="footer-col footer-brand-col">
+                <a href="index.html" class="footer-logo-link" aria-label="Jade Clean – accueil"><img src="images/logo_jade.svg" alt="" class="footer-logo-img"></a>
+                <p class="footer-brand-desc">Ménage professionnel pour l’hôtellerie haut de gamme.</p>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Navigation</span>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li>
+                    <li><a href="competences.html">Compétences</a></li><li><a href="contact.html">Contact</a></li><li><a href="avis.html">Avis</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Contact</span>
+                <div class="footer-contact-items">
+                    <a href="tel:+33145000000" class="footer-contact-link">+33 1 45 00 00 00</a>
+                    <a href="mailto:contact@jade-clean.fr" class="footer-contact-link">contact@jade-clean.fr</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 JADE CLEAN</span>
+            <span class="footer-right-tag">Ménage professionnel · Hôtellerie de prestige</span>
+        </div>
+    </footer>
+
+    <button type="button" class="mobile-theme-fab" id="theme-fab" aria-label="Passer en mode clair">☀️</button>
+</body>
+</html>

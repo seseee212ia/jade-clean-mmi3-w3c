@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Avis clients – Jade Clean</title>
+    <meta name="description" content="Découvrez les avis des directeurs et gouvernantes d’hôtels haut de gamme qui font confiance à Jade Clean pour leurs prestations de ménage professionnel.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital@0;1&amp;display=swap">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header class="site-header">
+        <div class="logo-container">
+            <a href="index.html" aria-label="Jade Clean – retour à l’accueil"><img src="images/logo_jade.svg" alt="" class="brand-logo" height="40"></a>
+        </div>
+        <nav class="main-nav" id="main-nav" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="presentation.html">Présentation</a><a href="competences.html">Compétences</a><a href="contact.html">Contact</a><a href="avis.html" class="active" aria-current="page">Avis</a></nav>
+        <div class="header-right-actions">
+            <a href="connexion.html" class="btn-login">SE CONNECTER</a>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle" aria-label="Activer le mode clair">
+                <span class="switch-track"><span class="icon-sun" aria-hidden="true">☀️</span><span class="icon-moon" aria-hidden="true">🌙</span></span>
+                <span class="switch-thumb"></span>
+            </label>
+            <button type="button" id="menu-btn" class="burger-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+                <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="contenu">
+        <section class="hero_header" aria-labelledby="titre-avis">
+            <img src="images/Container.png" alt="" class="img_avis">
+            <div class="hero_content">
+                <div class="subtitle_wrapper">
+                    <span class="number">04</span>
+                    <span class="line"></span>
+                    <span class="text">AVIS</span>
+                </div>
+                <h1 class="main_title" id="titre-avis">
+                    Ils nous font<br><span class="highlight"><em>confiance.</em></span>
+                </h1>
+                <p class="description">Directeurs et gouvernantes d’hôtels partagent leur expérience avec Jade Clean.</p>
+            </div>
+        </section>
+        
+        <section class="page-section" aria-labelledby="titre-note">
+            <h2 class="visually-hidden" id="titre-note">Note moyenne</h2>
+            <div class="card summary-card">
+                <div><div class="score"><span id="score">–</span> <small>/ 5</small></div><div id="score-stars"></div><p class="score-count" id="score-count"></p></div>
+                <ul class="bars" id="bars" aria-label="Répartition des notes"></ul>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="titre-liste">
+            <h2 class="section-title" id="titre-liste">Ce que disent <span>nos clients.</span></h2>
+            <div class="chips" id="filters" role="group" aria-label="Filtrer les avis par prestation"></div>
+            <p class="avis-count" id="avis-count" aria-live="polite"></p>
+            <div class="avis-list" id="avis-list"></div>
+            <button type="button" class="btn-pill ghost more-btn" id="more" hidden>VOIR PLUS D’AVIS</button>
+        </section>
+
+        <section class="page-section narrow" aria-labelledby="titre-form">
+            <div class="form-card">
+                <span class="section-tag">Donner mon avis</span>
+                <h2 class="section-title" id="titre-form">Votre expérience, <span>en quelques mots.</span></h2>
+                <p class="required-note">Les champs marqués d’un * sont obligatoires. Votre avis est publié après vérification.</p>
+                <form id="avis-form" action="#" method="post" novalidate>
+                    <fieldset class="form-group"><legend>Votre note *</legend><div class="stars-input"><input type="radio" id="note5" name="note" value="5" required data-required="Choisissez une note."><label for="note5"><span aria-hidden="true">★</span><span class="visually-hidden">5 sur 5</span></label><input type="radio" id="note4" name="note" value="4"><label for="note4"><span aria-hidden="true">★</span><span class="visually-hidden">4 sur 5</span></label><input type="radio" id="note3" name="note" value="3"><label for="note3"><span aria-hidden="true">★</span><span class="visually-hidden">3 sur 5</span></label><input type="radio" id="note2" name="note" value="2"><label for="note2"><span aria-hidden="true">★</span><span class="visually-hidden">2 sur 5</span></label><input type="radio" id="note1" name="note" value="1"><label for="note1"><span aria-hidden="true">★</span><span class="visually-hidden">1 sur 5</span></label></div></fieldset>
+                    <div class="form-group"><label for="nom">Nom et prénom *</label><input type="text" id="nom" name="nom" autocomplete="name" required data-required="Indiquez votre nom."></div>
+                    <div class="form-group"><label for="etablissement">Établissement *</label><input type="text" id="etablissement" name="etablissement" autocomplete="organization" required data-required="Indiquez le nom de votre établissement."></div>
+                    <div class="form-group"><label for="fonction">Fonction</label><input type="text" id="fonction" name="fonction" autocomplete="organization-title" placeholder="Ex. gouvernante générale"></div>
+                    <div class="form-group"><label for="email">E-mail * (non publié)</label><input type="email" id="email" name="email" autocomplete="email" title="Entrez une adresse e-mail valide, par exemple nom@exemple.com." placeholder="contact@exemple.com" required data-required="Indiquez votre adresse e-mail."></div>
+                    <div class="form-group"><label for="prestation">Prestation concernée</label><select id="prestation" name="prestation"><option>Nettoyage quotidien</option><option>Remise à blanc</option><option>Vitrerie</option><option>Traitement des textiles</option><option>Abonnement annuel</option></select></div>
+                    <div class="form-group"><label for="avis">Votre avis *</label><textarea id="avis" name="avis" rows="5" minlength="20" maxlength="800" required title="Votre avis doit contenir au moins 20 caractères." data-required="Écrivez quelques lignes sur votre expérience." placeholder="Qualité du travail, ponctualité, relation avec les équipes..."></textarea></div>
+                    <div class="form-group consent"><input type="checkbox" id="consent" name="consent" required data-required="Veuillez accepter pour que nous puissions publier votre avis."><label for="consent">J’accepte que mon avis soit publié avec mon nom, ma fonction et mon établissement. *</label></div>
+                    <div class="hp-field" aria-hidden="true"><label for="website">Ne pas remplir</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+                    <p class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+                    <button type="submit" class="btn-submit">PUBLIER MON AVIS</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p class="footer-quote">L’excellence, <span>dans les moindres détails.</span></p>
+        <div class="footer-divider-top"></div>
+        <div class="footer-container">
+            <div class="footer-col footer-brand-col">
+                <a href="index.html" class="footer-logo-link" aria-label="Jade Clean – accueil"><img src="images/logo_jade.svg" alt="" class="footer-logo-img"></a>
+                <p class="footer-brand-desc">Ménage professionnel pour l’hôtellerie haut de gamme.</p>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Navigation</span>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li>
+                    <li><a href="competences.html">Compétences</a></li><li><a href="contact.html">Contact</a></li><li><a href="avis.html">Avis</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Contact</span>
+                <div class="footer-contact-items">
+                    <a href="tel:+33145000000" class="footer-contact-link">+33 1 45 00 00 00</a>
+                    <a href="mailto:contact@jade-clean.fr" class="footer-contact-link">contact@jade-clean.fr</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 JADE CLEAN</span>
+            <span class="footer-right-tag">Ménage professionnel · Hôtellerie de prestige</span>
+        </div>
+    </footer>
+
+    <button type="button" class="mobile-theme-fab" id="theme-fab" aria-label="Passer en mode clair">☀️</button>
+</body>
+</html>
