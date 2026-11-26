@@ -22,8 +22,15 @@
             <a href="connexion.html" class="btn-login">SE CONNECTER</a>
             <label class="theme-switch">
                 <input type="checkbox" id="theme-toggle" aria-label="Activer le mode clair">
-                <span class="switch-track"><span class="icon-sun" aria-hidden="true">☀️</span><span class="icon-moon" aria-hidden="true">🌙</span></span>
-                <span class="switch-thumb"></span>
+                <span class="switch-track">
+                    <span class="icon-moon" aria-hidden="true">
+                        <img src="images/icons-lune.png" alt="" class="theme-icon-img">
+                    </span>
+                    <span class="icon-sun" aria-hidden="true">
+                        <img src="images/icons-soleil.png" alt="" class="theme-icon-img">
+                    </span>
+                    <span class="switch-thumb"></span>
+                </span>
             </label>
             <button type="button" id="menu-btn" class="burger-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
                 <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
@@ -114,6 +121,16 @@
         </div>
     </footer>
 
-    <button type="button" class="mobile-theme-fab" id="theme-fab" aria-label="Passer en mode clair">☀️</button>
+    <button type="button" class="mobile-theme-fab" id="theme-fab" aria-label="Passer en mode clair">
+        <span class="mini-toggle-track">
+            <span class="mini-icon-moon" aria-hidden="true">
+                <img src="images/icons-lune.png" alt="" class="theme-icon-img">
+            </span>
+            <span class="mini-icon-sun" aria-hidden="true">
+                <img src="images/icons-soleil.png" alt="" class="theme-icon-img">
+            </span>
+            <span class="mini-toggle-thumb"></span>
+        </span>
+    </button>
 </body>
 </html>

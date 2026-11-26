@@ -2,10 +2,11 @@
 /* script.js – JavaScript unique du site Jade Clean
    1. Commun : menu burger, thème clair/sombre, validation (toutes les pages)
    2. Comptes et session (JCAuth) : connexion, création de compte, données de l'espace client
-   3. Connexion     (actif seulement sur connexion.html)
-   4. Avis          (actif seulement sur avis.html)
-   5. Contact       (actif seulement sur contact.html)
-   6. Espace client (actif seulement sur espace_client.html) */
+   3. Menu du compte dans l'en-tête (toutes les pages, si connecté)
+   4. Connexion     (actif seulement sur connexion.html)
+   5. Avis          (actif seulement sur avis.html)
+   6. Contact       (actif seulement sur contact.html)
+   7. Espace client (actif seulement sur espace_client.html) */
 
 /* common.js – menu burger, thème clair/sombre, validation de formulaire (toutes les pages) */
 (function () {
@@ -15,12 +16,16 @@
     try { if (localStorage.getItem('theme') === 'light') body.classList.add('light-mode'); } catch (e) { /* stockage indisponible */ }
     var toggle = document.getElementById('theme-toggle');
     var fab = document.getElementById('theme-fab');
+    var hasCustomFabIcons = Boolean(fab && fab.querySelector('.mini-toggle-track'));
 
     function syncTheme() {
         var light = body.classList.contains('light-mode');
-        if (toggle) toggle.checked = light;
+        if (toggle) {
+            toggle.checked = light;
+            toggle.setAttribute('aria-label', light ? 'Activer le mode sombre' : 'Activer le mode clair');
+        }
         if (fab) {
-            fab.textContent = light ? '🌙' : '☀️';
+            if (!hasCustomFabIcons) fab.textContent = light ? '🌙' : '☀️';
             fab.setAttribute('aria-label', light ? 'Passer en mode sombre' : 'Passer en mode clair');
         }
     }
@@ -32,7 +37,9 @@
     if (toggle) toggle.addEventListener('change', function () { setTheme(toggle.checked); });
     if (fab) {
         fab.addEventListener('click', function () { setTheme(!body.classList.contains('light-mode')); });
-        window.addEventListener('scroll', function () { fab.classList.toggle('visible', window.scrollY > 200); }, { passive: true });
+        if (!hasCustomFabIcons) {
+            window.addEventListener('scroll', function () { fab.classList.toggle('visible', window.scrollY > 200); }, { passive: true });
+        }
     }
     syncTheme();
 
@@ -45,6 +52,7 @@
         btn.setAttribute('aria-expanded', String(open));
         btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
         body.style.overflow = open ? 'hidden' : '';
+        if (fab && hasCustomFabIcons) fab.classList.toggle('hidden-menu', open);
     }
     if (btn && nav) {
         btn.addEventListener('click', function () { setMenu(!nav.classList.contains('active')); });
@@ -92,7 +100,7 @@
    (login, signup, addUser, session, saveHotel) par des appels à votre API sécurisée. */
 const JCAuth = (() => {
   const K_USERS = 'jc-users', K_HOTELS = 'jc-hotels', K_SESSION = 'jc-session', K_TRY = 'jc-attempts';
-  const TTL = 12 * 3600 * 1000; /* durée de session : 12 h */
+  const TTL = 30 * 60 * 1000; /* déconnexion automatique après 30 min d'inactivité */
   const read = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } };
   const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } };
   const pad = n => String(n).padStart(2, '0');
@@ -152,6 +160,8 @@ const JCAuth = (() => {
     write(K_HOTELS, { 'h-prestige': { id: 'h-prestige', nom: 'Hôtel Le Prestige', email: 'contact@hotel-prestige.fr', tel: '01 23 45 67 89', data: seedData() } });
   }
 
+  const PW_MIN = 8, pwError = 'Le mot de passe doit contenir au moins 8 caractères.';
+
   async function login(email, pw) {
     email = norm(email);
     const a = read(K_TRY, { n: 0, until: 0 });
@@ -169,6 +179,7 @@ const JCAuth = (() => {
   }
 
   async function signup(f) {
+    if (String(f.pw).length < PW_MIN) return { ok: false, error: pwError };
     await ensureSeed();
     const email = norm(f.email), users = read(K_USERS, []);
     if (users.some(u => u.email === email)) return { ok: false, error: 'Un compte existe déjà avec cette adresse e-mail.' };
@@ -182,6 +193,7 @@ const JCAuth = (() => {
   }
 
   async function addUser(hotelId, f) {
+    if (String(f.pw).length < PW_MIN) return { ok: false, error: pwError };
     const email = norm(f.email), users = read(K_USERS, []);
     if (users.some(u => u.email === email)) return { ok: false, error: 'Un compte existe déjà avec cette adresse e-mail.' };
     users.push({ email, nom: f.nom.trim(), role: f.role, hotel: hotelId, hash: await hash(f.pw, email) });
@@ -203,10 +215,186 @@ const JCAuth = (() => {
   const saveHotel = h => { const all = read(K_HOTELS, {}); all[h.id] = h; return write(K_HOTELS, all); };
   const usersOf = hotelId => read(K_USERS, []).filter(u => u.hotel === hotelId);
 
-  /* Bouton d'en-tête : « SE CONNECTER » devient « MON ESPACE » une fois connecté */
-  if (session()) document.querySelectorAll('a.btn-login:not(#logout-link)').forEach(a => { a.textContent = 'MON ESPACE'; a.setAttribute('href', 'espace_client.html'); });
+  /* Prolonge la session à chaque activité (au plus une écriture toutes les 15 s) */
+  let lastTouch = 0;
+  function touch() {
+    const now = Date.now();
+    if (now - lastTouch < 15000) return;
+    lastTouch = now;
+    const s = read(K_SESSION, null);
+    if (s && s.exp > now) write(K_SESSION, { email: s.email, exp: now + TTL });
+  }
 
-  return { login, signup, addUser, session, logout, saveHotel, usersOf, iso, toISO };
+  async function changePassword(oldPw, newPw) {
+    const s = session();
+    if (!s) return { ok: false, error: 'Votre session a expiré. Reconnectez-vous.' };
+    const users = read(K_USERS, []), u = users.find(x => x.email === s.user.email);
+    if (!u || u.hash !== await hash(oldPw, u.email)) return { ok: false, error: 'Le mot de passe actuel est incorrect.' };
+    if (String(newPw).length < PW_MIN) return { ok: false, error: pwError };
+    if (oldPw === newPw) return { ok: false, error: 'Le nouveau mot de passe doit être différent de l’ancien.' };
+    u.hash = await hash(newPw, u.email);
+    return write(K_USERS, users) ? { ok: true } : { ok: false, error: 'Enregistrement impossible : le stockage du navigateur est indisponible.' };
+  }
+
+  async function loginClient(email, pw) {
+    email = norm(email);
+    await ensureSeed();
+    const users = read(K_USERS, []);
+    let u = users.find(x => x.email === email);
+    const h = await hash(pw, email);
+
+    if (u) {
+      if (u.hash !== h) return { ok: false, error: 'E-mail ou mot de passe incorrect.' };
+    } else {
+      const displayName = email.split('@')[0].replace(/[._-]+/g, ' ') || 'Client';
+      users.push({ email, nom: displayName, role: 'Directeur', hotel: 'h-prestige', hash: h });
+      write(K_USERS, users);
+    }
+
+    if (!write(K_SESSION, { email, exp: Date.now() + TTL })) {
+      return { ok: false, error: 'Connexion impossible : le stockage du navigateur est désactivé.' };
+    }
+    return { ok: true };
+  }
+
+  return { login, loginClient, signup, addUser, session, logout, saveHotel, usersOf, iso, toISO, touch, changePassword };
+})();
+
+/* ===== Menu du compte dans l'en-tête (toutes les pages, quand le client est connecté) ===== */
+(() => {
+  const sess = JCAuth.session();
+  const actions = document.querySelector('.header-right-actions');
+  const login = actions && actions.querySelector('a.btn-login');
+  if (!sess || !login) return;
+  const { user, hotel } = sess;
+  const onEspace = Boolean(document.getElementById('view'));
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  function jcToast(msg) {
+    const el = document.createElement('div');
+    el.className = 'toast'; el.setAttribute('role', 'status'); el.textContent = msg;
+    document.body.append(el);
+    setTimeout(() => el.remove(), 3500);
+  }
+
+  /* Remplace « SE CONNECTER » par l'icône de profil et son menu */
+  const wrap = document.createElement('div');
+  wrap.className = 'account';
+  wrap.innerHTML = `<button type="button" class="account-btn" id="account-btn" aria-expanded="false" aria-controls="account-panel" aria-label="Mon compte : ${esc(user.nom)}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </button>
+    <div class="account-panel" id="account-panel" hidden>
+      <p class="account-who"><strong>${esc(user.nom)}</strong><span>${esc(hotel.nom)} · ${esc(user.role)}</span></p>
+      <a href="espace_client.html"${onEspace ? ' aria-current="page"' : ''}>Mon espace client</a>
+      <a href="espace_client.html#profil" id="account-profile">Mon profil</a>
+      <button type="button" id="pw-open">Changer le mot de passe</button>
+      <button type="button" id="logout-btn" class="danger">Se déconnecter</button>
+    </div>`;
+  login.replaceWith(wrap);
+
+  /* Lien « Espace client » dans la navigation principale */
+  const nav = document.getElementById('main-nav');
+  if (nav && !nav.querySelector('a[href="espace_client.html"]')) {
+    const a = document.createElement('a');
+    a.href = 'espace_client.html'; a.textContent = 'Espace client';
+    nav.append(a);
+  }
+
+  /* Ouverture / fermeture (disclosure accessible au clavier) */
+  const btn = wrap.querySelector('#account-btn'), panel = wrap.querySelector('#account-panel');
+  function setOpen(open, focusBtn) {
+    panel.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    if (!open && focusBtn) btn.focus();
+  }
+  btn.addEventListener('click', () => setOpen(panel.hidden));
+  document.addEventListener('click', e => { if (!wrap.contains(e.target)) setOpen(false); });
+  wrap.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { e.stopPropagation(); setOpen(false, true); } });
+  wrap.addEventListener('focusout', e => { if (e.relatedTarget && !wrap.contains(e.relatedTarget)) setOpen(false); });
+
+  /* Profil : sur l'espace client, on ouvre l'onglet sans recharger la page */
+  wrap.querySelector('#account-profile').addEventListener('click', e => {
+    if (!onEspace) return;
+    e.preventDefault(); setOpen(false);
+    document.dispatchEvent(new Event('jc-profile'));
+  });
+
+  /* Déconnexion avec popin de confirmation */
+  function logoutDialog() {
+    let d = document.getElementById('logout-dlg');
+    if (d) return d;
+    d = document.createElement('dialog');
+    d.id = 'logout-dlg';
+    d.setAttribute('aria-labelledby', 'logout-title');
+    d.setAttribute('aria-describedby', 'logout-desc');
+    d.innerHTML = `<h2 id="logout-title">Confirmer la déconnexion</h2>
+      <p class="lead" id="logout-desc">Souhaitez-vous vraiment vous déconnecter de votre espace client ?</p>
+      <div class="actions">
+        <button type="button" class="btn-pill ghost" id="logout-cancel">Annuler</button>
+        <button type="button" class="btn-pill" id="logout-confirm">Se déconnecter</button>
+      </div>`;
+    document.body.append(d);
+
+    d.querySelector('#logout-cancel').addEventListener('click', () => d.close());
+    d.addEventListener('click', e => {
+      const r = d.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) d.close();
+    });
+    d.querySelector('#logout-confirm').addEventListener('click', () => {
+      d.close();
+      JCAuth.logout();
+      if (onEspace) window.location.href = 'connexion.html'; else window.location.reload();
+    });
+    return d;
+  }
+
+  wrap.querySelector('#logout-btn').addEventListener('click', () => {
+    setOpen(false);
+    const d = logoutDialog();
+    d.showModal();
+    d.querySelector('#logout-cancel').focus();
+  });
+
+  /* Changement de mot de passe (boîte de dialogue créée à la demande) */
+  function pwDialog() {
+    let d = document.getElementById('pw-dlg');
+    if (d) return d;
+    d = document.createElement('dialog');
+    d.id = 'pw-dlg';
+    d.setAttribute('aria-labelledby', 'pw-title');
+    d.innerHTML = `<form id="pw-form" novalidate>
+      <h2 id="pw-title">Changer le mot de passe</h2>
+      <div class="form-group"><label for="pw-old">Mot de passe actuel *</label><input type="password" id="pw-old" autocomplete="current-password" required data-required="Saisissez votre mot de passe actuel."></div>
+      <div class="form-group"><label for="pw-new">Nouveau mot de passe * (8 caractères minimum)</label><input type="password" id="pw-new" autocomplete="new-password" minlength="8" required data-required="Choisissez un nouveau mot de passe." title="Le mot de passe doit contenir au moins 8 caractères."></div>
+      <div class="form-group"><label for="pw-new2">Confirmer le nouveau mot de passe *</label><input type="password" id="pw-new2" autocomplete="new-password" required data-required="Confirmez le nouveau mot de passe."></div>
+      <p class="form-status" id="pw-status" role="status" aria-live="polite" tabindex="-1"></p>
+      <div class="actions"><button type="button" class="btn-pill ghost" id="pw-cancel">Annuler</button><button type="submit" class="btn-pill">Enregistrer</button></div>
+    </form>`;
+    document.body.append(d);
+    const form = d.querySelector('form'), st = d.querySelector('#pw-status');
+    d.querySelector('#pw-cancel').addEventListener('click', () => d.close());
+    d.addEventListener('click', e => { const r = d.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) d.close(); });
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const n1 = d.querySelector('#pw-new'), n2 = d.querySelector('#pw-new2');
+      n1.setCustomValidity(n1.value.length < 8 ? 'Le mot de passe doit contenir au moins 8 caractères.' : '');
+      n2.setCustomValidity(n1.value !== n2.value ? 'Les mots de passe ne correspondent pas.' : '');
+      if (!JC.validate(form)) { JC.status(st, 'Merci de corriger les champs signalés.', false); return; }
+      const r = await JCAuth.changePassword(d.querySelector('#pw-old').value, n1.value);
+      if (!r.ok) { JC.status(st, r.error, false); return; }
+      form.reset(); JC.clearErrors(form); st.textContent = ''; st.className = 'form-status';
+      d.close(); jcToast('Votre mot de passe a été modifié.');
+    });
+    return d;
+  }
+  wrap.querySelector('#pw-open').addEventListener('click', () => { setOpen(false); pwDialog().showModal(); });
+
+  /* Déconnexion automatique après 30 minutes d'inactivité */
+  ['click', 'keydown', 'pointerdown', 'touchstart', 'scroll'].forEach(ev => document.addEventListener(ev, JCAuth.touch, { passive: true }));
+  setInterval(() => {
+    if (JCAuth.session()) return;
+    if (onEspace) window.location.replace('connexion.html?expired=1'); else window.location.reload();
+  }, 15000);
 })();
 
 /* ===== connexion (uniquement sur connexion.html) ===== */
@@ -215,6 +403,12 @@ if (document.getElementById('login-form')) {
   const $ = id => document.getElementById(id);
   const NEXT = 'espace_client.html';
   if (JCAuth.session()) { window.location.replace(NEXT); return; }
+
+  if (new URLSearchParams(window.location.search).get('expired')) {
+    const st = $('login-form').querySelector('.form-status');
+    st.textContent = 'Votre session a expiré après 30 minutes d’inactivité. Reconnectez-vous.';
+    st.className = 'form-status ko';
+  }
 
   const forms = { login: $('login-form'), signup: $('signup-form') };
   const subs = { login: 'Connectez-vous pour suivre vos prestations.', signup: 'Créez le compte de votre établissement.' };
@@ -255,6 +449,7 @@ if (document.getElementById('login-form')) {
   forms.signup.addEventListener('submit', e => {
     e.preventDefault();
     const pw = $('s-pw'), pw2 = $('s-pw2');
+    pw.setCustomValidity(pw.value.length < 8 ? 'Le mot de passe doit contenir au moins 8 caractères.' : '');
     pw2.setCustomValidity(pw.value !== pw2.value ? 'Les mots de passe ne correspondent pas.' : '');
     run(forms.signup, forms.signup.querySelector('.btn-submit'), () => JCAuth.signup({
       etab: $('s-etab').value, nom: $('s-nom').value, email: $('s-email').value, tel: $('s-tel').value, pw: pw.value
@@ -800,7 +995,6 @@ ${isDir ? `<h2 class="sec-top">Ajouter un collaborateur</h2><form class="card" i
     $('view').innerHTML = views[state.tab]();
     $('ask').style.display = canOrder ? 'flex' : 'none';
     $('client-name').textContent = hotel.nom;
-    $('menu-user').textContent = hotel.nom + ' · ' + user.role;
     $('live').textContent = 'Connecté · ' + user.nom + ' (' + user.role + ')';
   }
   function goTab(t) { state.tab = t; render(); window.scrollTo(0, 0); }
@@ -857,13 +1051,13 @@ ${isDir ? `<h2 class="sec-top">Ajouter un collaborateur</h2><form class="card" i
   $('view').addEventListener('submit', async e => {
     if (e.target.id !== 'collab-form') return;
     e.preventDefault();
-    if (!isDir || !JC.validate(e.target)) return;
+    if (!isDir) return;
+    $('c-pw').setCustomValidity($('c-pw').value.length < 8 ? 'Le mot de passe doit contenir au moins 8 caractères.' : '');
+    if (!JC.validate(e.target)) return;
     const r = await JCAuth.addUser(hotel.id, { nom: $('c-nom').value, email: $('c-email').value, role: $('c-role').value, pw: $('c-pw').value });
     toast(r.ok ? 'Collaborateur ajouté.' : r.error);
     if (r.ok) render();
   });
-  $('profile-btn').addEventListener('click', e => { e.preventDefault(); goTab('Profil'); });
-  $('logout-link').addEventListener('click', e => { e.preventDefault(); JCAuth.logout(); window.location.href = LOGIN_URL; });
 
   /* ---------- Demande de prestation ---------- */
   const dlg = $('dlg'), sel = $('o-t'), qty = $('o-q');
@@ -913,6 +1107,8 @@ ${isDir ? `<h2 class="sec-top">Ajouter un collaborateur</h2><form class="card" i
     if (can('Prestations')) goTab('Prestations'); else render();
   });
 
+  document.addEventListener('jc-profile', () => goTab('Profil'));
+  if (window.location.hash === '#profil') state.tab = 'Profil';
   window.addEventListener('pageshow', () => { if (!JCAuth.session()) window.location.replace(LOGIN_URL + '?next=espace_client.html'); });
   render();
 })();
