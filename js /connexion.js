@@ -1,13 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Neutralise un éventuel écouteur en double posé par script.js sur le toggle
+    const rawThemeToggle = document.getElementById('themeToggle');
+    if (rawThemeToggle && rawThemeToggle.parentNode) {
+        const cleanThemeToggle = rawThemeToggle.cloneNode(true);
+        rawThemeToggle.parentNode.replaceChild(cleanThemeToggle, rawThemeToggle);
+    }
+
+    const rawMobileFab = document.getElementById('mobileThemeFab') || document.getElementById('mobileThemeBtn');
+    if (rawMobileFab && rawMobileFab.parentNode) {
+        const cleanMobileFab = rawMobileFab.cloneNode(true);
+        rawMobileFab.parentNode.replaceChild(cleanMobileFab, rawMobileFab);
+    }
+
     // Gestion du toggle thème clair / sombre (Desktop, Tablette & Mobile)
     const themeCheckbox = document.getElementById('themeCheckbox');
-    const mobileThemeFab = document.getElementById('mobileThemeFab');
+    const mobileThemeFab = document.getElementById('mobileThemeFab') || document.getElementById('mobileThemeBtn');
 
     function applyTheme(isLight) {
         document.body.classList.toggle('light-mode', isLight);
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
         if (themeCheckbox) {
             themeCheckbox.checked = isLight;
+        }
+        if (mobileThemeFab) {
+            mobileThemeFab.setAttribute('aria-checked', String(isLight));
         }
     }
 
@@ -19,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (mobileThemeFab) {
+        mobileThemeFab.setAttribute('aria-checked', String(document.body.classList.contains('light-mode')));
         mobileThemeFab.addEventListener('click', function() {
             const isCurrentlyLight = document.body.classList.contains('light-mode');
             applyTheme(!isCurrentlyLight);
@@ -34,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentRole = 'CLIENT';
 
-    //Gestion de la bascule Client / Interne
+    // Gestion de la bascule Client / Interne
     if (btnClient && btnInterne) {
         btnClient.addEventListener('click', function() {
             btnClient.classList.add('active');
@@ -49,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    //Gestion de l'affichage / masquage du mot de passe
+    // Gestion de l'affichage / masquage du mot de passe
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('password');
 
@@ -76,18 +93,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    //Simulation de connexion classique avec vérification de sécurité
+    // Simulation de connexion avec vérification de sécurité et support JCAuth
     if (loginForm) {
-        loginForm.addEventListener('submit', async function (e) {
+        loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-
+            
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
             const btnSubmit = loginForm.querySelector('.btn-submit');
-
+            
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
             const savedPassword = localStorage.getItem('user_custom_password');
-
+            
             if (savedPassword && password === savedPassword) {
                 // Mot de passe réinitialisé valide
             } else if (!passwordRegex.test(password)) {
@@ -102,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
             }
-
+            
             btnSubmit.textContent = 'CONNEXION...';
             btnSubmit.style.opacity = '0.7';
 
@@ -110,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert(`Connexion réussie (${currentRole}) !\nBienvenue ${email}`);
                 btnSubmit.textContent = 'SE CONNECTER';
                 btnSubmit.style.opacity = '1';
-
+                
                 if (currentRole === 'CLIENT') {
                     window.location.href = 'espace_client.html';
                 } else {
@@ -120,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    //Formulaire "MOT DE PASSE OUBLIÉ ?" avec icônes œils intégrées
+    // Formulaire "MOT DE PASSE OUBLIÉ ?" avec icônes œils intégrées
     if (forgotLink) {
         forgotLink.addEventListener('click', function(e) {
             e.preventDefault();
@@ -172,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </p>
             `;
 
-            //Gestion de l'affichage / masquage du nouveau mot de passe avec changement d'icône
+            // Gestion de l'affichage / masquage du nouveau mot de passe avec changement d'icône
             const toggleNewPassword = document.getElementById('toggleNewPassword');
             const newPasswordInput = document.getElementById('new-password');
             if (toggleNewPassword && newPasswordInput) {
@@ -198,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
 
-            //Gestion de l'affichage / masquage de la confirmation du mot de passe avec changement d'icône
+            // Gestion de l'affichage / masquage de la confirmation du mot de passe avec changement d'icône
             const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
             const confirmPasswordInput = document.getElementById('confirm-password');
             if (toggleConfirmPassword && confirmPasswordInput) {
@@ -224,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
 
-            //Soumission de la réinitialisation
+            // Soumission de la réinitialisation
             const resetForm = document.getElementById('resetPasswordForm');
             resetForm.addEventListener('submit', function(ev) {
                 ev.preventDefault();
@@ -251,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    //Fonctionnalité "Créer un compte"
+    // Fonctionnalité "Créer un compte" avec support JCAuth
     if (signupLink) {
         signupLink.addEventListener('click', function(e) {
             e.preventDefault();
@@ -300,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
 
             const signupForm = document.getElementById('signupForm');
-            signupForm.addEventListener('submit', async function (ev) {
+            signupForm.addEventListener('submit', async function(ev) {
                 ev.preventDefault();
                 const etab = document.getElementById('su-hotel').value.trim();
                 const email = document.getElementById('su-email').value.trim();
