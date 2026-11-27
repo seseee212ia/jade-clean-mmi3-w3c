@@ -5757,3 +5757,217 @@ body.page-connexion.light-mode .icon-moon .theme-icon-img {
         padding: 3rem 1.5rem;
     }
 }
+
+/* REPRODUCTION À L'IDENTIQUE DES SECTIONS "SAVOIR-FAIRE" & "ENGAGEMENTS"
+   (Strictement isolé sur body.page-accueil — Ajout seul sans modification) */
+
+/* SECTION "SAVOIR-FAIRE" — Grille asymétrique 7/5 - 5/7 & survol cartes*/
+body.page-accueil .services-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+}
+
+body.page-accueil .services-grid .service-card-img:nth-child(1),
+body.page-accueil .services-grid .service-card-img:nth-child(4) {
+    grid-column: span 7;
+}
+
+body.page-accueil .services-grid .service-card-img:nth-child(2),
+body.page-accueil .services-grid .service-card-img:nth-child(3) {
+    grid-column: span 5;
+}
+
+body.page-accueil .service-card-img {
+    position: relative;
+    min-height: 360px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #231720;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+    transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
+                border-color 0.35s ease,
+                box-shadow 0.45s ease;
+}
+
+body.page-accueil .service-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body.page-accueil .service-card-img .card-overlay {
+    background: linear-gradient(
+        180deg,
+        rgba(23, 14, 21, 0.06) 0%,
+        rgba(23, 14, 21, 0.38) 52%,
+        rgba(23, 14, 21, 0.88) 100%
+    );
+    transition: background 0.4s ease;
+}
+
+/* Pastille flèche en haut à droite (identique à la carte "Vitres & Parois" survolée) */
+body.page-accueil .service-card-img .card-arrow,
+body.page-accueil .service-card-img .arrow-circle,
+body.page-accueil .service-card-img .service-arrow {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #F5EFE6;
+    transition: background-color 0.35s ease,
+                border-color 0.35s ease,
+                transform 0.35s ease,
+                color 0.35s ease;
+}
+
+/* Animations au survol des cartes prestations */
+body.page-accueil .service-card-img:hover {
+    transform: translateY(-5px);
+    border-color: rgba(194, 112, 126, 0.55);
+    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.55);
+}
+
+body.page-accueil .service-card-img:hover img {
+    transform: scale(1.06);
+}
+
+body.page-accueil .service-card-img:hover .card-arrow,
+body.page-accueil .service-card-img:hover .arrow-circle,
+body.page-accueil .service-card-img:hover .service-arrow {
+    background-color: #6E2635;
+    border-color: rgba(194, 112, 126, 0.75);
+    color: #F5EFE6;
+    transform: scale(1.05);
+}
+
+/* SECTION "NOS ENGAGEMENTS" — 3 colonnes & survol identique à la carte 01 */
+body.page-accueil .engagements-grid,
+body.page-accueil .promises-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+body.page-accueil .engagement-card,
+body.page-accueil .promise-card {
+    background-color: #231720;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem 2.25rem;
+    min-height: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+                border-color 0.35s ease,
+                background-color 0.35s ease,
+                box-shadow 0.4s ease;
+}
+
+/* Numéros 01, 02, 03 en italique bordeaux au repos */
+body.page-accueil .engagement-card .engagement-number,
+body.page-accueil .engagement-card .card-number,
+body.page-accueil .promise-card .promise-number,
+body.page-accueil .promise-card .card-number {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 2.75rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #6E2938;
+    margin-bottom: 1.75rem;
+    transition: color 0.35s ease, transform 0.35s ease;
+}
+
+body.page-accueil .engagement-card h3,
+body.page-accueil .promise-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: #F5EFE6;
+    margin-bottom: 0.75rem;
+    transition: color 0.35s ease;
+}
+
+body.page-accueil .engagement-card p,
+body.page-accueil .promise-card p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: rgba(245, 239, 230, 0.65);
+    margin-bottom: 1.75rem;
+}
+
+/* Trait horizontal court au repos (32px) */
+body.page-accueil .engagement-card .engagement-line,
+body.page-accueil .engagement-card .card-line,
+body.page-accueil .promise-card .promise-line,
+body.page-accueil .promise-card .card-line {
+    width: 32px;
+    height: 1px;
+    background-color: rgba(194, 112, 126, 0.45);
+    margin-top: auto;
+    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+                background-color 0.35s ease;
+}
+
+/* État survolé identique à la carte "01 Réactivité absolue" de votre capture */
+body.page-accueil .engagement-card:hover,
+body.page-accueil .promise-card:hover {
+    transform: translateY(-5px);
+    background-color: #271923;
+    border-color: #C2707E;
+    box-shadow: 0 18px 38px rgba(106, 37, 49, 0.25);
+}
+
+body.page-accueil .engagement-card:hover .engagement-number,
+body.page-accueil .engagement-card:hover .card-number,
+body.page-accueil .promise-card:hover .promise-number,
+body.page-accueil .promise-card:hover .card-number {
+    color: #C2707E;
+    transform: translateX(4px);
+}
+
+body.page-accueil .engagement-card:hover .engagement-line,
+body.page-accueil .engagement-card:hover .card-line,
+body.page-accueil .promise-card:hover .promise-line,
+body.page-accueil .promise-card:hover .card-line {
+    width: 64px;
+    background-color: #C2707E;
+}
+
+/* RESPONSIVE TABLETTE & MOBILE*/
+@media (max-width: 900px) {
+    body.page-accueil .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    body.page-accueil .services-grid .service-card-img:nth-child(1),
+    body.page-accueil .services-grid .service-card-img:nth-child(2),
+    body.page-accueil .services-grid .service-card-img:nth-child(3),
+    body.page-accueil .services-grid .service-card-img:nth-child(4) {
+        grid-column: span 1;
+    }
+
+    body.page-accueil .engagements-grid,
+    body.page-accueil .promises-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    body.page-accueil .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    body.page-accueil .service-card-img {
+        min-height: 290px;
+    }
+}
