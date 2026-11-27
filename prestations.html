@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nos Prestations – Jade Clean</title>
+    <meta name="description"
+        content="Découvrez nos grilles de prestations à la carte et nos abonnements annuels pour palaces, hôtels 5 étoiles et maisons de caractère.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital@0;1&amp;display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+    <script src="js/prestations.js" defer></script>
+    <script src="js/compte_interne.js" defer></script>
+</head>
+
+<body class="page-prestations">
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header class="site-header">
+        <div class="logo-container">
+            <a href="index.html" aria-label="Jade Clean – retour à l’accueil"><img
+                    src="images/JADECLEAN_logo_transparent.svg" alt="" class="brand-logo" height="40"></a>
+        </div>
+        <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+            <a href="index.html">Accueil</a>
+            <a href="presentation.html">Présentation</a>
+            <a href="prestations.html" class="active" aria-current="page">Prestations</a>
+            <a href="contact.html">Contact</a>
+            <a href="avis.html">Avis</a>
+        </nav>
+        <div class="header-right-actions">
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle" aria-label="Activer le mode clair">
+                <span class="switch-track">
+                    <span class="icon-moon" aria-hidden="true">
+                        <img src="images/icons-lune.png" alt="" class="theme-icon-img">
+                    </span>
+                    <span class="icon-sun" aria-hidden="true">
+                        <img src="images/icons-soleil.png" alt="" class="theme-icon-img">
+                    </span>
+                    <span class="switch-thumb"></span>
+                </span>
+            </label>
+            <a href="connexion.html" class="btn-login">SE CONNECTER</a>
+            <button type="button" id="menu-btn" class="burger-menu" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="main-nav">
+                <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="contenu">
+        <section class="hero-prestations" aria-labelledby="hero-prestations-title">
+            <div class="hero-prestations-inner">
+                <span class="section-tag">02 — PRESTATIONS &amp; TARIFS</span>
+                <h1 id="hero-prestations-title" class="hero-title">Nos <span>prestations</span>.</h1>
+                <p class="hero-subtitle">
+                    Des grilles claires, des protocoles précis, des abonnements pensés pour l’hôtellerie de prestige.
+                </p>
+            </div>
+        </section>
+
+        <section class="prestations-carte-section" aria-labelledby="carte-title">
+            <div class="container-narrow">
+                <span class="section-tag center">— GRILLE DE PRESTATIONS</span>
+                <h2 id="carte-title" class="section-title center">À la carte, <span>sur mesure</span>.</h2>
+
+                <div class="prestations-filters" role="group" aria-label="Filtrer les prestations par fréquence">
+                    <button type="button" class="prestation-filter-btn active" data-freq-filter="all">Toutes
+                        (7)</button>
+                    <button type="button" class="prestation-filter-btn" data-freq-filter="quotidien">Quotidien /
+                        7j/7</button>
+                    <button type="button" class="prestation-filter-btn" data-freq-filter="ponctuel">Ponctuel / Sur
+                        mesure</button>
+                    <button type="button" class="prestation-filter-btn" data-freq-filter="periodique">Hebdo /
+                        Mensuel</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="prestations-table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-select">Choisir</th>
+                                <th scope="col">Prestation</th>
+                                <th scope="col">Fréquence</th>
+                                <th scope="col">Durée</th>
+                                <th scope="col" class="col-right">Tarif indicatif (HT)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prestationsTableBody">
+                            <tr id="nettoyage-quotidien" class="prestation-main-row" data-freq="quotidien" tabindex="0"
+                                aria-expanded="false" aria-controls="detail-nettoyage-quotidien">
+                                <td data-label="Sélection" class="col-select">
+                                    <input type="checkbox" class="prestation-checkbox"
+                                        data-service="Nettoyage quotidien (à partir de 35 €/h)"
+                                        aria-label="Sélectionner Nettoyage quotidien">
+                                </td>
+                                <td data-label="Prestation">
+                                    <strong class="prestation-name">Nettoyage quotidien <span class="prestation-chevron"
+                                            aria-hidden="true">&#9662;</span></strong>
+                                    <span class="prestation-sub">Chambres, couloirs, parties communes</span>
+                                </td>
+                                <td data-label="Fréquence">7j/7</td>
+                                <td data-label="Durée">2h - 4h</td>
+                                <td data-label="Tarif indicatif" class="prestation-price col-right">à partir de 35 €/h
+                                </td>
+                            </tr>
+                            <tr id="detail-nettoyage-quotidien" class="prestation-detail-row" data-freq="quotidien"
+                                hidden>
+                                <td colspan="5">
+                                    <div class="prestation-detail-panel">
+                                        <p class="prestation-detail-intro">Intervention discrète aux horaires de faible
+                                            affluence pour maintenir un standard hôtelier irréprochable.</p>
+                                        <ul class="prestation-detail-list">
+                                            <li><strong>Chambres en recouche :</strong> aération, mise au carré de la
+                                                literie, aspiration des sols et dépoussiérage du mobilier.</li>
+                                            <li><strong>Circulations &amp; accueil :</strong> entretien des couloirs,
+                                                ascenseurs, poignées, mains courantes et salons de réception.</li>
+                                            <li><strong>Réassort :</strong> renouvellement des produits d’accueil,
+                                                serviettes et consommables selon le cahier de l’hôtel.</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="remise-a-blanc" class="prestation-main-row" data-freq="ponctuel" tabindex="0"
+                                aria-expanded="false" aria-controls="detail-remise-a-blanc">
+                                <td data-label="Sélection" class="col-select">
+                                    <input type="checkbox" class="prestation-checkbox"
+                                        data-service="Remise à blanc (à partir de 45 €)"
+                                        aria-label="Sélectionner Remise à blanc">
+                                </td>
+                                <td data-label="Prestation">
+                                    <strong class="prestation-name">Remise à blanc <span class="prestation-chevron"
+                                            aria-hidden="true">&#9662;</span></strong>
+                                    <span class="prestation-sub">Chambre complète après départ</span>
+                                </td>
+                                <td data-label="Fréquence">À la demande</td>
+                                <td data-label="Durée">45 min / chambre</td>
+                                <td data-label="Tarif indicatif" class="prestation-price col-right">à partir de 45 €
+                                </td>
+                            </tr>
+                            <tr id="detail-remise-a-blanc" class="prestation-detail-row" data-freq="ponctuel" hidden>
+                                <td colspan="5">
+                                    <div class="prestation-detail-panel">
+                                        <p class="prestation-detail-intro">Protocole complet entre deux séjours pour
+                                            préparer une chambre comme au premier jour.</p>
+                                        <ul class="prestation-detail-list">
+                                            <li><strong>Literie &amp; linge :</strong> dépose intégrale du linge
+                                                utilisé, contrôle des protège-matelas et dressage au carré.</li>
+                                            <li><strong>Désinfection intégrale :</strong> salle de bain, WC,
+                                                interrupteurs, télécommandes, minibar et surfaces de contact.</li>
+                                            <li><strong>Contrôle final gouvernante :</strong> vérification olfactive,
+                                                alignement du mobilier et signalement d’éventuels oublis clients.</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="traitement-des-textiles" class="prestation-main-row" data-freq="ponctuel"
+                                tabindex="0" aria-expanded="false" aria-controls="detail-traitement-des-textiles">
+                                <td data-label="Sélection" class="col-select">
+                                    <input type="checkbox" class="prestation-checkbox"
+                                        data-service="Traitement des textiles (sur devis)"
+                                        aria-label="Sélectionner Traitement des textiles">
+                                </td>
+                                <td data-label="Prestation">
+                                    <strong class="prestation-name">Traitement des textiles <span
+                                            class="prestation-chevron" aria-hidden="true">&#9662;</span></strong>
+                                    <span class="prestation-sub">Linge de lit, serviettes, rideaux</span>
+                                </td>
+                                <td data-label="Fréquence">2 à 3 fois / semaine</td>
+                                <td data-label="Durée">Sur mesure</td>
+                                <td data-label="Tarif indicatif" class="prestation-price col-right">sur devis</td>
+                            </tr>
+                            <tr id="detail-traitement-des-textiles" class="prestation-detail-row" data-freq="ponctuel"
+                                hidden>
+                                <td colspan="5">
+                                    <div class="prestation-detail-panel">
+                                        <p class="prestation-detail-intro">Soin spécialisé des matières nobles et
+                                            délicates de l’hôtellerie haut de gamme.</p>
+                                        <ul class="prestation-detail-list">
+                                            <li><strong>Tri &amp; traçabilité :</strong> séparation par typologie de
+                                                fibre (percale, satin de coton, lin, velours, soie).</li>
+                                            <li><strong>Détachage &amp; défroissage :</strong> traitement doux sans
+                                                agents agressifs, repassage et finition vapeur sur place.</li>
+                                            <li><strong>Rideaux &amp; voilages :</strong> dépoussiérage, dépose
+                                                programmée et remise en place sans interruption d’exploitation.</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="nettoyage-des-vitres" class="prestation-main-row" data-freq="periodique"
+                                tabindex="0" aria-expanded="false" aria-controls="detail-nettoyage-des-vitres">
+                                <td data-label="Sélection" class="col-select">
+                                    <input type="checkbox" class="prestation-checkbox"
+                                        data-service="Nettoyage des vitres (à partir de 40 €/h)"
+                                        aria-label="Sélectionner Nettoyage des vitres">
+                                </td>
+                                <td data-label="Prestation">
+                                    <strong class="prestation-name">Nettoyage des vitres <span
+                                            class="prestation-chevron" aria-hidden="true">&#9662;</span></strong>
+                                    <span class="prestation-sub">Baies, miroirs, surfaces vitrées</span>
+                                </td>
+                                <td data-label="Fréquence">Mensuel</td>
+                                <td data-label="Durée">1h - 3h</td>
+                                <td data-label="Tarif indicatif" class="prestation-price col-right">à partir de 40 €/h
+                                </td>
+                            </tr>
+                            <tr id="detail-nettoyage-des-vitres" class="prestation-detail-row" data-freq="periodique"
+                                hidden>
+                                <td colspan="5">
+                                    <div class="prestation-detail-panel">
+                                        <p class="prestation-detail-intro">Clarté maximale des façades, verrières et
+                                            miroirs sans traces ni coulures.</p>
+                                        <ul class="prestation-detail-list">
+                                            <li><strong>Surfaces intérieures &amp; extérieures :</strong> baies vitrées,
+                                                portes d’entrée, garde-corps vitrés et verrières de lobby.</li>
+                                            <li><strong>Finitions soignées :</strong> nettoyage des rails, encadrements,
+                                                joints et miroirs de chambres/suites.</li>
+                                            <li><strong>Produits haute pureté :</strong> solutions antistatiques sans
+                                                résidus adaptées aux espaces recevant du public.</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="entretien-sanitaire" class="prestation-main-row" data-freq="quotidien" tabindex="0"
+                                aria-expanded="false" aria-controls="detail-entretien-sanitaire">
+                                <td data-label="Sélection" class="col-select">
+                                    <input type="checkbox" class="prestation-checkbox"
+                                        data-service="Entretien sanitaire (à partir de 32 €/h)"
+                                        aria-label="Sélectionner Entretien sanitaire">
+                                </td>
+                                <td data-label="Prestation">
+                                    <strong class="prestation-name">Entretien sanitaire <span class="prestation-chevron"
+                                            aria-hidden="true">&#9662;</span></strong>
+                                    <span class="prestation-sub">Sanitaires communs et privatifs</span>
+                                </td>
+                                <td data-label="Fréquence">Quotidien</td>
+                                <td data-label="Durée">1h - 2h</td>
+                                <td data-label="Tarif indicatif" class="prestation-price col-right">à partir de 32 €/h
+                                </td>
+                            </tr>
+                            <tr id="detail-entretien-sanitaire" class="prestation-detail-row" data-freq="quotidien"
+                                hidden>
+                                <td colspan="5">
+                                    <div class="prestation-detail-panel">
+                                        <p class="prestation-detail-intro">Hygiène certifiée et contrôle régulier des
+                                            espaces sanitaires des étages, salons et spa.</p>
+                                        <ul class="prestation-detail-list">
+                                            <li><strong>Désinfection normée :</strong> protocole bactéricide/virucide
+                                                sur les cuvettes, vasques, sèche-mains et distributeurs.</li>
+                                            <li><strong>Détartrage préventif :</strong> entretien régulier évitant tout
+                                                dépôt calcaire sur les équipements.</li>
+                                            <li><strong>Traçabilité :</strong> fiche de passage horodatée et
+                                                réapprovisionnement continu en consommables.</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="salles-de-bain" class="prestation-main-row" data-freq="quotidien" tabindex="0"
+                                aria-expanded="false" aria-controls="detail-salles-de-bain">
+                                <td data-label="Sélection" class="col-select">
+                                    <input type="checkbox" class="prestation-checkbox"
+                                        data-service="Salles de bain (à partir de 26 €)"
+                                        aria-label="Sélectionner Salles de bain">
+                                </td>
+                                <td data-label="Prestation">
+                                    <strong class="prestation-name">Salles de bain <span class="prestation-chevron"
+                                            aria-hidden="true">&#9662;</span></strong>
+                                    <span class="prestation-sub">Marbre, robinetterie, paroi de douche</span>
+                                </td>
+                                <td data-label="Fréquence">Quotidien</td>
+                                <td data-label="Durée">20 min / SDB</td>
+                                <td data-label="Tarif indicatif" class="prestation-price col-right">à partir de 26 €
+                                </td>
+                            </tr>
+                            <tr id="detail-salles-de-bain" class="prestation-detail-row" data-freq="quotidien" hidden>
+                                <td colspan="5">
+                                    <div class="prestation-detail-panel">
+                                        <p class="prestation-detail-intro">Soin spécifique des matériaux nobles (marbre,
+                                            pierre naturelle, laiton, chrome) sans abrasion.</p>
+                                        <ul class="prestation-detail-list">
+                                            <li><strong>Pierre &amp; marbre :</strong> nettoyage au pH neutre
+                                                exclusivement, séchage microfibre pour préserver la brillance.</li>
+                                            <li><strong>Parois &amp; robinetterie :</strong> élimination des traces
+                                                d’eau, lustrage des mitigeurs et contrôle des évacuations.</li>
+                                            <li><strong>Mise en scène :</strong> pliage hôtelier des serviettes,
+                                                peignoirs et alignement des produits d’accueil.</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr id="rangements" class="prestation-main-row" data-freq="periodique" tabindex="0"
+                                aria-expanded="false" aria-controls="detail-rangements">
+                                <td data-label="Sélection" class="col-select">
+                                    <input type="checkbox" class="prestation-checkbox"
+                                        data-service="Rangements (à partir de 30 €/h)"
+                                        aria-label="Sélectionner Rangements">
+                                </td>
+                                <td data-label="Prestation">
+                                    <strong class="prestation-name">Rangements <span class="prestation-chevron"
+                                            aria-hidden="true">&#9662;</span></strong>
+                                    <span class="prestation-sub">Dressings, placards, linge</span>
+                                </td>
+                                <td data-label="Fréquence">Hebdomadaire</td>
+                                <td data-label="Durée">1h - 2h</td>
+                                <td data-label="Tarif indicatif" class="prestation-price col-right">à partir de 30 €/h
+                                </td>
+                            </tr>
+                            <tr id="detail-rangements" class="prestation-detail-row" data-freq="periodique" hidden>
+                                <td colspan="5">
+                                    <div class="prestation-detail-panel">
+                                        <p class="prestation-detail-intro">Organisation méthodique des offices d’étage,
+                                            lingeries et dressings des suites longue durée.</p>
+                                        <ul class="prestation-detail-list">
+                                            <li><strong>Offices &amp; réserves :</strong> classement par taille et
+                                                rotation du linge propre, inventaire des dotations d’étage.</li>
+                                            <li><strong>Dressings de suites :</strong> harmonisation des cintres,
+                                                housses de protection et nettoyage intérieur des penderies.</li>
+                                            <li><strong>Discrétion absolue :</strong> respect strict de l’intimité des
+                                                effets personnels des résidents.</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="selection-devis-bar" id="selectionDevisBar">
+                    <div class="selection-devis-info">
+                        <strong id="selectionCountText">0 prestation sélectionnée</strong>
+                        <span id="selectionPreviewList">Cochez une ou plusieurs lignes ci-dessus pour demander un devis
+                            groupé.</span>
+                    </div>
+                    <button type="button" class="btn-primary btn-selection-devis" id="btnDevisSelection" disabled>
+                        DEMANDER LE DEVIS &rarr;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="forfaits-section" aria-labelledby="forfaits-title">
+            <div class="container-narrow">
+                <span class="section-tag center">FORFAITS &amp; ABONNEMENTS ANNUELS</span>
+                <h2 id="forfaits-title" class="section-title center">Choisissez votre <span>niveau d’exigence</span>.
+                </h2>
+                <p class="section-desc center">Trois niveaux d’engagement, sans frais de dossier.</p>
+
+                <div class="forfaits-grid">
+                    <article class="forfait-card">
+                        <div class="forfait-top">
+                            <span class="forfait-tag">ENTRETIEN QUOTIDIEN</span>
+                            <h3>Essentiel</h3>
+                            <p class="forfait-amount">1 890 € <span>/ mois</span></p>
+                        </div>
+                        <ul class="forfait-features">
+                            <li>Nettoyage quotidien des chambres</li>
+                            <li>Parties communes et couloirs</li>
+                            <li>Entretien des sanitaires</li>
+                            <li>Équipe dédiée 5j/7</li>
+                        </ul>
+                        <a href="contact.html?besoin=Forfait%20Essentiel" class="btn-forfait"
+                            data-formule="Forfait Essentiel">DEMANDER UN DEVIS &rarr;</a>
+                    </article>
+
+                    <article class="forfait-card featured">
+                        <span class="forfait-pill">Le plus choisi</span>
+                        <div class="forfait-top">
+                            <span class="forfait-tag">LE PLUS CHOISI</span>
+                            <h3>Signature</h3>
+                            <p class="forfait-amount">3 450 € <span>/ mois</span></p>
+                        </div>
+                        <ul class="forfait-features">
+                            <li>Tout le forfait Essentiel</li>
+                            <li>Remise à blanc après chaque départ</li>
+                            <li>Traitement des textiles délicats</li>
+                            <li>Rangements et dressings</li>
+                            <li>Interlocuteur unique dédié</li>
+                        </ul>
+                        <a href="contact.html?besoin=Forfait%20Signature" class="btn-forfait btn-forfait-light"
+                            data-formule="Forfait Signature">DEMANDER UN DEVIS &rarr;</a>
+                    </article>
+
+                    <article class="forfait-card">
+                        <div class="forfait-top">
+                            <span class="forfait-tag">PALACES &amp; BOUTIQUES</span>
+                            <h3>Prestige</h3>
+                            <p class="forfait-amount">Sur mesure</p>
+                        </div>
+                        <ul class="forfait-features">
+                            <li>Tout le forfait Signature</li>
+                            <li>Vitres et surfaces vitrées</li>
+                            <li>Astreinte urgence 24h/24</li>
+                            <li>Contrôle qualité mensuel</li>
+                            <li>Reporting et plan de progression</li>
+                        </ul>
+                        <a href="contact.html?besoin=Forfait%20Prestige" class="btn-forfait"
+                            data-formule="Forfait Prestige">DEMANDER UN DEVIS &rarr;</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="equipes-section" aria-labelledby="equipes-title">
+            <div class="equipes-container">
+                <div class="equipes-text">
+                    <span class="section-tag equipes-tag">NOS ÉQUIPES</span>
+                    <h2 id="equipes-title" class="section-title">Formées <span>en interne</span>,<br>choisies avec soin.</h2>
+                    <p>
+                        Chaque gouvernante est formée aux protocoles de remise à blanc, au traitement des textiles délicats et au respect des matières nobles.
+                    </p>
+                    <p>
+                        Nous n’envoyons jamais sur site une équipe que nous n’aurions pas confiée à notre propre établissement.
+                    </p>
+
+                    <ul class="equipes-roles">
+                        <li class="equipe-role">
+                            <svg class="equipe-role-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                                <circle cx="12" cy="10" r="3"></circle>
+                                <path d="M8 17c1-2 7-2 8 0"></path>
+                            </svg>
+                            <div>
+                                <h3>Gouvernantes générales</h3>
+                                <p>Elles encadrent les équipes sur site et restent votre interlocutrice unique.</p>
+                            </div>
+                        </li>
+                        <li class="equipe-role">
+                            <svg class="equipe-role-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"></path>
+                                <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"></path>
+                            </svg>
+                            <div>
+                                <h3>Équipiers d’étage</h3>
+                                <p>Chambres, suites et parties communes, selon vos protocoles.</p>
+                            </div>
+                        </li>
+                        <li class="equipe-role">
+                            <svg class="equipe-role-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path>
+                                <rect x="9" y="3" width="6" height="4" rx="1"></rect>
+                                <path d="M9 14l2 2 4-4"></path>
+                            </svg>
+                            <div>
+                                <h3>Contrôleurs qualité</h3>
+                                <p>Une vérification documentée après chaque intervention.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="equipes-media">
+                    <img src="images/linge-soyeux.png" alt="Linge de lit plié avec soin" class="equipes-img">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p class="footer-quote">L’excellence, <span>dans les moindres détails.</span></p>
+        <div class="footer-divider-top"></div>
+        <div class="footer-container">
+            <div class="footer-col footer-brand-col">
+                <a href="index.html" class="footer-logo-link" aria-label="Jade Clean – accueil"><img
+                        src="images/JADECLEAN_logo_transparent.svg" alt="" class="footer-logo-img"></a>
+                <p class="footer-brand-desc">Prestations de ménage et d’entretien pour hôtels.</p>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Navigation</span>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="presentation.html">Présentation</a></li>
+                    <li><a href="prestations.html">Prestations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="avis.html">Avis</a></li>
+                    <li><a href="cgv.html">Conditions Générales de Vente</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Contact</span>
+                <div class="footer-contact-items">
+                    <a href="tel:+33689967821" class="footer-contact-link">+33 6 89 96 78 21</a>
+                    <a href="mailto:info@jadeclean.net" class="footer-contact-link">info@jadeclean.net</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 JADE CLEAN</span>
+            <span class="footer-right-tag">Ménage professionnel · Hôtellerie de prestige</span>
+        </div>
+    </footer>
+
+    <button type="button" class="mobile-theme-fab" id="theme-fab" aria-label="Passer en mode clair">
+        <span class="mini-toggle-track">
+            <span class="mini-icon-moon" aria-hidden="true">
+                <img src="images/icons-lune.png" alt="" class="theme-icon-img">
+            </span>
+            <span class="mini-icon-sun" aria-hidden="true">
+                <img src="images/icons-soleil.png" alt="" class="theme-icon-img">
+            </span>
+            <span class="mini-toggle-thumb"></span>
+        </span>
+    </button>
+</body>
+
+</html>
