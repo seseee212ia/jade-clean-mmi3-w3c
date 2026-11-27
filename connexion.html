@@ -27,17 +27,17 @@
     </script>
 
     <!-- Toggle Thème -->
-    <label class="theme-switch" id="themeToggle" aria-label="Changer de thème">
-        <input type="checkbox" id="themeCheckbox">
-        <div class="switch-track" style="pointer-events: none;">
+    <label class="theme-switch" id="themeToggle">
+        <input type="checkbox" id="themeCheckbox" aria-label="Changer de thème">
+        <span class="switch-track" style="pointer-events: none;">
             <span class="icon-moon">
                 <img src="images/icons-lune.png" alt="Mode sombre" class="theme-icon-img" onerror="this.onerror=null; this.src='images/icons-lune.svg';">
             </span>
             <span class="icon-sun">
                 <img src="images/icons-soleil.png" alt="Mode clair" class="theme-icon-img" onerror="this.onerror=null; this.src='images/icons-soleil.svg';">
             </span>
-            <div class="switch-thumb"></div>
-        </div>
+            <span class="switch-thumb"></span>
+        </span>
     </label>
 
     <div class="connexion-layout">
@@ -144,7 +144,5 @@
             <span class="mini-toggle-thumb"></span>
         </span>
     </button>
-
-
 </body>
 </html>
