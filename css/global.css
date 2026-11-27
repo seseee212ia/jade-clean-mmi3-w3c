@@ -113,9 +113,9 @@ img {
 .nav-cta {
   display: inline-flex;
   align-items: center;
-  height: 44px;
-  padding: 0 1.4rem;
-  border-radius: 90px;
+  height: 38px;
+  padding: 0 1.1rem;
+  border-radius: 15px;
   background: var(--jade-wine);
   color: var(--jade-cream);
   font-size: .62rem;
@@ -236,8 +236,8 @@ img {
 #menu-mobile .bouton-connexion {
   display: block;
   margin-top: auto;
-  padding: 18px 0;
-  border-radius: 90px;
+  padding: 14px 0;
+  border-radius: 15px;
   background: var(--jade-wine);
   color: var(--jade-cream);
   font-size: .75rem;
@@ -604,7 +604,7 @@ footer .description {
 /* Boutons de forme rectangulaire (non arrondis en pilule) */
 .nav-cta,
 #menu-mobile .bouton-connexion {
-  border-radius: 90px;
+  border-radius: 15px;
 }
 
 /* Switch / Toggle Thème Sombre / Clair */
@@ -705,8 +705,8 @@ footer .description {
   }
 
   .navbar-principale .nav-right-actions .nav-cta {
-    height: 36px;
-    padding: 0 0.9rem;
+    height: 32px;
+    padding: 0 0.75rem;
     font-size: 0.58rem;
     letter-spacing: 0.14em;
     white-space: nowrap;
@@ -747,7 +747,7 @@ footer .description {
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 90px;
+  border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   background: transparent;
   color: var(--jade-cream);
@@ -844,7 +844,7 @@ footer .description {
   box-shadow: 0 12px 30px rgba(28, 18, 25, 0.14);
 }
 
-/* ---------- Uniformisation globale de tous les boutons du site (border-radius: 90px) ---------- */
+/* ---------- Uniformisation globale de tous les boutons du site (border-radius: 15px) ---------- */
 .nav-cta,
 .btn-logout,
 .btn-deconnexion-rapide,
@@ -862,7 +862,7 @@ footer .description {
 .btn-filtre,
 .btn-demande-flottant,
 #menu-mobile .bouton-connexion {
-  border-radius: 90px !important;
+  border-radius: 15px !important;
 }
 
 /* ---------- Avatar utilisateur & Menu popup profil dans la navbar ---------- */

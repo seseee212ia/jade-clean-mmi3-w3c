@@ -71,9 +71,9 @@
   align-items: center;
   justify-content: center;
   gap: .75rem;
-  height: 54px;
-  padding: 0 2.2rem;
-  border-radius: 90px;
+  height: 46px;
+  padding: 0 1.65rem;
+  border-radius: 15px;
   background: var(--jade-wine);
   color: var(--jade-cream);
   border: none;
@@ -99,9 +99,9 @@
   align-items: center;
   justify-content: center;
   gap: .75rem;
-  height: 54px;
-  padding: 0 2.2rem;
-  border-radius: 90px;
+  height: 46px;
+  padding: 0 1.65rem;
+  border-radius: 15px;
   background: transparent;
   border: 1px solid hsla(30, 18%, 96%, 0.25);
   color: var(--jade-cream);
@@ -762,8 +762,8 @@
   gap: 0.6rem;
   background: #ffffff;
   color: #1a0814;
-  border-radius: 90px;
-  padding: 0.75rem 1.8rem;
+  border-radius: 15px;
+  padding: 0.6rem 1.4rem;
   font-family: var(--font-body);
   font-size: 0.65rem;
   font-weight: 600;
@@ -786,8 +786,8 @@
   background: transparent;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 90px;
-  padding: 0.75rem 1.8rem;
+  border-radius: 15px;
+  padding: 0.6rem 1.4rem;
   font-family: var(--font-body);
   font-size: 0.65rem;
   font-weight: 500;

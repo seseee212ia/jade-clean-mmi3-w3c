@@ -149,8 +149,9 @@
   align-items: center;
   justify-content: center;
   gap: .6rem;
-  height: 48px;
-  border-radius: 90px;
+  height: 42px;
+  padding: 0 1.25rem;
+  border-radius: 15px;
   border: 1px solid var(--jade-plum);
   color: var(--jade-cream);
   font-size: .62rem;

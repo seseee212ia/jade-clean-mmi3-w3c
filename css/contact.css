@@ -287,8 +287,9 @@ form select {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 54px;
-  border-radius: 90px;
+  height: 46px;
+  padding: 0 1.5rem;
+  border-radius: 15px;
   background-color: var(--jade-wine);
   color: var(--jade-cream);
   font-family: var(--font-body);

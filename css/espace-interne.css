@@ -245,8 +245,9 @@
 
 .toggle-btn {
   flex: 1;
-  min-height: 46px;
-  border-radius: 90px;
+  min-height: 40px;
+  padding: 0.35rem 0.9rem;
+  border-radius: 15px;
   border: 1px solid var(--jade-plum);
   background: transparent;
   color: var(--jade-grey);
@@ -352,9 +353,9 @@
   align-items: center;
   justify-content: center;
   gap: .5rem;
-  height: 46px;
-  padding: 0 1.6rem;
-  border-radius: 90px;
+  height: 40px;
+  padding: 0 1.25rem;
+  border-radius: 15px;
   font-family: var(--font-body);
   font-size: .68rem;
   font-weight: 500;
@@ -391,8 +392,8 @@
 
 .actions .bouton-principal,
 .actions .bouton-secondaire {
-  height: 38px;
-  padding: 0 1.1rem;
+  height: 34px;
+  padding: 0 0.85rem;
   font-size: .6rem;
 }
 
