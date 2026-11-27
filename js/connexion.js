@@ -34,7 +34,35 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentRole = 'CLIENT';
 
-    //Gestion de la bascule Client / Interne
+    function bindPasswordToggle(btnId, inputId) {
+        const btn = document.getElementById(btnId);
+        const input = document.getElementById(inputId);
+        if (!btn || !input) return;
+
+        btn.addEventListener('click', function() {
+            const isPassword = input.getAttribute('type') === 'password';
+            input.setAttribute('type', isPassword ? 'text' : 'password');
+            btn.setAttribute('aria-label', isPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
+
+            if (isPassword) {
+                btn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                `;
+            } else {
+                btn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                `;
+            }
+        });
+    }
+
+    // Gestion de la bascule Client / Interne
     if (btnClient && btnInterne) {
         btnClient.addEventListener('click', function() {
             btnClient.classList.add('active');
@@ -49,34 +77,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    //Gestion de l'affichage / masquage du mot de passe
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
+    // Gestion de l'affichage / masquage du mot de passe
+    bindPasswordToggle('togglePassword', 'password');
 
-    if (togglePassword && passwordInput) {
-        togglePassword.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            
-            if (type === 'text') {
-                togglePassword.innerHTML = `
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                        <line x1="1" y1="1" x2="23" y2="23"></line>
-                    </svg>
-                `;
-            } else {
-                togglePassword.innerHTML = `
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                `;
-            }
-        });
-    }
-
-    //Simulation de connexion classique avec vérification de sécurité
+    // Simulation de connexion classique avec vérification de sécurité
     if (loginForm) {
         loginForm.addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -108,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             setTimeout(() => {
                 alert(`Connexion réussie (${currentRole}) !\nBienvenue ${email}`);
-                btnSubmit.textContent = 'SE CONNECTER';
+                btnSubmit.textContent = 'Se connecter';
                 btnSubmit.style.opacity = '1';
 
                 if (currentRole === 'CLIENT') {
@@ -120,26 +124,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    //Formulaire "MOT DE PASSE OUBLIÉ ?" avec icônes œils intégrées
+    // Formulaire "MOT DE PASSE OUBLIÉ ?" avec icônes œils intégrées
     if (forgotLink) {
         forgotLink.addEventListener('click', function(e) {
             e.preventDefault();
             
             loginBox.innerHTML = `
-                <h2 class="login-title" style="text-transform: uppercase; letter-spacing: 1px;">MOT DE PASSE OUBLIÉ ?</h2>
+                <h2 class="login-title">MOT DE PASSE OUBLIÉ ?</h2>
                 <p class="login-subtitle">Réinitialisez votre mot de passe ici</p>
                 <div class="form-card">
                     <form id="resetPasswordForm">
                         <div class="input-field">
                             <label for="new-password">Nouveau mot de passe</label>
                             <div class="input-wrapper">
-                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                 </svg>
-                                <input type="password" id="new-password" required placeholder="••••••••" style="padding-right: 40px;">
-                                <button type="button" id="toggleNewPassword" class="toggle-password" title="Afficher / Masquer">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <input type="password" id="new-password" required placeholder="••••••••">
+                                <button type="button" id="toggleNewPassword" class="toggle-password" aria-label="Afficher le nouveau mot de passe" title="Afficher / Masquer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                         <circle cx="12" cy="12" r="3"></circle>
                                     </svg>
@@ -147,16 +151,16 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </div>
 
-                        <div class="input-field">
+                        <div class="input-field input-field-last">
                             <label for="confirm-password">Confirmer mot de passe</label>
                             <div class="input-wrapper">
-                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                 </svg>
-                                <input type="password" id="confirm-password" required placeholder="••••••••" style="padding-right: 40px;">
-                                <button type="button" id="toggleConfirmPassword" class="toggle-password" title="Afficher / Masquer">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <input type="password" id="confirm-password" required placeholder="••••••••">
+                                <button type="button" id="toggleConfirmPassword" class="toggle-password" aria-label="Afficher la confirmation du mot de passe" title="Afficher / Masquer">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                         <circle cx="12" cy="12" r="3"></circle>
                                     </svg>
@@ -164,67 +168,20 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </div>
 
-                        <button type="submit" class="btn-submit" style="text-transform: uppercase;">RÉINITIALISEZ MOT DE PASSE</button>
+                        <button type="submit" class="btn-submit">Réinitialisez mot de passe</button>
                     </form>
                 </div>
-                <p class="signup-text" style="margin-top:20px;">
-                    Vous avez un compte ? <a href="connexion.html" style="color: var(--primary-hover);">Connectez vous ici</a>
+                <p class="signup-text">
+                    Vous avez un compte ? <a href="connexion.html">Connectez-vous ici</a>
+                </p>
+                <p class="back-home">
+                    <a href="connexion.html">← Retour à la connexion</a>
                 </p>
             `;
 
-            //Gestion de l'affichage / masquage du nouveau mot de passe avec changement d'icône
-            const toggleNewPassword = document.getElementById('toggleNewPassword');
-            const newPasswordInput = document.getElementById('new-password');
-            if (toggleNewPassword && newPasswordInput) {
-                toggleNewPassword.addEventListener('click', function() {
-                    const type = newPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    newPasswordInput.setAttribute('type', type);
-                    
-                    if (type === 'text') {
-                        toggleNewPassword.innerHTML = `
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                                <line x1="1" y1="1" x2="23" y2="23"></line>
-                            </svg>
-                        `;
-                    } else {
-                        toggleNewPassword.innerHTML = `
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                        `;
-                    }
-                });
-            }
+            bindPasswordToggle('toggleNewPassword', 'new-password');
+            bindPasswordToggle('toggleConfirmPassword', 'confirm-password');
 
-            //Gestion de l'affichage / masquage de la confirmation du mot de passe avec changement d'icône
-            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-            const confirmPasswordInput = document.getElementById('confirm-password');
-            if (toggleConfirmPassword && confirmPasswordInput) {
-                toggleConfirmPassword.addEventListener('click', function() {
-                    const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    confirmPasswordInput.setAttribute('type', type);
-                    
-                    if (type === 'text') {
-                        toggleConfirmPassword.innerHTML = `
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                                <line x1="1" y1="1" x2="23" y2="23"></line>
-                            </svg>
-                        `;
-                    } else {
-                        toggleConfirmPassword.innerHTML = `
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                        `;
-                    }
-                });
-            }
-
-            //Soumission de la réinitialisation
             const resetForm = document.getElementById('resetPasswordForm');
             resetForm.addEventListener('submit', function(ev) {
                 ev.preventDefault();
@@ -251,53 +208,64 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    //Fonctionnalité "Créer un compte"
+    // Fonctionnalité "Créer un compte"
     if (signupLink) {
         signupLink.addEventListener('click', function(e) {
             e.preventDefault();
             
             loginBox.innerHTML = `
-                <h2 class="login-title">Inscription</h2>
-                <p class="login-subtitle">Rejoignez Jade Clean</p>
+                <h2 class="login-title">INSCRIPTION</h2>
+                <p class="login-subtitle">Inscrivez-vous à notre espace</p>
                 <div class="form-card">
                     <form id="signupForm">
                         <div class="input-field">
-                            <label>Nom de l'établissement</label>
+                            <label for="su-hotel">Nom de l'établissement</label>
                             <div class="input-wrapper">
-                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                                 </svg>
-                                <input type="text" id="su-hotel" required placeholder="Palace Example">
+                                <input type="text" id="su-hotel" required placeholder="Ex. Hôtel Le Bristol">
                             </div>
                         </div>
                         <div class="input-field">
-                            <label>Email professionnel</label>
+                            <label for="su-email">Email professionnel</label>
                             <div class="input-wrapper">
-                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                     <polyline points="22,6 12,13 2,6"></polyline>
                                 </svg>
-                                <input type="email" id="su-email" required placeholder="direction@hotel.com">
+                                <input type="email" id="su-email" required placeholder="nom@hotel.com">
                             </div>
                         </div>
-                        <div class="input-field">
-                            <label>Mot de passe</label>
+                        <div class="input-field input-field-last">
+                            <label for="su-password">Mot de passe</label>
                             <div class="input-wrapper">
-                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                 </svg>
                                 <input type="password" id="su-password" required placeholder="••••••••">
+                                <button type="button" id="toggleSuPassword" class="toggle-password" aria-label="Afficher le mot de passe" title="Afficher / Masquer le mot de passe">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
-                        <button type="submit" class="btn-submit">S'INSCRIRE</button>
+                        <button type="submit" class="btn-submit">S'inscrire</button>
                     </form>
                 </div>
-                <p class="back-home" style="margin-top:20px;">
+                <p class="signup-text">
+                    Vous avez un compte ? <a href="connexion.html">Connectez-vous ici</a>
+                </p>
+                <p class="back-home">
                     <a href="connexion.html" id="backToLogin">← Retour à la connexion</a>
                 </p>
             `;
+
+            bindPasswordToggle('toggleSuPassword', 'su-password');
 
             const signupForm = document.getElementById('signupForm');
             signupForm.addEventListener('submit', async function (ev) {
