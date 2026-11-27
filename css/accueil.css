@@ -468,9 +468,15 @@
 .grille-promesses {
   margin-top: 3.5rem;
   display: grid;
-  grid-template-columns: 1fr;
   gap: 1.5rem;
 }
+
+@media (min-width: 768px) {
+  .grille-promesses {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 
 .promesse {
   background: var(--jade-surface);
