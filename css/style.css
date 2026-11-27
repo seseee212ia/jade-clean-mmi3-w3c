@@ -16,7 +16,7 @@
     --font-sans: 'Inter', sans-serif;
 }
 
-* {
+- {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -29,7 +29,7 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    * { animation: none !important; transition: none !important; }
+- { animation: none !important; transition: none !important; }
 }
 
 body,
@@ -5216,10 +5216,528 @@ body.light-mode .contact-layout .form_group legend {
 }
 
 body.light-mode .contact-layout .formulaire_section .form_group input[type="text"],
-body.light-mode .contact-layout .formulaire_section .form_group input[type="tel"],
-body.light-mode .contact-layout .formulaire_section .form_group input[type="email"],
-body.light-mode .contact-layout .formulaire_section .form_group input[type="number"],
-body.light-mode .contact-layout .formulaire_section .form_group select,
-body.light-mode .contact-layout .formulaire_section .form_group textarea {
+body.light-mode .formulaire_section .form_group input[type="tel"],
+body.light-mode .formulaire_section .form_group input[type="email"],
+body.light-mode .formulaire_section .form_group input[type="number"],
+body.light-mode .formulaire_section .form_group select,
+body.light-mode .formulaire_section .form_group textarea {
     background-color: #F7F5F3;
+}
+
+/* =========================================================
+   ALIGNEMENT PAGE CONNEXION W3C SUR LE RENDU BOOTSTRAP
+   (Strictement isolé sur body.page-connexion)
+   ========================================================= */
+
+body.page-connexion {
+    --bs-jade-ink: #1c1219;
+    --bs-jade-surface: #261b24;
+    --bs-jade-plum: #3d2b39;
+    --bs-jade-wine: #6b2433;
+    --bs-jade-action: #7d2b3c;
+    --bs-jade-rose: #c8717e;
+    --bs-jade-cream: #f5efe6;
+    --bs-jade-grey: #b1a9b1;
+    --bs-heading-font: 'Cormorant Garamond', Georgia, serif;
+
+    background-color: var(--bs-jade-ink);
+    color: var(--bs-jade-cream);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+}
+
+body.page-connexion .connexion-layout {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Colonne Gauche */
+body.page-connexion .connexion-branding {
+    flex: 0 0 50%;
+    width: 50%;
+    min-height: 100vh;
+    background:
+        linear-gradient(160deg, rgba(73, 0, 9, 0.86) 0%, rgba(44, 15, 25, 0.88) 55%, rgba(28, 18, 25, 0.94) 100%),
+        url('../images/Lobby_h%C3%B4tel_prestige.png') center / cover no-repeat;
+    padding: 4rem 4.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    text-align: left;
+    border-bottom: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+}
+
+body.page-connexion .branding-logo-link {
+    display: inline-block;
+}
+
+body.page-connexion .connexion-branding .brand-logo {
+    height: 100px;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    display: block;
+}
+
+body.page-connexion .branding-content {
+    margin-top: auto;
+    margin-bottom: 1.5rem;
+}
+
+body.page-connexion .brand-slogan {
+    font-family: var(--bs-heading-font);
+    font-size: clamp(2.3rem, 3.8vw, 3.3rem);
+    font-weight: 400;
+    line-height: 1.16;
+    color: var(--bs-jade-cream);
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+}
+
+body.page-connexion .brand-slogan span {
+    color: var(--bs-jade-rose);
+    font-style: italic;
+}
+
+body.page-connexion .brand-description {
+    color: var(--bs-jade-grey);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    max-width: 420px;
+    margin: 0;
+}
+
+body.page-connexion .branding-footer p {
+    font-size: 0.6rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 230, 0.28);
+    margin: 0;
+}
+
+/* Colonne Droite */
+body.page-connexion .connexion-form-container {
+    flex: 0 0 50%;
+    width: 50%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    background-color: var(--bs-jade-ink);
+}
+
+body.page-connexion .login-box {
+    width: 100%;
+    max-width: 415px;
+    text-align: left;
+}
+
+body.page-connexion .login-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: var(--bs-jade-wine);
+    color: var(--bs-jade-cream);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.4rem;
+}
+
+body.page-connexion .login-title {
+    font-family: var(--bs-heading-font);
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--bs-jade-cream);
+    margin-bottom: 0.25rem;
+    text-align: left;
+}
+
+body.page-connexion .login-subtitle {
+    color: var(--bs-jade-grey);
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+/* Carte du Formulaire */
+body.page-connexion .form-card {
+    background-color: var(--bs-jade-surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 1.85rem;
+    text-align: left;
+    backdrop-filter: none;
+}
+
+/* Toggle Client / Interne en 2 pilules séparées */
+body.page-connexion .role-toggle {
+    display: flex;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+body.page-connexion .role-btn {
+    flex: 1;
+    min-height: 46px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid var(--bs-jade-plum);
+    background: transparent;
+    color: var(--bs-jade-grey);
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+body.page-connexion .role-btn.active {
+    border-color: var(--bs-jade-wine);
+    background-color: var(--bs-jade-wine);
+    color: var(--bs-jade-cream);
+}
+
+body.page-connexion .role-btn:not(.active):hover {
+    border-color: var(--bs-jade-rose);
+    color: var(--bs-jade-cream);
+}
+
+/* Labels & Champs */
+body.page-connexion .input-field {
+    margin-bottom: 1rem;
+}
+
+body.page-connexion .input-field.input-field-last {
+    margin-bottom: 1.5rem;
+}
+
+body.page-connexion .input-field label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--bs-jade-grey);
+    margin-bottom: 0.5rem;
+}
+
+body.page-connexion .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+body.page-connexion .label-row label {
+    margin-bottom: 0;
+}
+
+body.page-connexion .forgot-link {
+    font-size: 0.74rem;
+    color: #7a727d;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+body.page-connexion .forgot-link:hover {
+    color: var(--bs-jade-rose);
+}
+
+body.page-connexion .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+body.page-connexion .input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bs-jade-grey);
+    pointer-events: none;
+}
+
+body.page-connexion .input-wrapper input {
+    width: 100%;
+    height: 46px;
+    border-radius: 8px;
+    background-color: var(--bs-jade-ink);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--bs-jade-cream);
+    padding: 0 2.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    transition: border-color 0.2s ease;
+}
+
+body.page-connexion .input-wrapper input::placeholder {
+    color: rgba(177, 169, 177, 0.55);
+}
+
+body.page-connexion .input-wrapper input:focus {
+    outline: none;
+    border-color: var(--bs-jade-wine);
+}
+
+body.page-connexion .toggle-password {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--bs-jade-grey);
+    padding: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+body.page-connexion .toggle-password:hover {
+    color: var(--bs-jade-cream);
+}
+
+/* Bouton de validation */
+body.page-connexion .btn-submit {
+    width: 100%;
+    height: 46px;
+    border-radius: 6px;
+    background-color: var(--bs-jade-wine);
+    color: var(--bs-jade-cream);
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    margin-top: 0;
+    transition: background-color 0.2s ease;
+}
+
+body.page-connexion .btn-submit:hover {
+    background-color: var(--bs-jade-action);
+}
+
+/* Pied du formulaire */
+body.page-connexion .signup-text {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    font-size: 0.84rem;
+    color: var(--bs-jade-grey);
+}
+
+body.page-connexion .signup-text a {
+    color: var(--bs-jade-rose);
+    text-decoration: none;
+}
+
+body.page-connexion .signup-text a:hover {
+    text-decoration: underline;
+}
+
+body.page-connexion .back-home {
+    text-align: center;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+body.page-connexion .back-home a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+    color: var(--bs-jade-rose);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+body.page-connexion .back-home a:hover {
+    text-decoration: underline;
+}
+
+/* Switch Thème identique au Bootstrap (.theme-toggle) */
+body.page-connexion .mobile-theme-fab {
+    display: none !important;
+}
+
+body.page-connexion .theme-switch {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    z-index: 1050;
+    display: inline-flex;
+    width: auto;
+    height: auto;
+}
+
+body.page-connexion .switch-track {
+    position: static;
+    inset: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+body.page-connexion .switch-thumb {
+    display: none;
+}
+
+body.page-connexion .icon-moon,
+body.page-connexion .icon-sun {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+body.page-connexion .theme-icon-img {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    display: block;
+    transform: none;
+    opacity: 1;
+}
+
+body.page-connexion:not(.light-mode) .icon-moon {
+    background: var(--bs-jade-cream);
+}
+
+body.page-connexion:not(.light-mode) .icon-moon .theme-icon-img {
+    filter: brightness(0) saturate(100%) invert(8%) sepia(18%) saturate(1350%) hue-rotate(275deg) brightness(95%) contrast(96%);
+    transform: none;
+}
+
+body.page-connexion:not(.light-mode) .icon-sun .theme-icon-img {
+    filter: brightness(0) invert(0.75);
+    opacity: 1;
+}
+
+/* Mode Clair (Light Mode) identique au Bootstrap */
+body.page-connexion.light-mode {
+    --bs-jade-ink: #f7f4f0;
+    --bs-jade-surface: #ffffff;
+    --bs-jade-plum: #dcd3cd;
+    --bs-jade-wine: #6b2433;
+    --bs-jade-action: #7d2b3c;
+    --bs-jade-rose: #9e3346;
+    --bs-jade-cream: #1c1219;
+    --bs-jade-grey: #5a4f57;
+
+    background-color: var(--bs-jade-ink);
+    color: var(--bs-jade-cream);
+}
+
+body.page-connexion.light-mode .connexion-branding {
+    border-right-color: rgba(28, 18, 25, 0.08);
+}
+
+body.page-connexion.light-mode .brand-slogan,
+body.page-connexion.light-mode .brand-description,
+body.page-connexion.light-mode .branding-footer p {
+    color: #f5efe6;
+}
+
+body.page-connexion.light-mode .brand-slogan span {
+    color: #e39aa5;
+}
+
+body.page-connexion.light-mode .connexion-branding .brand-logo {
+    filter: none;
+}
+
+body.page-connexion.light-mode .connexion-form-container {
+    background-color: var(--bs-jade-ink);
+}
+
+body.page-connexion.light-mode .form-card {
+    background-color: var(--bs-jade-surface);
+    border-color: rgba(28, 18, 25, 0.12);
+    box-shadow: 0 12px 32px rgba(28, 18, 25, 0.08);
+}
+
+body.page-connexion.light-mode .role-toggle {
+    background: transparent;
+}
+
+body.page-connexion.light-mode .input-wrapper input {
+    background-color: #f2ede8;
+    border-color: rgba(28, 18, 25, 0.14);
+    color: #1c1219;
+}
+
+body.page-connexion.light-mode .input-wrapper input::placeholder {
+    color: rgba(90, 79, 87, 0.65);
+}
+
+body.page-connexion.light-mode .btn-submit {
+    color: #ffffff;
+}
+
+body.page-connexion.light-mode .switch-track {
+    background: rgba(28, 18, 25, 0.06);
+    border-color: rgba(28, 18, 25, 0.16);
+}
+
+body.page-connexion.light-mode .icon-sun {
+    background: var(--bs-jade-wine);
+}
+
+body.page-connexion.light-mode .icon-sun .theme-icon-img {
+    filter: brightness(0) invert(1);
+    transform: none;
+}
+
+body.page-connexion.light-mode .icon-moon .theme-icon-img {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(10%) saturate(600%) hue-rotate(275deg) brightness(92%) contrast(90%);
+    transform: none;
+    opacity: 1;
+}
+
+/* Responsive Mobile / Tablette (identique <= 900px Bootstrap) */
+@media (max-width: 900px) {
+    body.page-connexion .connexion-layout {
+        flex-direction: column;
+    }
+
+    body.page-connexion .connexion-branding {
+        flex: 0 0 auto;
+        width: 100%;
+        min-height: auto;
+        padding: 3rem 2rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    body.page-connexion .connexion-form-container {
+        flex: 0 0 auto;
+        width: 100%;
+        min-height: auto;
+        padding: 3rem 1.5rem;
+    }
 }
