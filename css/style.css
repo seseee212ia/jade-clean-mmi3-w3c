@@ -3520,8 +3520,25 @@ dialog .hint {
 
 /* Adaptation Mobile uniquement (MAX-WIDTH: 767px) */
 @media (max-width: 767px) {
+    .hero_header {
+        min-height: 460px;
+    }
+
+    .img_header,
+    .img_avis {
+        height: 100%;
+    }
+
     .img_avis {
         object-position: 65% center;
+    }
+
+    .hero_header .hero_content {
+        bottom: 92px;
+    }
+
+    .hero_header .scroll-indicator {
+        bottom: 18px;
     }
 
     body.light-mode .main-nav {
