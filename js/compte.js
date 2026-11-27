@@ -232,11 +232,12 @@ const JCAuth = (() => {
   login.replaceWith(wrap);
 
   /* Lien « Espace client » dans la navigation principale */
-  const nav = document.getElementById('main-nav');
+  const nav = document.querySelector('.main-nav');
   if (nav && !nav.querySelector('a[href="espace_client.html"]')) {
     const a = document.createElement('a');
     a.href = 'espace_client.html'; a.textContent = 'Espace client';
-    nav.append(a);
+    if (onEspace) { a.className = 'active'; a.setAttribute('aria-current', 'page'); }
+    nav.append(a); /* toujours en dernière position, après Contact */
   }
 
   /* Ouverture / fermeture (disclosure accessible au clavier) */
