@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jade Clean | Ménage Hôtelier Haut de Gamme & Entretien Hôtels de Luxe</title>
+    <title>Jade Clean | Ménage Hôtelier Haut de Gamme &amp; Entretien Hôtels de Luxe</title>
     <meta name="description" content="Jade Clean : société de ménage hôtelier haut de gamme pour palaces, hôtels 5 étoiles et conciergeries. Nettoyage quotidien, remise à blanc et urgence 7j/7 sous 2h.">
     <meta name="keywords" content="Jade Clean, nettoyage hôtelier, ménage hôtelier haut de gamme, entretien hôtel de luxe, nettoyage palace, ménage hôtel 5 étoiles, sous-traitance hôtelière, externalisation ménage hôtel, remise à blanc chambre, gouvernante hôtel, nettoyage conciergerie luxe, nettoyage B2B hôtellerie Paris">
     <meta name="author" content="Jade Clean">
@@ -24,7 +24,7 @@
 
     <!-- Balises X (twitter) Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Jade Clean | Ménage Hôtelier Haut de Gamme & Hôtels de Luxe">
+    <meta name="twitter:title" content="Jade Clean | Ménage Hôtelier Haut de Gamme &amp; Hôtels de Luxe">
     <meta name="twitter:description" content="Entretien quotidien, remise à blanc et traitement des textiles pour palaces et hôtels 5 étoiles. Prise en charge des urgences en moins de 2h, 7j/7.">
     <meta name="twitter:image" content="https://www.jade-clean.fr/images/Suite_hôtel_luxe.png">
 
@@ -115,18 +115,20 @@
         ]
     }
     </script>
-    
-<!-- Polices Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    
-<!-- Feuille de style CSS -->
-<link rel="stylesheet" href="css/style.css">
 
+    <!-- Polices Google Fonts (alignées avec Bootstrap : Cormorant Garamond, Inter, Playfair Display) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Feuille de style CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="page-accueil">
-    
+
     <script>
+        document.documentElement.classList.add('js');
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
         }
@@ -140,8 +142,8 @@
                 <img src="images/JADECLEAN_logo_transparent.svg" alt="Jade Clean Logo" class="brand-logo">
             </a>
         </div>
-        
-        <nav class="main-nav">
+
+        <nav class="main-nav" aria-label="Navigation principale">
             <a href="index.html" class="active">Accueil</a>
             <a href="presentation.html">Présentation</a>
             <a href="prestations.html">Prestations</a>
@@ -151,7 +153,7 @@
 
         <!-- Actions regroupées pour le bouton suivi du burger -->
         <div class="header-right-actions">
-            
+
             <label class="theme-switch" id="themeToggle">
                 <input type="checkbox" id="themeCheckbox" aria-label="Changer de thème">
                 <span class="switch-track" style="pointer-events: none;">
@@ -164,11 +166,11 @@
                     <span class="switch-thumb"></span>
                 </span>
             </label>
-            
+
             <a href="connexion.html" class="btn-login">SE CONNECTER</a>
-            
+
             <!-- Bouton Burger Mobile -->
-            <button class="burger-menu" aria-label="Ouvrir le menu">
+            <button type="button" class="burger-menu" aria-label="Ouvrir le menu">
                 <span class="burger-bar"></span>
                 <span class="burger-bar"></span>
                 <span class="burger-bar"></span>
@@ -183,19 +185,19 @@
                 <span class="hero-tagline">Ménage hôtelier haut de gamme</span>
                 <h1 class="hero-title">L'excellence <span>discrète</span> au service de vos chambres.</h1>
                 <p class="hero-subtitle">Des équipes formées aux codes des palaces pour que chaque chambre, chaque étage, chaque matin affiche le même niveau d'exigence.</p>
-                
+
                 <div class="hero-buttons mobile-hero-buttons">
-                    <a href="contact.html" class="btn-primary">Demander un devis → </a>
+                    <a href="contact.html" class="btn-primary">Demander un devis →</a>
                     <a href="prestations.html" class="btn-secondary">Nos prestations</a>
                 </div>
             </div>
-            
+
             <div class="hero-image-wrapper">
                 <div class="arch-image">
                     <img src="images/Container.png" alt="Chambre d'hôtel de luxe - Jade Clean">
                 </div>
             </div>
-            
+
             <!-- Icône de scroll animée -->
             <div class="scroll-indicator">
                 <div class="scroll-pill">
@@ -207,7 +209,7 @@
         <!-- Stats bar -->
         <div class="stats-bar">
             <div class="stat-item">
-                <span class="stat-number"> &lt;2h</span>
+                <span class="stat-number">&lt;2h</span>
                 <span class="stat-label">Prise en charge des urgences</span>
             </div>
             <div class="stat-item">
@@ -247,12 +249,12 @@
             <span class="section-tag center">— SAVOIR-FAIRE</span>
             <h2 class="section-title center">Chaque geste, <span>une signature.</span></h2>
             <p class="section-desc center">Du nettoyage quotidien à la remise à blanc complète, nos protocoles couvrent toutes les zones de votre établissement.</p>
-            
+
             <div class="services-grid-new">
                 <article class="service-card-img" style="background-image: url('images/Suite_hôtel_luxe.png');">
                     <div class="card-overlay">
                         <div class="card-top">
-                            <div class="card-arrow"><a href="prestations.html" class="arrow-link">→</a></div>
+                            <div class="card-arrow"><a href="prestations.html" class="arrow-link" aria-label="Voir Nettoyage quotidien">→</a></div>
                         </div>
                         <div class="card-content">
                             <h3>Nettoyage quotidien</h3>
@@ -265,7 +267,7 @@
                 <article class="service-card-img" style="background-image: url('images/Salles de bain.png');">
                     <div class="card-overlay">
                         <div class="card-top">
-                            <div class="card-arrow"><a href="prestations.html" class="arrow-link">→</a></div>
+                            <div class="card-arrow"><a href="prestations.html" class="arrow-link" aria-label="Voir Salles de bain">→</a></div>
                         </div>
                         <div class="card-content">
                             <h3>Salles de bain</h3>
@@ -278,7 +280,7 @@
                 <article class="service-card-img" style="background-image: url('images/linge-soyeux.png');">
                     <div class="card-overlay">
                         <div class="card-top">
-                            <div class="card-arrow"><a href="prestations.html" class="arrow-link">→</a></div>
+                            <div class="card-arrow"><a href="prestations.html" class="arrow-link" aria-label="Voir Traitement des textiles">→</a></div>
                         </div>
                         <div class="card-content">
                             <h3>Traitement des textiles</h3>
@@ -291,7 +293,7 @@
                 <article class="service-card-img" style="background-image: url('images/Remise à blanc.png');">
                     <div class="card-overlay">
                         <div class="card-top">
-                            <div class="card-arrow"><a href="prestations.html" class="arrow-link">→</a></div>
+                            <div class="card-arrow"><a href="prestations.html" class="arrow-link" aria-label="Voir Remise à blanc">→</a></div>
                         </div>
                         <div class="card-content">
                             <h3>Remise à blanc</h3>
@@ -373,7 +375,7 @@
             </div>
         </section>
     </main>
-    
+
     <!-- Section prise de contact direct -->
     <section class="cta-section">
         <div class="cta-banner">
@@ -381,7 +383,7 @@
                 <span class="cta-tag">— PARLONS DE VOTRE ÉTABLISSEMENT</span>
                 <h2>Une équipe à la hauteur de <span>vos étoiles.</span></h2>
                 <p>Réponse sous 24 heures ouvrées. Urgences prises en charge en moins de deux heures.</p>
-                
+
                 <div class="cta-actions">
                     <a href="contact.html" class="btn-cta-primary">DEMANDER UN DEVIS →</a>
                     <a href="tel:+33145000000" class="btn-cta-phone">
@@ -395,7 +397,7 @@
     <!-- Footer -->
     <footer class="site-footer">
         <h2 class="footer-quote">et votre Espace <span>devient Beauté</span></h2>
-        
+
         <div class="footer-divider-top"></div>
 
         <div class="footer-container">
@@ -421,7 +423,7 @@
             <div class="footer-col">
                 <span class="footer-heading">CONTACT</span>
                 <div class="footer-contact-items">
-                    <a href="tel:+33 6 89 96 78 21" class="footer-contact-link">
+                    <a href="tel:+33689967821" class="footer-contact-link">
                         <svg class="footer-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C2707E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                         <span>+33 6 89 96 78 21</span>
                     </a>
