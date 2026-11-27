@@ -8,7 +8,6 @@
     <meta name="keywords" content="Présentation Jade Clean, maison de services hôtellerie luxe, entretien palaces, ménage hôtels 5 étoiles, nettoyage maisons de caractère, entretien conciergeries haut de gamme, gouvernante palace, prestataire ménage hôtelier, contrôle qualité hôtelier">
     <meta name="author" content="Jade Clean">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="language" content="fr">
     <meta name="geo.region" content="FR-IDF">
     <meta name="geo.placename" content="Paris">
     <link rel="canonical" href="https://www.jade-clean.fr/presentation.html">
@@ -78,24 +77,25 @@
     }
     </script>
     
-<!-- Polices Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Polices Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
-<!-- Feuille de style CSS -->
-<link rel="stylesheet" href="css/style.css">
+    <!-- Feuille de style CSS -->
+    <link rel="stylesheet" href="css/style.css">
     
 </head>
 
-<body class="page-presentation" ontouchstart="">
+<body class="page-presentation">
 
     <!-- Applique le thème clair / sombre sauvegardé avant l'affichage -->
     <script>
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
         }
+        document.addEventListener('touchstart', function () {}, { passive: true });
     </script>
 
-  <!-- Header / navigation -->
+    <!-- Header / navigation -->
     <header class="site-header">
         <div class="logo-container">
             <a href="index.html">
@@ -114,17 +114,17 @@
         <!-- Actions regroupées pour le bouton suivi du burger -->
         <div class="header-right-actions">
             
-            <label class="theme-switch" id="themeToggle" aria-label="Changer de thème">
-                <input type="checkbox" id="themeCheckbox">
-                <div class="switch-track" style="pointer-events: none;">
+            <label class="theme-switch" id="themeToggle">
+                <input type="checkbox" id="themeCheckbox" aria-label="Changer de thème">
+                <span class="switch-track" style="pointer-events: none;">
                     <span class="icon-moon">
                         <img src="images/icons-lune.png" alt="Mode sombre" class="theme-icon-img" onerror="this.onerror=null; this.src='images/icons-lune.svg';">
                     </span>
                     <span class="icon-sun">
                         <img src="images/icons-soleil.png" alt="Mode clair" class="theme-icon-img" onerror="this.onerror=null; this.src='images/icons-soleil.svg';">
                     </span>
-                    <div class="switch-thumb"></div>
-                </div>
+                    <span class="switch-thumb"></span>
+                </span>
             </label>
             
             <a href="connexion.html" class="btn-login">SE CONNECTER</a>
@@ -170,7 +170,7 @@
         <!-- Section image feature -->
         <section class="feature-image-section">
             <div class="feature-container">
-                <img src="images/Gouvernante Jade Clean au travail.png" alt="Gouvernante préparant une chambre" class="feature-img">
+                <img src="images/Gouvernante%20Jade%20Clean%20au%20travail.png" alt="Gouvernante préparant une chambre" class="feature-img">
                 <div class="feature-card">
                     <h3>« et votre Espace devient Beauté »</h3>
                     <p>Une promesse tenue chambre après chambre, étage après étage, depuis notre première mission.</p>
@@ -186,7 +186,7 @@
             </div>
             
             <div class="clients-list">
-               <!-- Adresse 01 -->
+                <!-- Adresse 01 -->
                 <div class="client-item">
                     <div class="client-item-content">
                         <span class="client-num">01</span>
@@ -288,7 +288,7 @@
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="espace_client.html">Espace client</a></li>
                     <li><a href="espace-interne.html">Espace intern</a></li>
-                    <li><a href="cgv.html ">Conditions Générales de Vente</a></li>
+                    <li><a href="cgv.html">Conditions Générales de Vente</a></li>
                 </ul>
             </div>
             
