@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="img/jadeclean-logo.webp">
+  <meta name="theme-color" content="#490009">
+  <meta name="description" content="Les avis des établissements qui confient l'entretien de leurs espaces à Jade Clean.">
+  <title>Avis clients — Jade Clean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/avis-clients.css">
+</head>
+
+<body>
+
+   <nav class="navbar navbar-expand-lg fixed-top navbar-principale scrolled" id="mainNavbar">
+    <div class="container-fluid nav-grid-container">
+      <a class="navbar-brand py-0 d-flex align-items-center" href="index.html" aria-label="Jade Clean — accueil">
+        <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo">
+      </a>
+
+      <ul class="navbar-nav flex-row align-items-center gap-4 my-0 nav-center-links">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="presentation.html">Présentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="competences.html">Compétences</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="avis-clients.html">Avis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-2 gap-lg-3 nav-right-actions">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de thème" aria-pressed="false">
+          <span class="theme-toggle-icon moon"><img src="img/icons-lune.png" alt="Mode sombre" class="theme-icon-img"></span>
+          <span class="theme-toggle-icon sun"><img src="img/icons-soleil.png" alt="Mode clair" class="theme-icon-img"></span>
+        </button>
+        <a href="connexion.html" class="nav-cta" id="navAuthBtn">Se connecter</a>
+        <button id="menu-btn" class="burger d-lg-none" aria-label="Menu" aria-expanded="false" aria-controls="menu-mobile">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <nav id="menu-mobile" aria-label="Menu mobile">
+    <p class="titre">NAVIGATION</p>
+
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="presentation.html">Présentation</a></li>
+      <li><a href="competences.html">Compétences</a></li>
+      <li>          <a class="nav-link" href="avis-clients.html">Avis</a>
+        </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="d-flex justify-content-center mt-auto">
+      <button type="button" class="theme-toggle" aria-label="Changer de thème" aria-pressed="false">
+        <span class="theme-toggle-icon moon"><img src="img/icons-lune.png" alt="Mode sombre" class="theme-icon-img"></span>
+        <span class="theme-toggle-icon sun"><img src="img/icons-soleil.png" alt="Mode clair" class="theme-icon-img"></span>
+      </button>
+    </div>
+  </nav>
+
+
+  <section class="banniere banniere-avis">
+    <div class="fond"></div>
+
+    <div class="container position-relative contenu">
+      <div class="reveal">
+        <h1>
+          Ils nous font <em>confiance</em>.
+        </h1>
+        <p class="description">
+          Gouvernantes, directeurs et responsables d'étage partagent leur expérience avec nos équipes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="partie">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+
+          <!-- Synthèse des notes -->
+          <div class="col-lg-4">
+            <div class="card carte-synthese reveal">
+              <div class="card-body">
+                <span class="sur-titre">Note moyenne</span>
+                <div class="d-flex align-items-end gap-3 mt-3">
+                  <span class="note-moyenne" id="noteMoyenne">–</span>
+                  <span class="sur-cinq">/ 5</span>
+                </div>
+                <div class="etoiles mt-2" id="etoilesMoyenne" aria-hidden="true"></div>
+                <p class="texte mb-4" id="nombreAvis">0 avis</p>
+              <div class="ligne-repartition">
+                <span>5 <i class="bi bi-star-fill"></i></span>
+                <div class="progress" role="progressbar" aria-label="Avis à 5 étoiles" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar" id="barre5" style="width: 0%"></div>
+                </div>
+                <span class="nombre" id="nombre5">0</span>
+              </div>
+              <div class="ligne-repartition">
+                <span>4 <i class="bi bi-star-fill"></i></span>
+                <div class="progress" role="progressbar" aria-label="Avis à 4 étoiles" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar" id="barre4" style="width: 0%"></div>
+                </div>
+                <span class="nombre" id="nombre4">0</span>
+              </div>
+              <div class="ligne-repartition">
+                <span>3 <i class="bi bi-star-fill"></i></span>
+                <div class="progress" role="progressbar" aria-label="Avis à 3 étoiles" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar" id="barre3" style="width: 0%"></div>
+                </div>
+                <span class="nombre" id="nombre3">0</span>
+              </div>
+              <div class="ligne-repartition">
+                <span>2 <i class="bi bi-star-fill"></i></span>
+                <div class="progress" role="progressbar" aria-label="Avis à 2 étoiles" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar" id="barre2" style="width: 0%"></div>
+                </div>
+                <span class="nombre" id="nombre2">0</span>
+              </div>
+              <div class="ligne-repartition">
+                <span>1 <i class="bi bi-star-fill"></i></span>
+                <div class="progress" role="progressbar" aria-label="Avis à 1 étoiles" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar" id="barre1" style="width: 0%"></div>
+                </div>
+                <span class="nombre" id="nombre1">0</span>
+              </div>
+                <a href="#laisserAvis" class="bouton-principal w-100 mt-4">Laisser un avis</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Liste des avis -->
+          <div class="col-lg-8">
+            <div class="reveal">
+              <p class="sur-titre"><span class="trait"></span>Avis vérifiés</p>
+              <h2 class="titre-section">Ce qu'ils <em>en disent</em>.</h2>
+              <p class="mention-exemple">
+                <i class="bi bi-info-circle"></i>
+                Les avis marqués « Exemple » ont été rédigés pour la démonstration du projet. Ils seront remplacés par
+                de vrais avis clients.
+              </p>
+            </div>
+
+            <div class="toggle-group mt-4" id="filtreNotes" role="group" aria-label="Filtrer les avis">
+              <button type="button" class="toggle-btn active" data-note="toutes">Tous</button>
+              <button type="button" class="toggle-btn" data-note="5">5 étoiles</button>
+              <button type="button" class="toggle-btn" data-note="4">4 étoiles</button>
+              <button type="button" class="toggle-btn" data-note="3">3 et moins</button>
+            </div>
+
+            <!-- Cards Bootstrap : 1 colonne sur téléphone, 2 dès la tablette -->
+            <div class="row row-cols-1 row-cols-md-2 g-3" id="listeAvis"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulaire -->
+    <section class="partie fond-clair" id="laisserAvis">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="bloc-formulaire reveal">
+              <span class="sur-titre">Votre expérience</span>
+              <h2>Laisser <em>un avis</em>.</h2>
+
+              <div id="avisSucces" class="succes d-none">
+                <div class="icone"><i class="bi bi-check-lg"></i></div>
+                <h3>Merci pour votre avis</h3>
+                <p>Il est maintenant affiché dans la liste ci-dessus.</p>
+                <button type="button" class="bouton-secondaire mt-2" id="nouvelAvis">Écrire un autre avis</button>
+              </div>
+
+              <form id="avisForm">
+                <div class="row g-3 mb-3">
+                  <div class="col-md-6">
+                    <label for="avis_etablissement">Type d'établissement *</label>
+                    <input type="text" id="avis_etablissement" placeholder="Ex. Palace, Paris" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="avis_fonction">Votre fonction *</label>
+                    <input type="text" id="avis_fonction" placeholder="Ex. Gouvernante générale" required>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="avis_prestation">Prestation concernée</label>
+                  <select id="avis_prestation">
+                    <option>Abonnement Essentiel</option>
+                    <option>Abonnement Signature</option>
+                    <option>Abonnement Prestige</option>
+                    <option>Prestation ponctuelle</option>
+                    <option>Intervention d'urgence</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <span class="label-champ" id="labelNote">Votre note *</span>
+                  <div class="notation" role="radiogroup" aria-labelledby="labelNote">
+                  <input type="radio" id="note5" name="note" value="5">
+                  <label for="note5" title="5 étoiles"><i class="bi bi-star-fill"></i><span class="visually-hidden">5 étoiles</span></label>
+                  <input type="radio" id="note4" name="note" value="4">
+                  <label for="note4" title="4 étoiles"><i class="bi bi-star-fill"></i><span class="visually-hidden">4 étoiles</span></label>
+                  <input type="radio" id="note3" name="note" value="3">
+                  <label for="note3" title="3 étoiles"><i class="bi bi-star-fill"></i><span class="visually-hidden">3 étoiles</span></label>
+                  <input type="radio" id="note2" name="note" value="2">
+                  <label for="note2" title="2 étoiles"><i class="bi bi-star-fill"></i><span class="visually-hidden">2 étoiles</span></label>
+                  <input type="radio" id="note1" name="note" value="1">
+                  <label for="note1" title="1 étoile"><i class="bi bi-star-fill"></i><span class="visually-hidden">1 étoile</span></label>
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="avis_commentaire">Votre avis *</label>
+                  <textarea id="avis_commentaire" rows="4" minlength="20" maxlength="600"
+                    placeholder="Qu'avez-vous pensé de l'intervention, de l'équipe, du suivi ?" required></textarea>
+                  <small class="compteur"><span id="compteurAvis">0</span> / 600</small>
+                </div>
+
+                <div id="avisErreur" class="auth-error"></div>
+
+                <button type="submit" class="bouton-envoi">Publier mon avis</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+<footer class="py-5">
+    <div class="container py-4">
+      <p class="footer-tagline">
+        et votre Espace <span class="accent">devient Beauté</span>
+      </p>
+
+      <div class="footer-grid">
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo mb-3">
+            <p class="description pe-lg-5" style="color: var(--jade-grey); font-size: 14px; max-width: 400px;">
+              Prestation de ménage et d'entretien pour hôtels.
+            </p>
+          </div>
+
+          <div class="col-sm-6 col-lg-4">
+            <div class="footer-heading">Navigation</div>
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html" class="footer-link">Accueil</a></li>
+              <li><a href="presentation.html" class="footer-link">Présentation</a></li>
+              <li><a href="competences.html" class="footer-link">Compétences</a></li>
+              <li><a href="avis-clients.html" class="footer-link">Avis clients</a></li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
+              <li><a href="cgv.html" class="footer-link">CGV</a></li>
+              <li><a href="espace-client.html" class="footer-link">Espace client</a></li>
+              <li><a href="espace-interne.html" class="footer-link">Espace interne</a></li>
+              <li><a href="connexion.html" class="footer-link">Se connecter</a></li>
+            </ul>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-heading">Contact</div>
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="tel:+33689967821" class="footer-link">
+                  <i class="bi bi-telephone"></i> +33 6 89 96 78 21
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@jadeclean.net" class="footer-link">
+                  <i class="bi bi-envelope"></i> info@jadeclean.net
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+        <span>© 2026 Jade Clean</span>
+        <span>Prestations hôtelières haut de gamme</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/avis-clients.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+/* Image de la bannière (le reste de la bannière est dans global.css) */
+.banniere-competences .fond {
+  background-image: url('../img/bathroom.png');
+}
+
+/* --- Grille tarifaire (table Bootstrap habillée) --- */
+.grille-tarifs {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--jade-grey);
+  --bs-table-border-color: var(--jade-line);
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.025);
+  --bs-table-hover-color: var(--jade-grey);
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+
+.grille-tarifs th {
+  padding: .9rem .4rem;
+  border-top: 1px solid var(--jade-line);
+  font-size: .56rem;
+  font-weight: 500;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--jade-rose);
+}
+
+.grille-tarifs td {
+  padding: 1.4rem .4rem;
+  vertical-align: middle;
+  font-size: .8rem;
+}
+
+.grille-tarifs .nom {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: var(--jade-cream);
+}
+
+.grille-tarifs .detail {
+  display: block;
+  font-size: .74rem;
+  color: var(--jade-grey);
+}
+
+.grille-tarifs .tarif {
+  text-align: right;
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--jade-rose);
+}
+
+/* --- Abonnements (cards Bootstrap) --- */
+.carte-forfait {
+  --bs-card-bg: var(--jade-surface);
+  --bs-card-border-color: var(--jade-line);
+  --bs-card-border-radius: 1.5rem;
+  --bs-card-spacer-y: 2rem;
+  --bs-card-spacer-x: 1.9rem;
+  --bs-card-color: var(--jade-cream);
+}
+
+.carte-forfait.mis-en-avant {
+  --bs-card-bg: var(--jade-wine);
+  --bs-card-border-color: var(--jade-wine);
+}
+
+.carte-forfait .sur-titre {
+  font-size: .56rem;
+}
+
+.carte-forfait.mis-en-avant .sur-titre {
+  color: rgba(245, 239, 230, 0.75);
+}
+
+.carte-forfait .card-title {
+  margin: .8rem 0 .6rem;
+  font-family: var(--font-heading);
+  font-size: 2.3rem;
+  font-weight: 500;
+  color: var(--jade-cream);
+}
+
+.carte-forfait .prix {
+  margin: 0;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--jade-line);
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--jade-cream);
+}
+
+.carte-forfait.mis-en-avant .prix {
+  border-color: rgba(245, 239, 230, 0.2);
+}
+
+.carte-forfait .prix small {
+  font-family: var(--font-body);
+  font-size: .7rem;
+  color: var(--jade-grey);
+}
+
+.carte-forfait.mis-en-avant .prix small {
+  color: rgba(245, 239, 230, 0.7);
+}
+
+.badge-populaire {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  padding: .35rem .8rem;
+  background: var(--jade-cream);
+  color: var(--jade-ink);
+  font-size: .52rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.inclus {
+  list-style: none;
+  padding: 0;
+  margin: 1.4rem 0 2rem;
+}
+
+.inclus li {
+  display: flex;
+  gap: .6rem;
+  padding: .3rem 0;
+  font-size: .82rem;
+  color: var(--jade-cream);
+  opacity: 0.88;
+}
+
+.inclus i {
+  flex-shrink: 0;
+  color: var(--jade-rose);
+}
+
+.mis-en-avant .inclus i {
+  color: var(--jade-cream);
+}
+
+.bouton-forfait {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  height: 48px;
+  border-radius: 90px;
+  border: 1px solid var(--jade-plum);
+  color: var(--jade-cream);
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color .25s, background-color .25s, color .25s;
+}
+
+.bouton-forfait:hover {
+  border-color: var(--jade-rose);
+  color: var(--jade-cream);
+}
+
+.mis-en-avant .bouton-forfait {
+  border-color: var(--jade-cream);
+  background: var(--jade-cream);
+  color: var(--jade-ink);
+}
+
+.mis-en-avant .bouton-forfait:hover {
+  background: transparent;
+  color: var(--jade-cream);
+}
+
+/* --- Nos équipes (présentation du personnel) --- */
+.roles {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid var(--jade-line);
+}
+
+.role {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+.role i {
+  margin-top: .2rem;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+  color: var(--jade-rose);
+}
+
+.role h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  line-height: 1.1;
+  color: var(--jade-cream);
+}
+
+.role p {
+  margin: .3rem 0 0;
+  font-size: .85rem;
+  line-height: 1.5;
+  color: var(--jade-grey);
+}
+
+.image-arche {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12rem 12rem 1.5rem 1.5rem;
+}
+
+@media (min-width: 992px) {
+  .carte-forfait.mis-en-avant {
+    transform: translateY(-.75rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .grille-tarifs .nom {
+    font-size: 1.2rem;
+  }
+}
+
+/* Lisibilité de la carte mise en avant (Signature) sur fond pourpre en version claire */
+:root[data-theme="light"] .carte-forfait.mis-en-avant,
+:root[data-theme="light"] .carte-forfait.mis-en-avant .card-title,
+:root[data-theme="light"] .carte-forfait.mis-en-avant .prix,
+:root[data-theme="light"] .carte-forfait.mis-en-avant .inclus li,
+:root[data-theme="light"] .carte-forfait.mis-en-avant .inclus i {
+  color: #f5efe6;
+}
+
+:root[data-theme="light"] .carte-forfait.mis-en-avant .sur-titre,
+:root[data-theme="light"] .carte-forfait.mis-en-avant .prix small {
+  color: rgba(245, 239, 230, 0.78);
+}
+
+:root[data-theme="light"] .carte-forfait.mis-en-avant .badge-populaire {
+  background: #f5efe6;
+  color: #1c1219;
+}
+
+:root[data-theme="light"] .carte-forfait.mis-en-avant .bouton-forfait {
+  border-color: #f5efe6;
+  background: #f5efe6;
+  color: #1c1219;
+}
+
+:root[data-theme="light"] .carte-forfait.mis-en-avant .bouton-forfait:hover {
+  background: transparent;
+  color: #f5efe6;
+}

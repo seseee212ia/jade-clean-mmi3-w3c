@@ -1,0 +1,207 @@
+/* Image de la bannière (le reste de la bannière est dans global.css) */
+.banniere-presentation .fond {
+  background-image: url('../img/lobby.png');
+}
+
+/* --- Introduction --- */
+.intro {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.6vw, 2.25rem);
+  line-height: 1.22;
+  color: var(--jade-cream);
+}
+
+.intro em {
+  font-style: italic;
+  color: var(--jade-rose);
+}
+
+/* --- Grande image + citation (card Bootstrap) --- */
+.image-citation {
+  position: relative;
+  margin: 3.5rem 0 3rem;
+}
+
+.image-citation img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.15 / 1;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
+
+.carte-citation {
+  --bs-card-bg: var(--jade-wine);
+  --bs-card-border-width: 0;
+  --bs-card-border-radius: 1rem;
+  --bs-card-spacer-y: 1.6rem;
+  --bs-card-spacer-x: 1.75rem;
+  --bs-card-color: var(--jade-cream);
+  position: absolute;
+  right: 5%;
+  bottom: -3rem;
+  max-width: 27rem;
+}
+
+.carte-citation blockquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.4rem;
+}
+
+.carte-citation .card-text {
+  font-size: .8rem;
+  line-height: 1.6;
+  color: rgba(245, 239, 230, 0.8);
+}
+
+/* --- Pour qui (list-group Bootstrap) --- */
+.liste-adresses {
+  --bs-list-group-bg: transparent;
+  --bs-list-group-color: var(--jade-cream);
+  --bs-list-group-border-color: var(--jade-line);
+  --bs-list-group-item-padding-x: 0;
+  --bs-list-group-item-padding-y: 1.6rem;
+  margin-top: 3rem;
+  border-top: 1px solid var(--jade-line);
+  border-bottom: 1px solid var(--jade-line);
+}
+
+.adresse .numero {
+  font-size: .6rem;
+  letter-spacing: .2em;
+  color: var(--jade-grey);
+}
+
+.adresse h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+  color: var(--jade-cream);
+}
+
+.adresse p {
+  margin: 0;
+  font-size: .85rem;
+  color: var(--jade-grey);
+}
+
+.lien-fleche {
+  display: inline-flex;
+  align-items: center;
+  gap: .9rem;
+  font-size: .62rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--jade-cream);
+  text-decoration: none;
+}
+
+.lien-fleche .cercle {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--jade-plum);
+  transition: border-color .3s;
+}
+
+.lien-fleche:hover {
+  color: var(--jade-cream);
+}
+
+.lien-fleche:hover .cercle {
+  border-color: var(--jade-rose);
+}
+
+/* --- Nos valeurs (cartes séparées) --- */
+.valeurs {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.valeurs > .card {
+  border-radius: 1.5rem !important;
+  border: 1px solid var(--jade-line) !important;
+}
+
+.carte-valeur {
+  --bs-card-bg: transparent;
+  --bs-card-border-color: var(--jade-line);
+  --bs-card-border-radius: 1.5rem;
+  --bs-card-spacer-y: 2.25rem;
+  --bs-card-spacer-x: 2rem;
+  --bs-card-color: var(--jade-cream);
+}
+
+.carte-valeur .numero {
+  display: block;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--jade-rose);
+}
+
+.carte-valeur .card-title {
+  margin: 1.6rem 0 .6rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--jade-cream);
+}
+
+.carte-valeur .card-text {
+  font-size: .86rem;
+  line-height: 1.6;
+  color: var(--jade-grey);
+}
+
+.carte-valeur .tiret {
+  display: block;
+  width: 28px;
+  height: 1px;
+  margin-top: 1.6rem;
+  background: var(--jade-plum);
+}
+
+/* Entre 576px et 767px, trois colonnes seraient trop étroites : on garde les cards empilées */
+@media (max-width: 767px) {
+  .valeurs {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .valeurs > .card {
+    margin-bottom: 0;
+  }
+
+  .carte-citation {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin: -2rem 1rem 0 auto;
+  }
+
+  .image-citation {
+    margin-bottom: 0;
+  }
+}
+
+/* Texte clair sur fond pourpre/bordeaux en version claire */
+:root[data-theme="light"] .carte-citation {
+  --bs-card-color: #f5efe6;
+  color: #f5efe6;
+}
+
+:root[data-theme="light"] .carte-citation blockquote {
+  color: #f5efe6;
+}
+
+:root[data-theme="light"] .carte-citation .card-text {
+  color: rgba(245, 239, 230, 0.85);
+}

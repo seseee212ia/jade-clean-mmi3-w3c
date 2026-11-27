@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="img/jadeclean-logo.webp">
+  <meta name="theme-color" content="#490009">
+  <meta name="description"
+    content="Espace client Jade Clean — Suivi de vos prestations de ménage hôtelier haut de gamme.">
+  <title>Espace Client — Hôtel — Jade Clean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/espace-client.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top navbar-principale scrolled" id="mainNavbar">
+    <div class="container-fluid nav-grid-container">
+      <a class="navbar-brand py-0 d-flex align-items-center" href="index.html" aria-label="Jade Clean — accueil">
+        <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo">
+      </a>
+
+      <ul class="navbar-nav flex-row align-items-center gap-3 gap-xl-4 my-0 nav-center-links">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="presentation.html">Présentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="competences.html">Compétences</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="avis-clients.html">Avis clients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-2 gap-lg-3 nav-right-actions">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de thème" aria-pressed="false">
+          <span class="theme-toggle-icon moon"><img src="img/icons-lune.png" alt="Mode sombre" class="theme-icon-img"></span>
+          <span class="theme-toggle-icon sun"><img src="img/icons-soleil.png" alt="Mode clair" class="theme-icon-img"></span>
+        </button>
+        <a href="connexion.html" class="nav-cta btn-logout"><i class="bi bi-box-arrow-right me-1"></i> Déconnexion</a>
+        <button id="menu-btn" class="burger d-lg-none" aria-label="Menu" aria-expanded="false" aria-controls="menu-mobile">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <nav id="menu-mobile" aria-label="Menu mobile">
+    <p class="titre">NAVIGATION</p>
+
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="presentation.html">Présentation</a></li>
+      <li><a href="competences.html">Compétences</a></li>
+      <li><a href="avis-clients.html">Avis clients</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="actif"><a href="espace-client.html">Espace Client <span>04</span></a></li>
+    </ul>
+
+    <div class="d-flex justify-content-center mt-auto">
+      <button type="button" class="theme-toggle" aria-label="Changer de thème" aria-pressed="false">
+        <span class="theme-toggle-icon moon"><img src="img/icons-lune.png" alt="Mode sombre" class="theme-icon-img"></span>
+        <span class="theme-toggle-icon sun"><img src="img/icons-soleil.png" alt="Mode clair" class="theme-icon-img"></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="banniere">
+
+    <div class="container position-relative contenu">
+      <div class="reveal">
+        <p class="sur-titre">
+          <span>05</span>
+          <span class="trait"></span>
+          Espace Client
+        </p>
+        <h1>
+          Bonjour, <em>Hôtel Le Prestige</em>
+        </h1>
+        <p class="description">
+          Voici l'activité de votre établissement.
+        </p>
+        <p class="statut-connexion mb-0 mt-3" id="infoUtilisateur">
+          Connecté · rvmioraniaina (Directeur)
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main class="py-5">
+    <div class="container max-w-7xl">
+
+      <div class="onglets mb-4" role="tablist" aria-label="Navigation espace client">
+        <button type="button" class="onglet actif" data-panneau="panneauTableau">
+          Aperçu
+        </button>
+        <button type="button" class="onglet" data-panneau="panneauPrestations">
+          Prestations
+        </button>
+        <button type="button" class="onglet" data-panneau="panneauDevis">
+          Devis <span class="badge-onglet" id="badgeDevis">2</span>
+        </button>
+        <button type="button" class="onglet" data-panneau="panneauContrats">
+          Contrats
+        </button>
+        <button type="button" class="onglet" data-panneau="panneauFactures">
+          Factures <span class="badge-onglet" id="badgeFactures">2</span>
+        </button>
+        <button type="button" class="onglet" data-panneau="panneauRapports">
+          Rapports <span class="badge-onglet" id="badgeRapports">1</span>
+        </button>
+      </div>
+
+      <div class="panneau actif" id="panneauTableau">
+        <div class="bloc-a-faire mb-5" id="blocAFaire">
+          <h2 class="font-heading h3 text-jade-cream mb-3">À faire</h2>
+          <div class="d-flex flex-column gap-2" id="listeAFaire">
+            <button type="button" class="ligne-a-faire" data-cible-onglet="panneauDevis" id="actionDevis">
+              <span class="texte-a-faire" id="texteActionDevis">2 devis à valider</span>
+              <span class="ouvrir-a-faire">OUVRIR</span>
+            </button>
+            <button type="button" class="ligne-a-faire" data-cible-onglet="panneauRapports" id="actionRapports">
+              <span class="texte-a-faire" id="texteActionRapports">1 rapport à consulter</span>
+              <span class="ouvrir-a-faire">OUVRIR</span>
+            </button>
+            <button type="button" class="ligne-a-faire" data-cible-onglet="panneauFactures" id="actionFactures">
+              <span class="texte-a-faire" id="texteActionFactures">2 factures à régler</span>
+              <span class="ouvrir-a-faire">OUVRIR</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="row g-3 mb-5">
+          <div class="col-6 col-lg-3">
+            <div class="stat-carte">
+              <div class="stat-valeur" id="statPlanifiee">4</div>
+              <div class="stat-libelle">À venir</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-carte">
+              <div class="stat-valeur text-jade-rose" id="statDemandee">1</div>
+              <div class="stat-libelle">Demandes</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-carte">
+              <div class="stat-valeur" id="statEnCours">1</div>
+              <div class="stat-libelle">En cours</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-carte">
+              <div class="stat-valeur" id="statTerminee">2</div>
+              <div class="stat-libelle">Terminées</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="mb-4">
+            <h2 class="font-heading h3 text-jade-cream mb-1">Prochaines interventions</h2>
+            <p class="text-jade-grey small mb-0">Prestations confirmées et programmées dans votre établissement.</p>
+          </div>
+
+          <div class="d-flex flex-column gap-2" id="listeProchaines"></div>
+        </div>
+      </div>
+
+      <div class="panneau" id="panneauPrestations">
+        <div>
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-3">
+            <h2 class="font-heading h4 text-jade-cream mb-0">Suivi des prestations</h2>
+            <div class="groupe-filtres">
+              <button type="button" class="btn-filtre actif" data-filtre="a_venir">À venir</button>
+              <button type="button" class="btn-filtre" data-filtre="en_cours">En cours</button>
+              <button type="button" class="btn-filtre" data-filtre="passees">Passées</button>
+            </div>
+          </div>
+
+          <div id="listeHistorique" class="d-flex flex-column gap-2"></div>
+        </div>
+      </div>
+
+      <div class="panneau" id="panneauDevis">
+        <div>
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
+            <div>
+              <h2 class="font-heading h4 text-jade-cream mb-1">Vos propositions tarifaires</h2>
+              <p class="text-jade-grey small mb-0">Vos demandes de chiffrage et devis en attente de validation.</p>
+            </div>
+            <a href="contact.html?besoin=Abonnement" class="bouton-primaire">
+              <i class="bi bi-plus-lg"></i> Demander un devis
+            </a>
+          </div>
+
+          <div class="d-flex flex-column gap-3" id="listeDevis"></div>
+        </div>
+      </div>
+
+      <div class="panneau" id="panneauContrats">
+        <div>
+          <div class="mb-4">
+            <h2 class="font-heading h4 text-jade-cream mb-1">Vos contrats actifs</h2>
+            <p class="text-jade-grey small mb-0">Vos abonnements annuels et conditions d'intervention.</p>
+          </div>
+
+          <div class="d-flex flex-column gap-3">
+            <div class="carte-prestation">
+              <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
+                <div>
+                  <span class="text-jade-grey small text-uppercase tracking-wider">CTR-2026-008</span>
+                  <h3 class="titre-prestation mt-1">Abonnement Annuel — Forfait Signature</h3>
+                </div>
+                <span class="badge-statut valide">Actif</span>
+              </div>
+              <div class="prix">
+                3 450 € <span class="periode">/ mois</span>
+              </div>
+              <div class="mt-2 text-jade-grey small">
+                <i class="bi bi-calendar3 me-1 text-jade-rose"></i> Émis le 01 janvier 2026 · Échéance : 31 décembre 2026
+              </div>
+              <div class="resume-doc mt-3">
+                Prestations 6j/7 · Chambres, suites et parties communes · Référent dédié.
+              </div>
+            </div>
+
+            <div class="carte-prestation">
+              <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
+                <div>
+                  <span class="text-jade-grey small text-uppercase tracking-wider">CTR-2025-012</span>
+                  <h3 class="titre-prestation mt-1">Avenant — Entretien Spécifique Terrasses & Spas</h3>
+                </div>
+                <span class="badge-statut archive">Terminé</span>
+              </div>
+              <div class="prix">
+                1 200 € <span class="periode">/ mois</span>
+              </div>
+              <div class="mt-2 text-jade-grey small">
+                <i class="bi bi-calendar3 me-1 text-jade-rose"></i> Émis le 01 juin 2025 · Échéance : 30 septembre 2025
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panneau" id="panneauFactures">
+        <div>
+          <div class="mb-4">
+            <h2 class="font-heading h4 text-jade-cream mb-1">Vos factures</h2>
+            <p class="text-jade-grey small mb-0">Relevés mensuels et échéances de paiement.</p>
+          </div>
+
+          <div class="d-flex flex-column gap-3" id="listeFactures"></div>
+        </div>
+      </div>
+
+      <div class="panneau" id="panneauRapports">
+        <div>
+          <div class="mb-4">
+            <h2 class="font-heading h4 text-jade-cream mb-1">Comptes rendus qualité</h2>
+            <p class="text-jade-grey small mb-0">Audits de conformité après intervention.</p>
+          </div>
+
+          <div class="d-flex flex-column gap-3" id="listeRapports"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <button type="button" class="bouton-primaire btn-demande-flottant" data-bs-toggle="modal" data-bs-target="#modalDemande">
+    <i class="bi bi-plus-lg"></i> Demander une prestation
+  </button>
+
+  <div class="modal fade" id="modalDemande" tabindex="-1" aria-labelledby="modalDemandeTitre" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-jade-cream p-4"
+        style="background: var(--jade-surface); border: 1px solid var(--jade-plum); border-radius: 1.25rem;">
+        <div class="modal-header border-0 pb-0">
+          <div>
+            <h5 class="modal-title font-heading fs-4 text-jade-cream" id="modalDemandeTitre">Demande de prestation</h5>
+            <p class="text-jade-grey small mb-0 mt-1">Décrivez votre besoin : confirmation du créneau sous 2 heures.</p>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+
+        <div class="modal-body pt-3">
+          <form id="formDemande">
+            <div class="mb-3">
+              <label for="demandePrestation" class="champ-label">Prestation</label>
+              <select id="demandePrestation" class="champ-select" required>
+                <option value="Nettoyage quotidien">Nettoyage quotidien</option>
+                <option value="Remise à blanc">Remise à blanc</option>
+                <option value="Traitement des textiles">Traitement des textiles</option>
+                <option value="Nettoyage des vitres">Nettoyage des vitres</option>
+                <option value="Entretien sanitaire">Entretien sanitaire</option>
+                <option value="Lustrage des sols">Lustrage des sols</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label for="demandeDate" class="champ-label">Date</label>
+                <input type="date" id="demandeDate" class="champ-texte" required>
+              </div>
+              <div class="col-6">
+                <label for="demandeCreneau" class="champ-label">Créneau</label>
+                <select id="demandeCreneau" class="champ-select">
+                  <option value="Matin (7h - 12h)">Matin (7h - 12h)</option>
+                  <option value="Après-midi (12h - 18h)">Après-midi (12h - 18h)</option>
+                  <option value="Soir (18h - 23h)">Soir (18h - 23h)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="demandeZones" class="champ-label">Zones concernées</label>
+              <input type="text" id="demandeZones" class="champ-texte" placeholder="Ex. 14 chambres, étage 3" required>
+            </div>
+
+            <div class="mb-4">
+              <label for="demandeNotes" class="champ-label">Précisions</label>
+              <textarea id="demandeNotes" rows="3" class="champ-zone"
+                placeholder="Contraintes d'accès, horaires..."></textarea>
+            </div>
+
+            <button type="submit" class="bouton-primaire w-100" style="height: 48px;">
+              Envoyer la demande
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-5">
+    <div class="container py-4">
+      <p class="footer-tagline">
+        et votre Espace <span class="accent">devient Beauté</span>
+      </p>
+
+      <div class="footer-grid">
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo mb-3">
+            <p class="description pe-lg-5" style="color: var(--jade-grey); font-size: 14px; max-width: 400px;">
+              Prestation de ménage et d'entretien pour hôtels.
+            </p>
+          </div>
+
+          <div class="col-sm-6 col-lg-4">
+            <div class="footer-heading">Navigation</div>
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html" class="footer-link">Accueil</a></li>
+              <li><a href="presentation.html" class="footer-link">Présentation</a></li>
+              <li><a href="competences.html" class="footer-link">Compétences</a></li>
+              <li><a href="avis-clients.html" class="footer-link">Avis clients</a></li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
+              <li><a href="cgv.html" class="footer-link">CGV</a></li>
+              <li><a href="espace-client.html" class="footer-link">Espace client</a></li>
+              <li><a href="espace-interne.html" class="footer-link">Espace interne</a></li>
+              <li><a href="connexion.html" class="footer-link">Se connecter</a></li>
+            </ul>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <div class="footer-heading">Contact</div>
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="tel:+33689967821" class="footer-link">
+                  <i class="bi bi-telephone"></i> +33 6 89 96 78 21
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@jadeclean.net" class="footer-link">
+                  <i class="bi bi-envelope"></i> info@jadeclean.net
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+        <span>© 2026 Jade Clean</span>
+        <span>Prestations hôtelières haut de gamme</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/espace-client.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,545 @@
+.banniere {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--jade-ink);
+}
+
+.banniere .contenu {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 1.5rem;
+  padding-top: 7.5rem;
+}
+
+.banniere .sur-titre {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: var(--jade-rose);
+  font-weight: 500;
+}
+
+.banniere .trait {
+  height: 1px;
+  width: 40px;
+  background: hsla(350, 40%, 60%, 0.6);
+}
+
+.banniere h1 {
+  margin-top: 0.85rem;
+  margin-bottom: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 6vw, 4.4rem);
+  line-height: 1.05;
+  color: var(--jade-cream);
+  font-weight: 500;
+}
+
+.banniere h1 em {
+  font-style: italic;
+  color: var(--jade-rose);
+}
+
+.banniere .description {
+  margin-top: 1rem;
+  max-width: 38rem;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--jade-grey);
+}
+
+.statut-connexion {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  color: var(--jade-rose);
+  font-weight: 500;
+}
+
+/* Barre d'onglets avec bordure fine et badges compteurs */
+.onglets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.25rem 0 1.25rem;
+}
+
+.onglet {
+  background: transparent;
+  border: 1px solid var(--jade-plum) !important;
+  color: var(--jade-grey);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 0.55rem 1.25rem;
+  border-radius: 90px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.onglet:hover {
+  color: var(--jade-cream);
+  border-color: var(--jade-rose) !important;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.onglet.actif {
+  background: var(--jade-wine);
+  border: 1px solid var(--jade-wine) !important;
+  color: #ffffff;
+}
+
+.badge-onglet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 21px;
+  height: 21px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #d87a88;
+  color: #1c1219;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.badge-onglet.vide {
+  display: none;
+}
+
+/* Section "À faire" */
+.ligne-a-faire {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 1.4rem;
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--jade-plum) !important;
+  color: var(--jade-cream);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ligne-a-faire:hover {
+  border-color: var(--jade-rose) !important;
+  background: rgba(200, 113, 126, 0.08);
+  transform: translateX(3px);
+}
+
+.ouvrir-a-faire {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--jade-rose);
+  flex-shrink: 0;
+}
+
+.panneau {
+  display: none;
+  padding-top: 0.75rem;
+}
+
+.panneau.actif {
+  display: block;
+}
+
+.stat-carte {
+  border-radius: 1.25rem;
+  border: 1px solid var(--jade-plum);
+  background: var(--jade-surface);
+  padding: 1.5rem 1.6rem;
+  transition: border-color 0.2s;
+}
+
+.stat-carte:hover {
+  border-color: var(--jade-wine);
+}
+
+.stat-valeur {
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--jade-cream);
+  font-weight: 500;
+}
+
+.stat-libelle {
+  margin-top: 0.75rem;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--jade-grey);
+  font-weight: 600;
+}
+
+.carte-prestation {
+  border-radius: 1.25rem;
+  border: 1px solid var(--jade-plum);
+  background: var(--jade-surface);
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.carte-prestation:hover {
+  border-color: var(--jade-wine);
+}
+
+.titre-prestation {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  color: var(--jade-cream);
+  margin: 0;
+  font-weight: 500;
+}
+
+.meta-prestation {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  font-size: 0.82rem;
+  color: var(--jade-grey);
+}
+
+.meta-prestation span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.meta-prestation i {
+  color: var(--jade-rose);
+}
+
+/* Badges de statut dans les cartes */
+.badge-statut {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--jade-plum);
+  color: var(--jade-cream);
+  background: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+}
+
+.badge-statut.en-cours {
+  border-color: var(--jade-rose);
+  color: var(--jade-rose);
+  background: rgba(200, 113, 126, 0.1);
+}
+
+.badge-statut.urgent {
+  border-color: #d87a88;
+  color: #f5efe6;
+  background: var(--jade-wine);
+}
+
+.badge-statut.valide {
+  border-color: rgba(111, 189, 142, 0.45);
+  color: #8ad6a7;
+  background: rgba(111, 189, 142, 0.1);
+}
+
+.badge-statut.archive {
+  border-color: var(--jade-plum);
+  color: var(--jade-grey);
+}
+
+.prix {
+  margin-top: 1rem;
+  font-family: var(--font-heading);
+  font-size: 2.1rem;
+  line-height: 1.2;
+  color: var(--jade-cream);
+}
+
+.periode {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: hsla(30, 18%, 96%, 0.6);
+}
+
+.resume-doc {
+  margin-top: 0.75rem;
+  background: var(--jade-ink);
+  border: 1px solid var(--jade-plum);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--jade-grey);
+}
+
+.groupe-filtres {
+  display: inline-flex;
+  gap: 0.35rem;
+  background: var(--jade-ink);
+  border: 1px solid var(--jade-plum);
+  border-radius: 90px;
+  padding: 0.25rem;
+}
+
+.btn-filtre {
+  background: transparent;
+  border: none !important;
+  color: var(--jade-grey);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 0.9rem;
+  border-radius: 90px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.btn-filtre:hover {
+  color: var(--jade-cream);
+}
+
+.btn-filtre.actif {
+  background: var(--jade-wine);
+  border: none !important;
+  color: var(--jade-cream);
+}
+
+.bouton-primaire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--jade-wine);
+  border: none !important;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 90px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.bouton-primaire:hover {
+  background: var(--jade-action);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.bouton-secondaire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--jade-plum) !important;
+  color: var(--jade-cream);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 0.55rem 1.2rem;
+  border-radius: 90px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.bouton-secondaire:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--jade-rose) !important;
+  color: #fff;
+}
+
+.champ-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--jade-rose);
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+
+.champ-texte,
+.champ-select,
+.champ-zone {
+  width: 100%;
+  background: var(--jade-ink);
+  border: 1px solid var(--jade-plum);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--jade-cream);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.champ-texte:focus,
+.champ-select:focus,
+.champ-zone:focus {
+  border-color: var(--jade-rose);
+}
+
+.champ-select option {
+  background: var(--jade-ink);
+  color: var(--jade-cream);
+}
+
+.encart-vide {
+  border-radius: 1.25rem;
+  border: 1px dashed var(--jade-plum);
+  background: var(--jade-surface);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--jade-grey);
+}
+
+.notification-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 2000;
+  background: var(--jade-surface);
+  border: 1px solid var(--jade-rose);
+  color: var(--jade-cream);
+  padding: 0.9rem 1.4rem;
+  border-radius: 0.75rem;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: opacity 0.3s;
+}
+
+/* Bouton flottant fixe en bas à gauche */
+.btn-demande-flottant {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 1.75rem;
+  z-index: 1035;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+}
+
+@media (max-width: 768px) {
+  .banniere .contenu {
+    padding-top: 6.5rem;
+    padding-bottom: 1.25rem;
+  }
+  .stat-carte {
+    padding: 1.1rem;
+  }
+  .stat-valeur {
+    font-size: 2.1rem;
+  }
+  .carte-prestation {
+    padding: 1.1rem;
+  }
+  .titre-prestation {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn-demande-flottant {
+    bottom: 1.15rem;
+    left: 1rem;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.76rem;
+  }
+}
+
+/* ---------- Adaptation Thème Clair (Espace Client) ---------- */
+:root[data-theme="light"] .onglet:hover {
+  background: rgba(28, 18, 25, 0.06);
+}
+
+:root[data-theme="light"] .onglet.actif,
+:root[data-theme="light"] .btn-filtre.actif,
+:root[data-theme="light"] .bouton-primaire {
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .badge-onglet {
+  background: var(--jade-wine);
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .ligne-a-faire {
+  background: var(--jade-surface);
+  box-shadow: 0 4px 14px rgba(28, 18, 25, 0.04);
+}
+
+:root[data-theme="light"] .ligne-a-faire:hover {
+  background: rgba(107, 36, 51, 0.05);
+}
+
+:root[data-theme="light"] .badge-statut {
+  background: rgba(28, 18, 25, 0.04);
+}
+
+:root[data-theme="light"] .badge-statut.urgent {
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .badge-statut.valide {
+  color: #1f6e43;
+  border-color: rgba(31, 110, 67, 0.35);
+  background: rgba(31, 110, 67, 0.08);
+}
+
+:root[data-theme="light"] .periode {
+  color: var(--jade-grey);
+}
+
+:root[data-theme="light"] .bouton-secondaire {
+  background: rgba(28, 18, 25, 0.06);
+  color: var(--jade-cream);
+}
+
+:root[data-theme="light"] .bouton-secondaire:hover {
+  background: rgba(28, 18, 25, 0.12);
+  color: var(--jade-cream);
+}
+
+:root[data-theme="light"] .stat-carte,
+:root[data-theme="light"] .carte-prestation {
+  box-shadow: 0 8px 24px rgba(28, 18, 25, 0.05);
+}
+
+/* Correction du bouton Déconnexion dans la barre de navigation */
+.navbar-principale .nav-cta,
+.navbar-principale .btn-logout {
+  border-radius: 90px !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Espace en bas de page pour que le bouton flottant ne masque aucun contenu */
+main {
+  padding-bottom: 6.5rem !important;
+}

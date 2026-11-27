@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/connexion.css">
+</head>
+
+<body>
+
+  <div class="auth-theme-bar">
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de thème" aria-pressed="false">
+      <span class="theme-toggle-icon moon"><img src="img/icons-lune.png" alt="Mode sombre" class="theme-icon-img"></span>
+      <span class="theme-toggle-icon sun"><img src="img/icons-soleil.png" alt="Mode clair" class="theme-icon-img"></span>
+    </button>
+  </div>
+
+  <main class="page-connexion">
+    <div class="vitrine">
+      <div>
+        <a href="index.html">
+          <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo">
+        </a>
+      </div>
+
+      <div class="mt-auto mb-4">
+        <h1>
+          et votre Espace <span class="accent">devient Beauté</span>
+        </h1>
+        <p class="description">
+          Dans le milieu du Luxe la propreté des lieux n'est surtout pas un détail, mais la priorité absolue.
+        </p>
+      </div>
+
+      <div class="copyright">
+        © 2026 JADE CLEAN
+      </div>
+    </div>
+
+    <div class="panneau-formulaire">
+      <div class="contenu">
+
+        <div class="icone">
+          <i class="bi bi-box-arrow-in-right"></i>
+        </div>
+
+        <h2>Bon retour</h2>
+        <p class="sous-titre">Connectez-vous à votre espace</p>
+
+        <div class="carte-connexion">
+          <div class="toggle-group">
+            <button type="button" id="roleClientBtn" class="toggle-btn active">Client</button>
+            <button type="button" id="roleInterneBtn" class="toggle-btn">Interne</button>
+          </div>
+
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="email">Email</label>
+              <div class="champ-icone">
+                <i class="bi bi-envelope"></i>
+                <input type="email" id="email" placeholder="nom@hotel.com" autocomplete="username" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <label for="password" class="mb-0">Mot de passe</label>
+                <a href="mot-de-passe-oublie.html" class="lien-oubli">Mot de passe oublié ?</a>
+              </div>
+              <div class="champ-icone">
+                <i class="bi bi-lock"></i>
+                <input type="password" id="password" class="input-password" placeholder="••••••••" autocomplete="current-password" required>
+                <button type="button" class="btn-toggle-pwd" data-target="password" aria-label="Afficher le mot de passe">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" id="loginBtn" class="bouton-validation">
+              Se connecter
+            </button>
+          </form>
+        </div>
+
+        <div class="pied-formulaire">
+          <div>Pas encore de compte ? <a href="inscription.html">Créer un compte</a></div>
+          <a href="index.html" class="retour-lien"><i class="bi bi-arrow-left"></i> Retour à l'accueil</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

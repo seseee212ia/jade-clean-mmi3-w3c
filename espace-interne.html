@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="img/jadeclean-logo.webp">
+  <meta name="theme-color" content="#490009">
+  <meta name="description" content="Espace interne de l'équipe Jade Clean.">
+  <title>Espace interne — Jade Clean</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/espace-interne.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top navbar-principale scrolled" id="mainNavbar">
+    <div class="container-fluid nav-grid-container">
+      <a class="navbar-brand py-0 d-flex align-items-center" href="index.html" aria-label="Jade Clean — accueil">
+        <img src="img/jadeclean-logo.webp" alt="Jade Clean" class="logo">
+      </a>
+
+      <ul class="navbar-nav flex-row align-items-center gap-4 my-0 nav-center-links">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="presentation.html">Présentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="competences.html">Compétences</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="avis-clients.html">Avis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-2 gap-lg-3 nav-right-actions">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de thème" aria-pressed="false">
+          <span class="theme-toggle-icon moon"><img src="img/icons-lune.png" alt="Mode sombre" class="theme-icon-img"></span>
+          <span class="theme-toggle-icon sun"><img src="img/icons-soleil.png" alt="Mode clair" class="theme-icon-img"></span>
+        </button>
+        <a href="connexion.html" class="nav-cta btn-logout" id="navAuthBtn"><i class="bi bi-box-arrow-right me-1"></i> Déconnexion</a>
+        <button id="menu-btn" class="burger d-lg-none" aria-label="Menu" aria-expanded="false" aria-controls="menu-mobile">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <nav id="menu-mobile" aria-label="Menu mobile">
+    <p class="titre">NAVIGATION</p>
+
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="presentation.html">Présentation</a></li>
+      <li><a href="competences.html">Compétences</a></li>
+      <li>
+          <a class="nav-link" href="avis-clients.html">Avis</a>
+        </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="d-flex justify-content-center mt-auto">
+      <button type="button" class="theme-toggle" aria-label="Changer de thème" aria-pressed="false">
+        <span class="theme-toggle-icon moon"><img src="img/icons-lune.png" alt="Mode sombre" class="theme-icon-img"></span>
+        <span class="theme-toggle-icon sun"><img src="img/icons-soleil.png" alt="Mode clair" class="theme-icon-img"></span>
+      </button>
+    </div>
+  </nav>
+
+
+  <main class="page-interne">
+    <div class="container">
+      <div class="entete-espace">
+        <p class="sur-titre-espace">Espace interne Jade Clean</p>
+        <h1>Administration</h1>
+        <p class="bonjour">Bonjour, voici l'activité de la journée.</p>
+        <p class="statut-connexion-interne mt-2 mb-0" id="infoUtilisateurInterne">Connecté · Équipe Jade Clean (Administration)</p>
+      </div>
+
+      <!-- Onglets : composant Tab de Bootstrap (data-bs-toggle="tab") -->
+      <ul class="nav onglets" id="ongletsInterne" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="btn-apercu" data-bs-toggle="tab" data-bs-target="#onglet-apercu" type="button" role="tab" aria-controls="onglet-apercu" aria-selected="true">Aperçu</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="btn-demandes" data-bs-toggle="tab" data-bs-target="#onglet-demandes" type="button" role="tab" aria-controls="onglet-demandes" aria-selected="false">Demandes</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="btn-interventions" data-bs-toggle="tab" data-bs-target="#onglet-interventions" type="button" role="tab" aria-controls="onglet-interventions" aria-selected="false">Interventions</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="btn-documents" data-bs-toggle="tab" data-bs-target="#onglet-documents" type="button" role="tab" aria-controls="onglet-documents" aria-selected="false">Documents</button>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+
+        <!-- ===== Aperçu : indicateurs + supervision de la journée ===== -->
+        <div class="tab-pane fade show active" id="onglet-apercu" role="tabpanel" aria-labelledby="btn-apercu" tabindex="0">
+          <div class="row g-3 g-lg-4" id="indicateurs"></div>
+
+          <div class="carte-espace mt-5">
+            <h2 class="titre-carte">Bienvenue dans l'espace admin</h2>
+            <p class="texte-carte">
+              Gérez les demandes de devis, suivez les interventions et publiez les documents clients depuis les onglets
+              ci-dessus.
+            </p>
+          </div>
+
+          <div class="carte-espace">
+            <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
+              <h2 class="titre-carte">Missions du jour</h2>
+              <div class="avancement-global">
+                <div class="d-flex justify-content-between">
+                  <span class="label-mini">Avancement global</span>
+                  <span class="label-mini" id="pourcentageGlobal">0 %</span>
+                </div>
+                <div class="barre"><span id="barreGlobale"></span></div>
+              </div>
+            </div>
+            <div id="missionsDuJour"></div>
+          </div>
+        </div>
+
+        <!-- ===== Demandes : file d'attente + filtres croisés (état, client, priorité) ===== -->
+        <div class="tab-pane fade" id="onglet-demandes" role="tabpanel" aria-labelledby="btn-demandes" tabindex="0">
+          <div class="toggle-group" id="filtreEtat">
+            <button type="button" class="toggle-btn active" data-etat="nouvelle">Nouvelles</button>
+            <button type="button" class="toggle-btn" data-etat="traitee">Traitées</button>
+            <button type="button" class="toggle-btn" data-etat="toutes">Toutes</button>
+          </div>
+
+          <div class="row g-2 filtres">
+            <div class="col-sm-6 col-lg-4">
+              <select id="filtreClientDemandes" aria-label="Filtrer par client"></select>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <select id="filtrePriorite" aria-label="Filtrer par priorité">
+                <option value="">Toutes les priorités</option>
+                <option value="haute">Urgente</option>
+                <option value="normale">Normale</option>
+                <option value="basse">Basse</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="listeDemandes"></div>
+        </div>
+
+        <!-- ===== Interventions : suivi et statuts ===== -->
+        <div class="tab-pane fade" id="onglet-interventions" role="tabpanel" aria-labelledby="btn-interventions" tabindex="0">
+          <div class="toggle-group" id="filtrePeriode">
+            <button type="button" class="toggle-btn active" data-periode="jour">Aujourd'hui</button>
+            <button type="button" class="toggle-btn" data-periode="a_venir">À venir</button>
+            <button type="button" class="toggle-btn" data-periode="toutes">Toutes</button>
+          </div>
+
+          <div class="row g-2 filtres">
+            <div class="col-sm-6 col-lg-4">
+              <select id="filtreClientInterventions" aria-label="Filtrer par client"></select>
+            </div>
+          </div>
+
+          <div id="listeInterventions"></div>
+        </div>
+
+        <!-- ===== Documents : contrats, devis, factures ===== -->
+        <div class="tab-pane fade" id="onglet-documents" role="tabpanel" aria-labelledby="btn-documents" tabindex="0">
+          <div class="d-flex justify-content-end mb-4">
+            <button type="button" class="bouton-principal" data-bs-toggle="modal" data-bs-target="#modaleDocument">
+              <i class="bi bi-plus-lg"></i> Nouveau document
+            </button>
+          </div>
+
+          <div id="listeDocuments"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Modale : planifier une demande ===== -->
+  <div class="modal fade" id="modalePlanifier" tabindex="-1" aria-labelledby="titrePlanifier" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="formPlanifier">
+          <div class="modal-header">
+            <h2 class="modal-title" id="titrePlanifier">Planifier l'intervention</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+          </div>
+          <div class="modal-body">
+            <p class="texte-carte mt-0" id="resumePlanifier"></p>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="datePlanifier">Date</label>
+                <input type="date" id="datePlanifier" required>
+              </div>
+              <div class="col-sm-6">
+                <label for="creneauPlanifier">Créneau</label>
+                <select id="creneauPlanifier"></select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="bouton-secondaire" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="bouton-principal">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modale : nouveau document ===== -->
+  <div class="modal fade" id="modaleDocument" tabindex="-1" aria-labelledby="titreDocument" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="formDocument">
+          <div class="modal-header">
+            <h2 class="modal-title" id="titreDocument">Nouveau document</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="typeDocument">Type</label>
+                <select id="typeDocument">
+                  <option value="contrat">Contrat</option>
+                  <option value="devis">Devis</option>
+                  <option value="facture">Facture</option>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <label for="clientDocument">Client</label>
+                <select id="clientDocument"></select>
+              </div>
+              <div class="col-12">
+                <label for="intituleDocument">Intitulé *</label>
+                <input type="text" id="intituleDocument" placeholder="Ex. Abonnement annuel : Forfait Signature" required>
+              </div>
+              <div class="col-sm-6">
+                <label for="montantDocument">Montant HT (€) *</label>
+                <input type="number" id="montantDocument" min="0" step="10" required>
+              </div>
+            </div>
+            <div id="erreurDocument" class="auth-error mt-3"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="bouton-secondaire" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="bouton-principal">Publier</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification (composant Toast de Bootstrap) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="notification" class="toast notification" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="texteNotification"></div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Fermer"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/espace-interne.js"></script>
+</body>
+
+</html>
