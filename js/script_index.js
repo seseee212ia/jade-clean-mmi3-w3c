@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
+
     // Assure que les événements tactiles sont lus pour forcer le déclenchement des états
     document.addEventListener("touchstart", function() {}, {passive: true});
 
@@ -68,19 +68,72 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
+        // Fermeture avec la touche Échap ou passage en mode ordinateur
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mainNav.classList.contains('active')) {
+                burgerMenu.classList.remove('active');
+                mainNav.classList.remove('active');
+                document.body.style.overflow = '';
+                if (mobileThemeBtn) mobileThemeBtn.classList.remove('hidden-menu');
+            }
+        });
+
+        window.matchMedia('(min-width: 992px)').addEventListener('change', (e) => {
+            if (e.matches && mainNav.classList.contains('active')) {
+                burgerMenu.classList.remove('active');
+                mainNav.classList.remove('active');
+                document.body.style.overflow = '';
+                if (mobileThemeBtn) mobileThemeBtn.classList.remove('hidden-menu');
+            }
+        });
     }
-    
-    // Effet d'ombre dynamique sur le header au défilement (Scroll)
+
+    // Barre fine de progression de lecture en haut de page (identique à Bootstrap)
+    if (header && !document.querySelector('.barre-lecture')) {
+        const barreLecture = document.createElement('div');
+        barreLecture.className = 'barre-lecture';
+        document.body.prepend(barreLecture);
+
+        const majBarreLecture = () => {
+            const hauteur = document.documentElement.scrollHeight - window.innerHeight;
+            barreLecture.style.width = hauteur > 0 ? `${(window.scrollY / hauteur) * 100}%` : '0';
+        };
+
+        window.addEventListener('scroll', majBarreLecture, { passive: true });
+        window.addEventListener('resize', majBarreLecture);
+        majBarreLecture();
+    }
+
+    // Affichage / Masquage automatique de la barre de navigation au défilement + ombre
+    let lastScroll = window.scrollY || 0;
+    const seuilScroll = 10;
+
     function handleScroll() {
+        const currentScroll = window.scrollY || document.documentElement.scrollTop;
+
         if (header) {
-            if (window.scrollY > 30) {
+            if (currentScroll > 30) {
                 const isLight = document.body.classList.contains('light-mode');
-                header.style.boxShadow = isLight 
-                    ? '0 4px 20px rgba(28, 18, 26, 0.12)' 
+                header.style.boxShadow = isLight
+                    ? '0 4px 20px rgba(28, 18, 26, 0.12)'
                     : '0 4px 20px rgba(0, 0, 0, 0.5)';
-                header.style.transition = 'box-shadow 0.3s ease';
             } else {
                 header.style.boxShadow = 'none';
+            }
+
+            if (!(mainNav && mainNav.classList.contains('active'))) {
+                if (currentScroll <= 20) {
+                    header.classList.remove('nav-hidden');
+                    lastScroll = 0;
+                } else if (Math.abs(currentScroll - lastScroll) > seuilScroll) {
+                    if (currentScroll > lastScroll) {
+                        header.classList.add('nav-hidden');
+                    } else {
+                        header.classList.remove('nav-hidden');
+                    }
+                    lastScroll = currentScroll;
+                }
             }
         }
     }
@@ -88,17 +141,17 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // Navigation fluide pour les liens d'ancrage
+    // Défilement fluide pour les liens d'ancrage et l'indicateur de scroll
     const anchorLinks = document.querySelectorAll('.main-nav a, .hero-buttons a, .footer-col a');
-    
+
     anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
-            
+
             if (targetId && targetId.startsWith('#')) {
                 e.preventDefault();
                 const targetSection = document.querySelector(targetId);
-                
+
                 if (targetSection) {
                     targetSection.scrollIntoView({
                         behavior: 'smooth',
@@ -109,15 +162,81 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    const scrollIndicator = document.querySelector('.page-accueil .scroll-indicator');
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function() {
+            const targetSection = document.querySelector('.stats-bar') || document.querySelector('#presentation');
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+
+    // Rendre chaque carte de prestation entièrement cliquable (comme <a class="carte-service"> en Bootstrap)
+    document.querySelectorAll('.page-accueil .service-card-img').forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (e.target.closest('a')) return;
+            const link = this.querySelector('.arrow-link');
+            if (link && link.getAttribute('href')) {
+                window.location.assign(link.getAttribute('href'));
+            }
+        });
+    });
+
+    // Animation d'apparition au défilement (.reveal) identique à Bootstrap
+    if (document.body.classList.contains('page-accueil')) {
+        const revealGroups = [
+            { selector: '.about-images', delay: '' },
+            { selector: '.about-text', delay: 'reveal-d1' },
+            { selector: '.services-section > .section-tag, .services-section > .section-title, .services-section > .section-desc', delay: '' },
+            { selector: '.services-grid-new .service-card-img:nth-child(1)', delay: '' },
+            { selector: '.services-grid-new .service-card-img:nth-child(2)', delay: 'reveal-d1' },
+            { selector: '.services-grid-new .service-card-img:nth-child(3)', delay: 'reveal-d2' },
+            { selector: '.services-grid-new .service-card-img:nth-child(4)', delay: 'reveal-d3' },
+            { selector: '.promises-section > .section-tag, .promises-section > .section-title', delay: '' },
+            { selector: '.promises-container .promise-col:nth-child(1)', delay: '' },
+            { selector: '.promises-container .promise-col:nth-child(2)', delay: 'reveal-d1' },
+            { selector: '.promises-container .promise-col:nth-child(3)', delay: 'reveal-d2' },
+            { selector: '.pricing-section > .section-tag, .pricing-section > .section-title, .pricing-section > .section-desc', delay: '' },
+            { selector: '.pricing-grid .pricing-card:nth-child(1)', delay: '' },
+            { selector: '.pricing-grid .pricing-card:nth-child(2)', delay: 'reveal-d1' },
+            { selector: '.pricing-grid .pricing-card:nth-child(3)', delay: 'reveal-d2' },
+            { selector: '.cta-banner', delay: '' }
+        ];
+
+        revealGroups.forEach(group => {
+            document.querySelectorAll(group.selector).forEach(el => {
+                el.classList.add('reveal');
+                if (group.delay) el.classList.add(group.delay);
+            });
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const observateur = new IntersectionObserver((entrees) => {
+                entrees.forEach(entree => {
+                    if (entree.isIntersecting) {
+                        entree.target.classList.add('visible');
+                        observateur.unobserve(entree.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            revealElements.forEach(el => observateur.observe(el));
+        } else {
+            revealElements.forEach(el => el.classList.add('visible'));
+        }
+    }
+
     // Simulation interactive des boutons de demande de devis / abonnements
     const pricingButtons = document.querySelectorAll('.pricing-card .btn-primary, .pricing-card .btn-outline');
-    
+
     pricingButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             const card = this.closest('.pricing-card');
             if (card) {
                 const planTitle = card.querySelector('h3').textContent;
-                
+
                 if (this.getAttribute('href') === '#contact') {
                     e.preventDefault();
                     alert(`Formule sélectionnée : "${planTitle}". \nVous allez être redirigé vers le formulaire de personnalisation et de contact hôtelier.`);
@@ -125,14 +244,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Gestion du toggle mode sombre / clair (Desktop + Mobile)
     const themeCheckbox = document.getElementById('themeCheckbox');
     const body = document.body;
 
     function applySavedTheme() {
         const isLight = localStorage.getItem('theme') === 'light';
-        
+
         if (isLight) {
             body.classList.add('light-mode');
         } else {
@@ -167,5 +286,4 @@ document.addEventListener('DOMContentLoaded', function() {
             applySavedTheme();
         });
     }
-    
 });
