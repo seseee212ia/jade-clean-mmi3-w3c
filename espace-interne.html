@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Espace Interne – Administration Jade Clean</title>
+    <meta name="description"
+        content="Espace d’administration Jade Clean : gestion des devis, établissements clients, agents, interventions, contrats et factures.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital@0;1&amp;display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+    <script src="js/admin.js" defer></script>
+    <script src="js/script_index.js" defer></script>
+    <script src="js/compte.js" defer></script>
+    <script src="js/compte_interne.js" defer></script>
+
+</head>
+
+<body class="page-admin">
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header class="site-header">
+        <div class="logo-container">
+            <a href="index.html" aria-label="Jade Clean – retour à l’accueil"><img
+                    src="images/JADECLEAN_logo_transparent.svg" alt="" class="brand-logo" height="40"></a>
+        </div>
+        <nav class="main-nav" id="main-nav" aria-label="Navigation principale"><a href="index.html">Accueil</a><a
+                href="presentation.html">Présentation</a><a href="prestations.html">Prestations</a><a
+                href="contact.html">Contact</a><a href="avis.html">Avis</a><a href="espace-interne.html" class="active"
+                aria-current="page">Espace interne</a></nav>
+        <div class="header-right-actions">
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle" aria-label="Activer le mode clair">
+                <span class="switch-track">
+                    <span class="icon-moon" aria-hidden="true">
+                        <img src="images/icons-lune.png" alt="" class="theme-icon-img">
+                    </span>
+                    <span class="icon-sun" aria-hidden="true">
+                        <img src="images/icons-soleil.png" alt="" class="theme-icon-img">
+                    </span>
+                    <span class="switch-thumb"></span>
+                </span>
+            </label>
+            <a href="connexion.html" class="btn-login">SE CONNECTER</a>
+            <button type="button" id="menu-btn" class="burger-menu" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="main-nav">
+                <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="contenu" class="admin-main">
+        <div class="admin-container">
+            <div class="admin-header">
+                <span class="admin-kicker">06 — ESPACE INTERNE JADE CLEAN</span>
+                <h1 class="admin-title">Administration</h1>
+                <p class="admin-subtitle">Bonjour, voici l’activité globale des établissements et des équipes.</p>
+            </div>
+
+            <div id="adminNotice" class="admin-notice" role="status" aria-live="polite" hidden></div>
+
+            <div class="admin-tabs" role="tablist" aria-label="Sections de l’espace interne">
+                <button type="button" class="admin-tab active" id="tab-apercu" role="tab" aria-selected="true"
+                    aria-controls="panel-apercu" data-tab="apercu">APERÇU</button>
+                <button type="button" class="admin-tab" id="tab-demandes" role="tab" aria-selected="false"
+                    aria-controls="panel-demandes" data-tab="demandes">DEMANDES DE DEVIS</button>
+                <button type="button" class="admin-tab" id="tab-clients" role="tab" aria-selected="false"
+                    aria-controls="panel-clients" data-tab="clients">ÉTABLISSEMENTS CLIENTS</button>
+                <button type="button" class="admin-tab" id="tab-interventions" role="tab" aria-selected="false"
+                    aria-controls="panel-interventions" data-tab="interventions">INTERVENTIONS</button>
+                <button type="button" class="admin-tab" id="tab-agents" role="tab" aria-selected="false"
+                    aria-controls="panel-agents" data-tab="agents">AGENTS DISPONIBLES</button>
+                <button type="button" class="admin-tab" id="tab-contrats-factures" role="tab" aria-selected="false"
+                    aria-controls="panel-contrats-factures" data-tab="contrats-factures">CONTRATS &amp;
+                    FACTURES</button>
+            </div>
+
+            <!-- 1. APERÇU -->
+            <section id="panel-apercu" class="admin-panel active" role="tabpanel" aria-labelledby="tab-apercu">
+                <div class="kpi-grid" id="adminKpiGrid"></div>
+
+                <div class="admin-overview-grid">
+                    <div class="admin-card">
+                        <h2>Pilotage de l’espace interne</h2>
+                        <p>
+                            Traitez les demandes de devis en prestation régulière (contrat annuel) ou ponctuelle, gérez
+                            les profils des établissements clients, affectez les agents disponibles, planifiez et
+                            confirmez les interventions puis établissez les contrats et factures synchronisés avec
+                            l’espace client.
+                        </p>
+                        <div class="admin-actions-row">
+                            <button type="button" class="btn-admin-primary" data-jump-tab="demandes">Gérer les demandes
+                                de devis</button>
+                            <button type="button" class="btn-admin-secondary" data-jump-tab="interventions">Planifier
+                                une intervention</button>
+                        </div>
+                    </div>
+
+                    <div class="admin-card">
+                        <h2>Journal d’activité</h2>
+                        <ul class="admin-feed-list" id="adminActivityList"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. DEMANDES DE DEVIS -->
+            <section id="panel-demandes" class="admin-panel" role="tabpanel" aria-labelledby="tab-demandes" hidden>
+                <div class="admin-subfilters" data-group="demandes">
+                    <button type="button" class="subfilter-btn active" data-filter="nouvelles">NOUVELLES</button>
+                    <button type="button" class="subfilter-btn" data-filter="converties">CONVERTIES</button>
+                    <button type="button" class="subfilter-btn" data-filter="toutes">TOUTES</button>
+                </div>
+                <div id="adminDemandesList" class="admin-stack"></div>
+            </section>
+
+            <!-- 3. ÉTABLISSEMENTS CLIENTS -->
+            <section id="panel-clients" class="admin-panel" role="tabpanel" aria-labelledby="tab-clients" hidden>
+                <div class="admin-toolbar">
+                    <p class="admin-toolbar-text">Création et mise à jour des profils d’établissements hôteliers.</p>
+                    <button type="button" class="btn-admin-primary" id="btnShowClientForm">+ CRÉER UN PROFIL
+                        CLIENT</button>
+                </div>
+
+                <form id="adminClientForm" class="admin-form-card" hidden>
+                    <h2 class="admin-form-title" id="clientFormTitle">Créer le profil client</h2>
+                    <input type="hidden" id="clientEditId" value="">
+                    <div class="admin-form-grid">
+                        <div class="admin-field">
+                            <label for="clientHotelInput">Nom de l’établissement</label>
+                            <input type="text" id="clientHotelInput" required placeholder="Ex. : Hôtel Le Prestige">
+                        </div>
+                        <div class="admin-field">
+                            <label for="clientStandingInput">Catégorie &amp; capacité</label>
+                            <input type="text" id="clientStandingInput" required
+                                placeholder="Ex. : 5 étoiles • 68 chambres">
+                        </div>
+                        <div class="admin-field">
+                            <label for="clientReferentInput">Contact / référent</label>
+                            <input type="text" id="clientReferentInput" required placeholder="Ex. : Marie Laurent">
+                        </div>
+                        <div class="admin-field">
+                            <label for="clientFormulaSelect">Type de prestation</label>
+                            <select id="clientFormulaSelect" class="admin-select-full">
+                                <option value="Essentiel">Contrat annuel — Essentiel (1 890 € HT / mois)</option>
+                                <option value="Signature" selected>Contrat annuel — Signature (3 450 € HT / mois)
+                                </option>
+                                <option value="Prestige">Contrat annuel — Prestige (Sur mesure)</option>
+                                <option value="Prestation ponctuelle">Prestation ponctuelle à la carte</option>
+                            </select>
+                        </div>
+                        <div class="admin-field admin-field-full">
+                            <label for="clientAccessInput">Consignes d’accès / badges</label>
+                            <input type="text" id="clientAccessInput" required
+                                placeholder="Ex. : Badges à la réception — Accès service dès 7h00">
+                        </div>
+                    </div>
+                    <div class="admin-actions-row">
+                        <button type="submit" class="btn-admin-primary" id="clientSubmitBtn">ENREGISTRER LE
+                            PROFIL</button>
+                        <button type="button" class="btn-admin-secondary" id="btnCancelClientForm">ANNULER</button>
+                    </div>
+                </form>
+
+                <div id="adminClientsList" class="admin-cards-grid"></div>
+            </section>
+
+            <!-- 4. INTERVENTIONS -->
+            <section id="panel-interventions" class="admin-panel" role="tabpanel" aria-labelledby="tab-interventions"
+                hidden>
+                <div class="admin-toolbar">
+                    <div class="admin-subfilters" data-group="interventions">
+                        <button type="button" class="subfilter-btn active" data-filter="a-confirmer">À
+                            CONFIRMER</button>
+                        <button type="button" class="subfilter-btn" data-filter="confirmee">CONFIRMÉES / EN
+                            COURS</button>
+                        <button type="button" class="subfilter-btn" data-filter="terminee">TERMINÉES</button>
+                    </div>
+                    <button type="button" class="btn-admin-primary" id="btnShowInterventionForm">+ PLANIFIER UNE
+                        INTERVENTION</button>
+                </div>
+
+                <form id="adminInterventionForm" class="admin-form-card" hidden>
+                    <h2 class="admin-form-title">Planifier et confirmer une intervention</h2>
+                    <div class="admin-form-grid">
+                        <div class="admin-field">
+                            <label for="intClientSelect">Établissement client</label>
+                            <select id="intClientSelect" class="admin-select-full"></select>
+                        </div>
+                        <div class="admin-field">
+                            <label for="intAgentSelect">Agent disponible affecté</label>
+                            <select id="intAgentSelect" class="admin-select-full"></select>
+                        </div>
+                        <div class="admin-field">
+                            <label for="intServiceSelect">Prestation</label>
+                            <select id="intServiceSelect" class="admin-select-full">
+                                <option value="Nettoyage quotidien|350">Nettoyage quotidien (350 € HT)</option>
+                                <option value="Remise à blanc|450">Remise à blanc (450 € HT)</option>
+                                <option value="Traitement des textiles|380">Traitement des textiles (380 € HT)</option>
+                                <option value="Nettoyage des vitres|320">Nettoyage des vitres (320 € HT)</option>
+                                <option value="Entretien sanitaire|290">Entretien sanitaire (290 € HT)</option>
+                                <option value="Salles de bain|260">Salles de bain (260 € HT)</option>
+                                <option value="Rangements|300">Rangements (300 € HT)</option>
+                            </select>
+                        </div>
+                        <div class="admin-field">
+                            <label for="intDateInput">Date</label>
+                            <input type="date" id="intDateInput" value="2026-11-28" required>
+                        </div>
+                        <div class="admin-field">
+                            <label for="intSlotInput">Créneau horaire</label>
+                            <input type="text" id="intSlotInput" value="Matin (7h - 12h)" required>
+                        </div>
+                        <div class="admin-field">
+                            <label for="intZoneInput">Zone / étages</label>
+                            <input type="text" id="intZoneInput" required placeholder="Ex. : Étages 1 à 3">
+                        </div>
+                    </div>
+                    <div class="admin-actions-row">
+                        <button type="submit" class="btn-admin-primary">PLANIFIER ET CONFIRMER</button>
+                        <button type="button" class="btn-admin-secondary"
+                            id="btnCancelInterventionForm">ANNULER</button>
+                    </div>
+                </form>
+
+                <div id="adminInterventionsList" class="admin-stack"></div>
+            </section>
+
+            <!-- 5. AGENTS DISPONIBLES -->
+            <section id="panel-agents" class="admin-panel" role="tabpanel" aria-labelledby="tab-agents" hidden>
+                <div class="admin-toolbar">
+                    <p class="admin-toolbar-text">Affectez les agents disponibles aux demandes clients ou aux
+                        interventions prévues.</p>
+                </div>
+                <div id="adminAgentsList" class="admin-cards-grid"></div>
+            </section>
+
+            <!-- 6. CONTRATS & FACTURES -->
+            <section id="panel-contrats-factures" class="admin-panel" role="tabpanel"
+                aria-labelledby="tab-contrats-factures" hidden>
+                <div class="admin-toolbar">
+                    <div class="admin-subfilters admin-subfilters-two" data-group="finance">
+                        <button type="button" class="subfilter-btn active" data-filter="contrats">CONTRATS
+                            D’ABONNEMENT</button>
+                        <button type="button" class="subfilter-btn" data-filter="factures">FACTURES</button>
+                    </div>
+                    <div class="admin-actions-row compact">
+                        <button type="button" class="btn-admin-primary" id="btnShowContractForm">+ ÉTABLIR UN
+                            CONTRAT</button>
+                        <button type="button" class="btn-admin-secondary" id="btnShowInvoiceForm">+ ÉTABLIR UNE
+                            FACTURE</button>
+                    </div>
+                </div>
+
+                <form id="adminContractForm" class="admin-form-card" hidden>
+                    <h2 class="admin-form-title">Établir un contrat d’abonnement annuel</h2>
+                    <div class="admin-form-grid">
+                        <div class="admin-field">
+                            <label for="ctrClientSelect">Établissement client</label>
+                            <select id="ctrClientSelect" class="admin-select-full"></select>
+                        </div>
+                        <div class="admin-field">
+                            <label for="ctrFormulaSelect">Formule d’abonnement</label>
+                            <select id="ctrFormulaSelect" class="admin-select-full">
+                                <option value="Essentiel|1890">Essentiel — 1 890 € HT / mois</option>
+                                <option value="Signature|3450" selected>Signature — 3 450 € HT / mois</option>
+                                <option value="Prestige|5200">Prestige — 5 200 € HT / mois</option>
+                            </select>
+                        </div>
+                        <div class="admin-field">
+                            <label for="ctrStartDate">Date de prise d’effet</label>
+                            <input type="date" id="ctrStartDate" value="2026-12-01" required>
+                        </div>
+                        <div class="admin-field">
+                            <label for="ctrEndDate">Date d’échéance annuelle</label>
+                            <input type="date" id="ctrEndDate" value="2027-12-01" required>
+                        </div>
+                    </div>
+                    <div class="admin-actions-row">
+                        <button type="submit" class="btn-admin-primary">ÉTABLIR LE CONTRAT</button>
+                        <button type="button" class="btn-admin-secondary" id="btnCancelContractForm">ANNULER</button>
+                    </div>
+                </form>
+
+                <form id="adminInvoiceForm" class="admin-form-card" hidden>
+                    <h2 class="admin-form-title">Établir une facture client (HT)</h2>
+                    <div class="admin-form-grid">
+                        <div class="admin-field">
+                            <label for="invClientSelect">Établissement client</label>
+                            <select id="invClientSelect" class="admin-select-full"></select>
+                        </div>
+                        <div class="admin-field">
+                            <label for="invLabelInput">Libellé de la prestation / abonnement</label>
+                            <input type="text" id="invLabelInput" required
+                                placeholder="Ex. : Abonnement Signature — Décembre 2026">
+                        </div>
+                        <div class="admin-field">
+                            <label for="invAmountInput">Montant HT (€)</label>
+                            <input type="number" id="invAmountInput" min="1" step="1" required placeholder="3450">
+                        </div>
+                        <div class="admin-field">
+                            <label for="invDueInput">Échéance de règlement</label>
+                            <input type="text" id="invDueInput" value="30 jours fin de mois" required>
+                        </div>
+                    </div>
+                    <div class="admin-actions-row">
+                        <button type="submit" class="btn-admin-primary">ÉTABLIR LA FACTURE</button>
+                        <button type="button" class="btn-admin-secondary" id="btnCancelInvoiceForm">ANNULER</button>
+                    </div>
+                </form>
+
+                <div id="adminContractsList" class="admin-stack"></div>
+                <div id="adminInvoicesList" class="admin-stack" hidden></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p class="footer-quote">L’excellence, <span>dans les moindres détails.</span></p>
+        <div class="footer-divider-top"></div>
+        <div class="footer-container">
+            <div class="footer-col footer-brand-col">
+                <a href="index.html" class="footer-logo-link" aria-label="Jade Clean – accueil"><img
+                        src="images/JADECLEAN_logo_transparent.svg" alt="" class="footer-logo-img"></a>
+                <p class="footer-brand-desc">Prestations de ménage et d’entretien pour hôtels.</p>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Navigation</span>
+                <ul class="footer-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="presentation.html">Présentation</a></li>
+                    <li><a href="prestations.html">Prestations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="avis.html">Avis</a></li>
+                    <li><a href="cgv.html">Conditions Générales de Vente</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Contact</span>
+                <div class="footer-contact-items">
+                    <a href="tel:+33689967821" class="footer-contact-link">+33 6 89 96 78 21</a>
+                    <a href="mailto:info@jadeclean.net" class="footer-contact-link">info@jadeclean.net</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 JADE CLEAN</span>
+            <span class="footer-right-tag">Ménage professionnel · Hôtellerie de prestige</span>
+        </div>
+    </footer>
+
+    <button type="button" class="mobile-theme-fab" id="theme-fab" aria-label="Passer en mode clair">
+        <span class="mini-toggle-track">
+            <span class="mini-icon-moon" aria-hidden="true">
+                <img src="images/icons-lune.png" alt="" class="theme-icon-img">
+            </span>
+            <span class="mini-icon-sun" aria-hidden="true">
+                <img src="images/icons-soleil.png" alt="" class="theme-icon-img">
+            </span>
+            <span class="mini-toggle-thumb"></span>
+        </span>
+    </button>
+</body>
+
+</html>
