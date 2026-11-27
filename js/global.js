@@ -152,7 +152,7 @@ function initNavbarScroll() {
 }
 
 
-/* ---------- Gestion de la session utilisateur sur tout le site (validité 25 min) ---------- */
+/* ---------- Gestion de la session utilisateur, avatar & menu profil sur tout le site (validité 25 min) ---------- */
 const DUREE_SESSION_MS = 25 * 60 * 1000; // 25 minutes
 
 function lireDonneeSession(cle) {
@@ -174,6 +174,12 @@ function ecrireDonneeSession(cle, valeur) {
 function supprimerDonneeSession(cle) {
   try { localStorage.removeItem(cle); } catch (e) {}
   try { sessionStorage.removeItem(cle); } catch (e) {}
+}
+
+function echapperHtmlProfil(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
 }
 
 function afficherPopinDeconnexion(message = 'Vous avez bien été déconnecté de votre espace.', titre = 'Déconnexion confirmée') {
@@ -259,6 +265,201 @@ function verifierValiditeSession() {
   return true;
 }
 
+function ouvrirModaleProfilUtilisateur(role, nomUtilisateur) {
+  let modaleEl = document.getElementById('jadeModalProfilUtilisateur');
+  if (!modaleEl) {
+    modaleEl = document.createElement('div');
+    modaleEl.className = 'modal fade';
+    modaleEl.id = 'jadeModalProfilUtilisateur';
+    modaleEl.tabIndex = -1;
+    modaleEl.setAttribute('aria-hidden', 'true');
+    modaleEl.innerHTML = `
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content jade-profil-modal">
+          <div class="modal-header border-0 pb-0">
+            <h5 class="modal-title" style="font-family: var(--font-display); font-size: 1.65rem; font-weight: 400;">Mon profil</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+          </div>
+          <form id="jadeFormProfilUtilisateur">
+            <div class="modal-body pt-3">
+              <div class="mb-3">
+                <label class="form-label" style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--jade-grey);">Identifiant</label>
+                <input type="text" id="jadeProfilInputNom" class="form-control jade-profil-input" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--jade-grey);">Établissement / Fonction</label>
+                <input type="text" id="jadeProfilInputFonction" class="form-control jade-profil-input" readonly>
+              </div>
+              <div class="mb-2">
+                <label class="form-label" style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--jade-grey);">Email</label>
+                <input type="email" id="jadeProfilInputEmail" class="form-control jade-profil-input" required>
+              </div>
+            </div>
+            <div class="modal-footer border-0 pt-2">
+              <button type="button" class="bouton-secondaire" data-bs-dismiss="modal">Fermer</button>
+              <button type="submit" class="bouton-primaire">Enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modaleEl);
+
+    modaleEl.querySelector('#jadeFormProfilUtilisateur').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nouveauNom = modaleEl.querySelector('#jadeProfilInputNom').value.trim();
+      const nouvelEmail = modaleEl.querySelector('#jadeProfilInputEmail').value.trim();
+      if (nouveauNom) {
+        ecrireDonneeSession('jadeUserName', nouveauNom);
+        const titrePopup = document.querySelector('.jade-profile-name');
+        if (titrePopup) titrePopup.textContent = nouveauNom;
+        const infoClient = document.getElementById('infoUtilisateur');
+        if (infoClient) infoClient.textContent = `Connecté · ${nouveauNom} (Directeur)`;
+        const infoInterne = document.getElementById('infoUtilisateurInterne');
+        if (infoInterne) infoInterne.textContent = `Connecté · ${nouveauNom} (Administration)`;
+      }
+      if (nouvelEmail) {
+        ecrireDonneeSession('jadeUserEmail', nouvelEmail);
+      }
+      if (window.bootstrap) {
+        window.bootstrap.Modal.getOrCreateInstance(modaleEl).hide();
+      }
+      afficherPopinDeconnexion('Vos informations de profil ont été mises à jour.', 'Profil enregistré');
+    });
+  }
+
+  const nomActuel = lireDonneeSession('jadeUserName') || nomUtilisateur || 'rvmioraniaina';
+  const emailActuel = lireDonneeSession('jadeUserEmail') || `${nomActuel}@hotel-leprestige.fr`;
+  const fonctionActuelle = role === 'interne' ? 'Jade Clean · Administration' : 'Hôtel Le Prestige · Directeur';
+
+  modaleEl.querySelector('#jadeProfilInputNom').value = nomActuel;
+  modaleEl.querySelector('#jadeProfilInputFonction').value = fonctionActuelle;
+  modaleEl.querySelector('#jadeProfilInputEmail').value = emailActuel;
+
+  if (window.bootstrap) {
+    window.bootstrap.Modal.getOrCreateInstance(modaleEl).show();
+  }
+}
+
+function monterMenuProfilNavbar(role, pageCourante, estSurEspacePrive) {
+  const navActions = document.querySelector('.nav-right-actions');
+  const navCenterLinks = document.querySelector('.nav-center-links');
+  const menuMobileList = document.querySelector('#menu-mobile ul');
+  if (!navActions) return;
+
+  const urlEspace = role === 'interne' ? 'espace-interne.html' : 'espace-client.html';
+  const labelEspace = role === 'interne' ? 'Espace interne' : 'Espace client';
+  const labelMonEspace = role === 'interne' ? 'Mon espace interne' : 'Mon espace client';
+  const nomUtilisateur = lireDonneeSession('jadeUserName') || 'rvmioraniaina';
+  const sousTitreRole = role === 'interne' ? 'Jade Clean · Administration' : 'Hôtel Le Prestige · Directeur';
+
+  // 1. Ajouter le lien "Espace client" (ou "Espace interne") dans les liens centraux de la navbar comme sur la maquette
+  if (navCenterLinks && !navCenterLinks.querySelector('.nav-item-espace')) {
+    const liEspace = document.createElement('li');
+    liEspace.className = 'nav-item nav-item-espace';
+    const isCurrent = pageCourante === urlEspace;
+    liEspace.innerHTML = `<a class="nav-link${isCurrent ? ' active' : ''}"${isCurrent ? ' aria-current="page"' : ''} href="${urlEspace}">${labelEspace}</a>`;
+    navCenterLinks.appendChild(liEspace);
+  }
+
+  // 2. Remplacer le bouton "Se connecter" / "Déconnexion" par le bouton avatar circulaire + popup dropdown
+  const anciensBoutonsAuth = navActions.querySelectorAll('#navAuthBtn, .btn-logout, #navQuickLogout');
+  anciensBoutonsAuth.forEach(el => el.remove());
+
+  if (!document.getElementById('jadeProfileMenuWrapper')) {
+    const wrapper = document.createElement('div');
+    wrapper.id = 'jadeProfileMenuWrapper';
+    wrapper.className = 'jade-profile-wrapper';
+    wrapper.innerHTML = `
+      <button type="button" class="jade-avatar-btn" id="jadeAvatarBtn" aria-label="Menu du profil" aria-expanded="false" aria-haspopup="true">
+        <i class="bi bi-person"></i>
+      </button>
+      <div class="jade-profile-dropdown" id="jadeProfileDropdown" role="menu" aria-labelledby="jadeAvatarBtn">
+        <div class="jade-profile-header">
+          <strong class="jade-profile-name">${echapperHtmlProfil(nomUtilisateur)}</strong>
+          <span class="jade-profile-role">${echapperHtmlProfil(sousTitreRole)}</span>
+        </div>
+        <div class="jade-profile-divider"></div>
+        <a href="${urlEspace}" class="jade-profile-item${estSurEspacePrive ? ' active' : ''}" role="menuitem">
+          ${labelMonEspace}
+        </a>
+        <button type="button" class="jade-profile-item" id="jadeMenuMonProfil" role="menuitem">
+          Mon profil
+        </button>
+        <a href="mot-de-passe-oublie.html" class="jade-profile-item" role="menuitem">
+          Changer le mot de passe
+        </a>
+        <button type="button" class="jade-profile-item jade-profile-logout" id="jadeMenuDeconnexion" role="menuitem">
+          Se déconnecter
+        </button>
+      </div>
+    `;
+
+    const burger = document.getElementById('menu-btn');
+    if (burger) {
+      navActions.insertBefore(wrapper, burger);
+    } else {
+      navActions.appendChild(wrapper);
+    }
+
+    const avatarBtn = wrapper.querySelector('#jadeAvatarBtn');
+    const dropdown = wrapper.querySelector('#jadeProfileDropdown');
+
+    const fermerDropdown = () => {
+      dropdown.classList.remove('open');
+      avatarBtn.setAttribute('aria-expanded', 'false');
+    };
+
+    avatarBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const ouvert = dropdown.classList.toggle('open');
+      avatarBtn.setAttribute('aria-expanded', String(ouvert));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!wrapper.contains(e.target)) {
+        fermerDropdown();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') fermerDropdown();
+    });
+
+    wrapper.querySelector('#jadeMenuMonProfil').addEventListener('click', () => {
+      fermerDropdown();
+      ouvrirModaleProfilUtilisateur(role, nomUtilisateur);
+    });
+
+    wrapper.querySelector('#jadeMenuDeconnexion').addEventListener('click', (e) => {
+      e.preventDefault();
+      fermerDropdown();
+      deconnecterUtilisateur('index.html', false);
+    });
+  }
+
+  // 3. Synchroniser également le menu mobile
+  if (menuMobileList) {
+    if (!menuMobileList.querySelector('.mobile-espace-link') && !estSurEspacePrive) {
+      const liEspace = document.createElement('li');
+      liEspace.className = 'mobile-espace-link';
+      liEspace.innerHTML = `<a href="${urlEspace}">${labelEspace}</a>`;
+      menuMobileList.appendChild(liEspace);
+    }
+    if (!menuMobileList.querySelector('.mobile-logout-link')) {
+      const liLogout = document.createElement('li');
+      liLogout.className = 'mobile-logout-link';
+      liLogout.innerHTML = `<a href="#" class="text-jade-rose">Se déconnecter</a>`;
+      liLogout.querySelector('a').addEventListener('click', (e) => {
+        e.preventDefault();
+        deconnecterUtilisateur('index.html', false);
+      });
+      menuMobileList.appendChild(liLogout);
+    }
+  }
+}
+
 function initSessionGlobale() {
   try {
     const rawPopin = sessionStorage.getItem('jadeJustLoggedOut');
@@ -273,13 +474,23 @@ function initSessionGlobale() {
     }
   } catch (e) {}
 
-  const estConnecte = verifierValiditeSession();
-  const role = lireDonneeSession('jadeUserRole') || 'client';
+  let estConnecte = verifierValiditeSession();
   const pageCourante = window.location.pathname.split('/').pop() || 'index.html';
   const estSurEspacePrive = pageCourante === 'espace-client.html' || pageCourante === 'espace-interne.html';
 
-  const navAuthBtn = document.getElementById('navAuthBtn');
-  const menuMobileList = document.querySelector('#menu-mobile ul');
+  // Si l'utilisateur ouvre directement espace-client.html ou espace-interne.html, activer automatiquement une session démo de 25 min
+  if (!estConnecte && estSurEspacePrive) {
+    const roleDemo = pageCourante === 'espace-interne.html' ? 'interne' : 'client';
+    ecrireDonneeSession('jadeLoggedIn', 'true');
+    ecrireDonneeSession('jadeUserRole', roleDemo);
+    if (!lireDonneeSession('jadeUserName')) {
+      ecrireDonneeSession('jadeUserName', 'rvmioraniaina');
+    }
+    ecrireDonneeSession('jadeSessionExpiresAt', String(Date.now() + DUREE_SESSION_MS));
+    estConnecte = true;
+  }
+
+  const role = lireDonneeSession('jadeUserRole') || 'client';
 
   if (estConnecte) {
     prolongerSession();
@@ -291,84 +502,6 @@ function initSessionGlobale() {
       verifierValiditeSession();
     }, 30000);
 
-    const urlEspace = role === 'interne' ? 'espace-interne.html' : 'espace-client.html';
-    const labelEspace = role === 'interne' ? 'Espace interne' : 'Espace client';
-
-    if (!estSurEspacePrive) {
-      if (navAuthBtn) {
-        navAuthBtn.href = urlEspace;
-        navAuthBtn.innerHTML = `<i class="bi bi-person-check me-1"></i> ${labelEspace}`;
-      }
-
-      const navActions = document.querySelector('.nav-right-actions');
-      if (navActions && !document.getElementById('navQuickLogout')) {
-        const logoutBtn = document.createElement('button');
-        logoutBtn.type = 'button';
-        logoutBtn.id = 'navQuickLogout';
-        logoutBtn.className = 'btn-deconnexion-rapide d-none d-lg-inline-flex';
-        logoutBtn.title = 'Se déconnecter';
-        logoutBtn.setAttribute('aria-label', 'Se déconnecter');
-        logoutBtn.innerHTML = '<i class="bi bi-box-arrow-right"></i>';
-        logoutBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          deconnecterUtilisateur('index.html', false);
-        });
-        const burger = document.getElementById('menu-btn');
-        if (burger) {
-          navActions.insertBefore(logoutBtn, burger);
-        } else {
-          navActions.appendChild(logoutBtn);
-        }
-      }
-
-      if (menuMobileList && !menuMobileList.querySelector('.mobile-espace-link')) {
-        const liEspace = document.createElement('li');
-        liEspace.className = 'mobile-espace-link';
-        liEspace.innerHTML = `<a href="${urlEspace}">${labelEspace}</a>`;
-        menuMobileList.appendChild(liEspace);
-
-        const liLogout = document.createElement('li');
-        liLogout.className = 'mobile-logout-link';
-        liLogout.innerHTML = `<a href="#" class="text-jade-rose">Déconnexion</a>`;
-        liLogout.querySelector('a').addEventListener('click', (e) => {
-          e.preventDefault();
-          deconnecterUtilisateur('index.html', false);
-        });
-        menuMobileList.appendChild(liLogout);
-      }
-    } else {
-      document.querySelectorAll('.btn-logout, #navAuthBtn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          deconnecterUtilisateur('index.html', false);
-        });
-      });
-
-      if (menuMobileList && !menuMobileList.querySelector('.mobile-logout-link')) {
-        const liLogout = document.createElement('li');
-        liLogout.className = 'mobile-logout-link';
-        liLogout.innerHTML = `<a href="#" class="text-jade-rose">Déconnexion</a>`;
-        liLogout.querySelector('a').addEventListener('click', (e) => {
-          e.preventDefault();
-          deconnecterUtilisateur('index.html', false);
-        });
-        menuMobileList.appendChild(liLogout);
-      }
-    }
-  } else {
-    // Si l'utilisateur ouvre directement espace-client.html ou espace-interne.html, on active automatiquement une session démo de 25 min au lieu de le bloquer !
-    if (estSurEspacePrive) {
-      const roleDemo = pageCourante === 'espace-interne.html' ? 'interne' : 'client';
-      ecrireDonneeSession('jadeLoggedIn', 'true');
-      ecrireDonneeSession('jadeUserRole', roleDemo);
-      ecrireDonneeSession('jadeSessionExpiresAt', String(Date.now() + DUREE_SESSION_MS));
-
-      document.querySelectorAll('.btn-logout, #navAuthBtn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          deconnecterUtilisateur('index.html', false);
-        });
-      });
-    }
+    monterMenuProfilNavbar(role, pageCourante, estSurEspacePrive);
   }
 }
