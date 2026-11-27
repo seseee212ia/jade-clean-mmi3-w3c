@@ -1,7 +1,5 @@
-/* ==========================================================================
-   style.css – Feuille de style commune unifiée (Jade Clean)
-   Pages : Accueil, Présentation, Connexion, Contact, Avis, Espace client
-   ========================================================================== */
+/* style.css – Feuille de style commune unifiée (Jade Clean)
+   Pages : Accueil, Présentation, Connexion, Contact, Avis, Espace client */
 
 /* Variables globales & reset */
 :root {
@@ -97,9 +95,7 @@ body.page-connexion {
     overflow: hidden;
 }
 
-/* ==========================================================================
-   Header & navigation communs (MOBILE FIRST)
-   ========================================================================== */
+/* Header & navigation communs (MOBILE FIRST) */
 .site-header {
     display: flex;
     justify-content: space-between;
@@ -403,7 +399,7 @@ body.light-mode .switch-track {
     border-color: #C2707E;
 }
 
-/* Bouton flottant mobile (en bas à droite) */
+/* Bouton flottant mobile au scroll (en bas à droite) */
 .mobile-theme-fab {
     position: fixed;
     bottom: 22px;
@@ -534,9 +530,9 @@ body.light-mode .switch-track {
     60% { transform: translateY(7px); }
 }
 
-/* ==========================================================================
-   Page Accueil (index)
-   ========================================================================== */
+/* Page Accueil (index) */
+
+/* Hero section - accueil */
 .hero-section {
     display: flex;
     flex-direction: column;
@@ -545,7 +541,7 @@ body.light-mode .switch-track {
     padding: 40px 20px 80px 20px;
     min-height: 82vh;
     position: relative;
-    background: linear-gradient(90deg, rgba(28, 18, 26, 0.94) 45%, rgba(28, 18, 26, 0.5) 100%), url('images/Suite_hôtel_luxe.png');
+    background: linear-gradient(90deg, rgba(28, 18, 26, 0.94) 45%, rgba(28, 18, 26, 0.5) 100%), url('../images/Suite_hôtel_luxe.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1384,7 +1380,7 @@ body.light-mode .switch-track {
 .cta-banner {
     width: 100%;
     max-width: 1150px;
-    background: linear-gradient(90deg, rgba(80, 28, 38, 0.92) 35%, rgba(80, 28, 38, 0.4) 100%), url('images/Hôtel de prestige.png');
+    background: linear-gradient(90deg, rgba(80, 28, 38, 0.92) 35%, rgba(80, 28, 38, 0.4) 100%), url('../images/Hôtel de prestige.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat !important;
@@ -1506,9 +1502,9 @@ body.light-mode .switch-track {
     transform: translateY(-2px);
 }
 
-/* ==========================================================================
-   Page Présentation
-   ========================================================================== */
+/* Page Présentation */
+
+/* Hero presentation */
 .hero-presentation {
     display: flex;
     flex-direction: column;
@@ -1517,7 +1513,7 @@ body.light-mode .switch-track {
     padding: 120px 20px 85px 20px;
     min-height: calc(100vh - 71px);
     position: relative;
-    background: linear-gradient(90deg, rgba(28, 18, 26, 0.95) 0%, rgba(28, 18, 26, 0.65) 50%, rgba(28, 18, 26, 0.1) 100%), url('images/Lobby_h%C3%B4tel_prestige.png');
+    background: linear-gradient(90deg, rgba(28, 18, 26, 0.95) 0%, rgba(28, 18, 26, 0.65) 50%, rgba(28, 18, 26, 0.1) 100%), url('../images/Lobby_h%C3%B4tel_prestige.png');
     background-color: var(--bg-dark);
     background-size: cover;
     background-position: center;
@@ -1668,17 +1664,39 @@ body.light-mode .switch-track {
 }
 
 .client-item {
+    position: relative;
     display: flex;
     flex-direction: column;
-    padding: 25px 0;
+    padding: 24px 14px;
     border-bottom: 1px solid var(--border-color);
-    transition: all 0.4s ease;
-    cursor: default;
+    border-radius: 14px;
+    transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                padding 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.45s ease,
+                transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.client-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18%;
+    bottom: 18%;
+    width: 3px;
+    border-radius: 3px;
+    background-color: #C2707E;
+    opacity: 0;
+    transform: scaleY(0.35);
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .client-item-content {
     display: flex;
     flex-direction: column;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .client-num {
@@ -1686,6 +1704,7 @@ body.light-mode .switch-track {
     color: #C2707E;
     letter-spacing: 2px;
     margin-bottom: 10px;
+    transition: color 0.4s ease;
 }
 
 .client-name {
@@ -1693,44 +1712,54 @@ body.light-mode .switch-track {
     font-size: 1.8rem;
     font-weight: 400;
     margin-bottom: 10px;
-    transition: color 0.3s;
+    transition: color 0.4s ease;
 }
 
 .client-desc {
     color: var(--text-muted);
     font-size: 0.9rem;
     line-height: 1.5;
+    transition: color 0.4s ease;
 }
 
+/* Images masquées sur mobile */
 .client-hover-wrapper {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease;
+    display: none;
 }
 
-.client-hover-wrapper img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
-    display: block;
-    margin-top: 20px;
-}
-
-.client-item:hover .client-hover-wrapper,
-.client-item.mobile-open .client-hover-wrapper {
-    max-height: 250px;
-    opacity: 1;
+/* Animation soft & fluide au toucher sur mobile */
+.client-item:active {
+    transform: scale(0.988);
 }
 
 .client-item:hover,
 .client-item.mobile-open {
-    background-color: #3A1C27;
-    border-radius: 12px;
-    padding-left: 15px;
-    padding-right: 15px;
+    background-color: rgba(58, 28, 39, 0.72);
+    border-radius: 14px;
+    padding-left: 22px;
+    padding-right: 16px;
     border-color: transparent;
+}
+
+.client-item:hover::before,
+.client-item.mobile-open::before {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.client-item:hover .client-item-content,
+.client-item.mobile-open .client-item-content {
+    transform: translateX(4px);
+}
+
+.client-item:hover .client-name,
+.client-item.mobile-open .client-name {
+    color: #C2707E;
+}
+
+.client-item:hover .client-desc,
+.client-item.mobile-open .client-desc {
+    color: var(--text-white);
 }
 
 /* Values section - présentation */
@@ -1841,9 +1870,7 @@ body.light-mode .switch-track {
     margin-top: auto;
 }
 
-/* ==========================================================================
-   Page Connexion
-   ========================================================================== */
+/* Page Connexion */
 .connexion-layout {
     display: flex;
     flex-direction: column;
@@ -1851,9 +1878,10 @@ body.light-mode .switch-track {
     width: 100%;
 }
 
+/* Section gauche - connexion */
 .connexion-branding {
     flex: 1;
-    background-image: linear-gradient(135deg, rgba(106, 37, 49, 0.88) 0%, rgba(28, 18, 26, 0.92) 100%), url('images/Lobby_hôtel_prestige.png');
+    background-image: linear-gradient(135deg, rgba(106, 37, 49, 0.88) 0%, rgba(28, 18, 26, 0.92) 100%), url('../images/Lobby_hôtel_prestige.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1898,6 +1926,7 @@ body.light-mode .switch-track {
     font-size: 0.8rem;
 }
 
+/* Section droite - formulaire */
 .connexion-form-container {
     flex: 1;
     display: flex;
@@ -1938,6 +1967,7 @@ body.light-mode .switch-track {
     margin-bottom: 25px;
 }
 
+/* Carte du formulaire */
 .form-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -1985,6 +2015,7 @@ body.light-mode .switch-track {
     font-size: 0.75rem;
 }
 
+/* Toggle role */
 .role-toggle {
     display: flex;
     background-color: #1C121A;
@@ -2012,6 +2043,7 @@ body.light-mode .switch-track {
     color: #F7F5F3;
 }
 
+/* Style du bouton oeil (mot de passe) */
 .toggle-password {
     position: absolute;
     right: 12px;
@@ -2032,6 +2064,7 @@ body.light-mode .switch-track {
     color: var(--text-white);
 }
 
+/* Inputs */
 .input-field {
     margin-bottom: 18px;
 }
@@ -2083,6 +2116,7 @@ body.light-mode .switch-track {
     border-color: var(--border-focus);
 }
 
+/* Bouton "se connecter" (formulaire & liens) */
 .btn-submit {
     width: 100%;
     padding: 12px;
@@ -2123,9 +2157,7 @@ body.light-mode .switch-track {
     text-decoration: none;
 }
 
-/* ==========================================================================
-   Footer commun à toutes les pages
-   ========================================================================== */
+/* Footer commun à toutes les pages */
 .site-footer {
     background-color: #271B25;
     padding: 60px 20px 35px 20px;
@@ -2271,11 +2303,13 @@ body.light-mode .switch-track {
     text-transform: uppercase;
 }
 
-/* ==========================================================================
-   Composants communs : Contact, Avis & Espace client
-   ========================================================================== */
+/* Composants communs : Contact, Avis & Espace client */
 main {
     padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+}
+
+body.page-connexion main {
+    padding-bottom: 0;
 }
 
 .page-section {
@@ -2561,9 +2595,7 @@ main {
     color: var(--border-color);
 }
 
-/* ==========================================================================
-   Hero Header commun (Contact & Avis)
-   ========================================================================== */
+/* Hero Header commun (Contact & Avis) */
 .hero_header {
     position: relative;
     width: 100%;
@@ -2646,9 +2678,7 @@ main {
     margin-bottom: 0;
 }
 
-/* ==========================================================================
-   Page Contact
-   ========================================================================== */
+/* Page Contact */
 .cards_contact {
     padding: 0 25px;
     display: flex;
@@ -2981,9 +3011,7 @@ fieldset.form_group {
     color: #ff8a8a;
 }
 
-/* ==========================================================================
-   Page Avis
-   ========================================================================== */
+/* Page Avis */
 .summary-card {
     display: grid;
     gap: 20px;
@@ -3152,9 +3180,7 @@ fieldset.form_group {
     display: flex;
 }
 
-/* ==========================================================================
-   Page Espace client & Modales (<dialog>)
-   ========================================================================== */
+/* Page Espace client & Modales (<dialog>) */
 .live {
     color: var(--primary-hover);
     font-size: 0.78rem;
@@ -3492,9 +3518,7 @@ dialog .hint {
     margin-top: 8px;
 }
 
-/* ==========================================================================
-   Adaptation Mobile uniquement (MAX-WIDTH: 767px)
-   ========================================================================== */
+/* Adaptation Mobile uniquement (MAX-WIDTH: 767px) */
 @media (max-width: 767px) {
     .img_avis {
         object-position: 65% center;
@@ -3509,9 +3533,7 @@ dialog .hint {
     }
 }
 
-/* ==========================================================================
-   Adaptation Tablette (MIN-WIDTH: 768px)
-   ========================================================================== */
+/* Adaptation Tablette (MIN-WIDTH: 768px) */
 @media (min-width: 768px) {
     /* Header commun */
     .site-header { padding: 20px 40px; }
@@ -3611,6 +3633,11 @@ dialog .hint {
         padding: 30px 20px;
         border-top: 1px solid var(--border-color);
         border-bottom: none;
+        border-radius: 0;
+    }
+
+    .client-item::before {
+        display: none;
     }
 
     .client-item-content {
@@ -3623,7 +3650,8 @@ dialog .hint {
     .client-name { width: 250px; margin: 0; }
     .client-desc { flex: 1; margin: 0; }
 
-    .client-item:hover {
+    .client-item:hover,
+    .client-item.mobile-open {
         background-color: #3A1C27;
         border-radius: 12px;
         border-color: transparent;
@@ -3631,15 +3659,46 @@ dialog .hint {
         padding-right: 30px;
     }
 
+    .client-item:hover .client-item-content,
+    .client-item.mobile-open .client-item-content {
+        transform: none;
+    }
+
     .client-item:hover .client-name { color: #C2707E; }
 
+    .client-hover-wrapper {
+        display: block;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease;
+    }
+
     .client-hover-wrapper img {
+        width: 100%;
         height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
         margin-top: 30px;
+    }
+
+    /* Recadrage vers le haut pour Palaces, Maisons de caractère et Conciergeries */
+    .client-hover-wrapper img[src*="Palace_lutecia"] {
+        object-position: center 4%;
+    }
+
+    .client-hover-wrapper img[src*="maison_de_caractere"] {
+        object-position: center 40%;
+    }
+
+    .client-hover-wrapper img[src*="conciergerie"] {
+        object-position: center 15%;
     }
 
     .client-item:hover .client-hover-wrapper {
         max-height: 400px;
+        opacity: 1;
     }
 
     /* Connexion Tablette / Desktop */
@@ -3711,9 +3770,7 @@ dialog .hint {
     .footer-logo-img { height: 90px; }
 }
 
-/* ==========================================================================
-   Adaptation Desktop (MIN-WIDTH: 1025px)
-   ========================================================================== */
+/* Adaptation Desktop (MIN-WIDTH: 1025px) */
 @media (min-width: 1025px) {
     /* Centrage parfait de la navigation dans le Header commun */
     .logo-container { flex: 0.8; }
@@ -3731,6 +3788,7 @@ dialog .hint {
         width: 100%;
         margin: 0 auto;
         padding: 80px 40px;
+        box-sizing: border-box;
         min-height: 85vh;
         position: relative;
     }
@@ -4022,9 +4080,7 @@ dialog .hint {
     .avis-list { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* ==========================================================================
-   Mode clair unifié sur toutes les pages
-   ========================================================================== */
+/* Mode clair unifié sur toutes les pages */
 body.light-mode {
     --bg-dark: #F7F5F3;
     --card-bg: rgba(255, 255, 255, 0.9);
@@ -4099,7 +4155,7 @@ body.light-mode .btn-cta-primary:hover {
 
 /* Accueil - Mode clair */
 body.light-mode .hero-section {
-    background: linear-gradient(90deg, rgba(247, 245, 243, 0.93) 45%, rgba(247, 245, 243, 0.78) 100%), url('images/Suite_hôtel_luxe.png');
+    background: linear-gradient(90deg, rgba(247, 245, 243, 0.93) 45%, rgba(247, 245, 243, 0.78) 100%), url('../images/Suite_hôtel_luxe.png');
     background-size: cover;
     background-position: center;
 }
@@ -4221,7 +4277,7 @@ body.light-mode .btn-cta-primary {
 
 /* Présentation - Mode clair */
 body.light-mode .hero-presentation {
-    background: linear-gradient(90deg, rgba(247, 245, 243, 0.95) 0%, rgba(247, 245, 243, 0.78) 50%, rgba(247, 245, 243, 0.35) 100%), url('images/Lobby_h%C3%B4tel_prestige.png');
+    background: linear-gradient(90deg, rgba(247, 245, 243, 0.95) 0%, rgba(247, 245, 243, 0.78) 50%, rgba(247, 245, 243, 0.35) 100%), url('../images/Lobby_h%C3%B4tel_prestige.png');
     background-color: #F7F5F3;
     background-size: cover;
     background-position: center;
@@ -4435,10 +4491,7 @@ body.light-mode .footer-bottom {
     border-top-color: rgba(28, 18, 26, 0.12);
 }
 
-/* ==========================================================================
-   États ergonomiques des formulaires Contact & Avis (Focus / Valide / Erreur)
-   Placés en dernier pour toujours primer en mode sombre comme en mode clair
-   ========================================================================== */
+/* États ergonomiques des formulaires Contact & Avis en mode sombre comme en mode clair */
 
 /* Mode sombre */
 .formulaire_section .form_group input:not([type="radio"]):not([type="checkbox"]):focus,
