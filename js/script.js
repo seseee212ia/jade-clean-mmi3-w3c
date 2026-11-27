@@ -471,7 +471,7 @@ if (document.getElementById('avis-form')) {
      votre base de données.
      ---------------------------------------------------------------- */
   const ENDPOINT = '';
-  const PAGE_SIZE = window.matchMedia('(min-width: 1100px)').matches ? 6 : 4; // 6 cartes = 2 rangées de 3 sur ordinateur
+  const PAGE_SIZE = window.matchMedia('(min-width: 1100px)').matches ? 6 : 4;
   const AVIS = [
     { n: 'Claire M.', r: 'Gouvernante générale', h: 'Palace parisien', d: '2026-09-18', note: 5, type: 'Remise à blanc', t: 'Des équipes ponctuelles et discrètes. Vingt-quatre chambres remises à blanc en une journée, sans aucune remarque de nos clients.' },
     { n: 'Thomas B.', r: 'Directeur d’exploitation', h: 'Hôtel 5 étoiles, Côte d’Azur', d: '2026-09-02', note: 5, type: 'Abonnement annuel', t: 'Le suivi depuis l’espace client nous fait gagner un temps précieux. Les rapports après chaque intervention sont clairs et précis.' },
@@ -487,8 +487,10 @@ if (document.getElementById('avis-form')) {
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const fmtDate = iso => new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
   const fmtNum = n => n.toFixed(1).replace('.', ',');
-  const stars = n => `<span class="stars" role="img" aria-label="Note : ${n} sur 5"><span aria-hidden="true">${'★'.repeat(n)}${'☆'.repeat(5 - n)}</span></span>`;
-  const initials = name => name.split(/[\s.]+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+  const starSvg = filled => filled
+    ? '<svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'
+    : '<svg class="off" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>';
+  const stars = n => `<span class="stars" role="img" aria-label="Note : ${n} sur 5">${Array.from({ length: 5 }, (_, i) => starSvg(i < n)).join('')}</span>`;
 
   /* ---------- Note moyenne ---------- */
   const average = AVIS.reduce((s, a) => s + a.note, 0) / AVIS.length;
@@ -500,21 +502,45 @@ if (document.getElementById('avis-form')) {
     return `<li><span>${n} ★</span><span class="bar"><i style="width:${Math.round(c / AVIS.length * 100)}%"></i></span><span>${c}</span></li>`;
   }).join('');
 
-  /* ---------- Liste filtrable ---------- */
-  const types = ['Toutes', ...new Set(AVIS.map(a => a.type))];
-  let filter = 'Toutes', shown = PAGE_SIZE;
+  /* ---------- Liste filtrable (par note, identique à la version Bootstrap) ---------- */
+  const NOTE_FILTERS = [
+    { id: 'toutes', label: 'Tous', test: () => true },
+    { id: '5', label: '5 étoiles', test: a => a.note === 5 },
+    { id: '4', label: '4 étoiles', test: a => a.note === 4 },
+    { id: '3', label: '3 et moins', test: a => a.note <= 3 }
+  ];
+  let filter = 'toutes', shown = PAGE_SIZE;
 
-  const card = a => `<article class="avis-card"><div class="avis-top"><time datetime="${a.d}">${fmtDate(a.d)}</time>${stars(a.note)}</div><span class="quote" aria-hidden="true">“</span><blockquote><p>${esc(a.t)}</p></blockquote><footer class="avis-author"><span class="avatar" aria-hidden="true">${initials(a.n)}</span><span><strong>${esc(a.n)}</strong><small>${esc(a.r)} · ${esc(a.h)}</small></span></footer><span class="avis-tag">${esc(a.type)}</span></article>`;
+  const card = a => `<article class="avis-card">
+    <div class="avis-card-body">
+      <div class="avis-top">
+        ${stars(a.note)}
+        <span class="avis-badge${a.nouveau ? ' nouveau' : ''}">${a.nouveau ? 'Nouveau' : 'Exemple'}</span>
+      </div>
+      <blockquote><p>« ${esc(a.t)} »</p></blockquote>
+    </div>
+    <footer class="avis-card-footer">
+      <strong>${esc(a.r)}</strong>
+      <span>${esc(a.h)} · ${esc(a.type)} · <time datetime="${a.d}">${fmtDate(a.d)}</time></span>
+    </footer>
+  </article>`;
 
   function renderList() {
-    const list = AVIS.filter(a => filter === 'Toutes' || a.type === filter);
-    $('avis-list').innerHTML = list.slice(0, shown).map(card).join('');
-    $('avis-count').textContent = list.length + ' avis' + (filter === 'Toutes' ? '' : ' · ' + filter);
+    const active = NOTE_FILTERS.find(f => f.id === filter) || NOTE_FILTERS[0];
+    const list = AVIS.filter(active.test);
+    $('avis-list').innerHTML = list.length
+      ? list.slice(0, shown).map(card).join('')
+      : '<p class="aucun-avis">Aucun avis dans cette catégorie pour le moment.</p>';
+    $('avis-count').textContent = list.length + ' avis' + (filter === 'toutes' ? '' : ' · ' + active.label);
     $('more').hidden = shown >= list.length;
   }
+
   function renderFilters() {
-    $('filters').innerHTML = types.map(t => `<button type="button" class="chip" aria-pressed="${t === filter}" data-f="${esc(t)}">${esc(t)}</button>`).join('');
+    $('filters').innerHTML = NOTE_FILTERS.map(f =>
+      `<button type="button" class="chip" aria-pressed="${f.id === filter}" data-f="${f.id}">${esc(f.label)}</button>`
+    ).join('');
   }
+
   $('filters').addEventListener('click', e => {
     const b = e.target.closest('[data-f]');
     if (!b) return;
@@ -523,17 +549,23 @@ if (document.getElementById('avis-form')) {
     renderFilters();
     renderList();
   });
+
   $('more').addEventListener('click', () => {
     const previous = $('avis-list').children.length;
     shown += PAGE_SIZE;
     renderList();
     const next = $('avis-list').children[previous];
-    if (next) next.querySelector('blockquote').setAttribute('tabindex', '-1'), next.querySelector('blockquote').focus();
+    if (next) {
+      const bq = next.querySelector('blockquote');
+      bq.setAttribute('tabindex', '-1');
+      bq.focus();
+    }
   });
+
   renderFilters();
   renderList();
 
-/* ---------- Formulaire d'avis ---------- */
+  /* ---------- Formulaire d'avis ---------- */
   const form = $('avis-form');
   const status = $('form-status');
   const submitBtn = form.querySelector('.btn-submit');

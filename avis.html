@@ -38,56 +38,140 @@
         </div>
     </header>
 
-    <main id="contenu">
-        <section class="hero_header" aria-labelledby="titre-avis">
-            <img src="images/Container.png" alt="" class="img_avis">
-            <div class="hero_content">
-                <div class="subtitle_wrapper">
-                    <span class="number">04</span>
-                    <span class="line"></span>
-                    <span class="text">AVIS</span>
+    <main id="contenu" class="avis-main">
+<!-- Hero Header (même structure visuelle que Contact & Avis Bootstrap) -->
+    <section class="hero_header">
+        <img src="images/Suite_hôtel_luxe.png" alt="" class="img_avis">
+        <div class="hero_content">
+            <div class="subtitle_wrapper">
+                <span>04 — AVIS CLIENTS</span>
+            </div>
+            <h1 class="main_title">Ils nous font <span class="highlight">confiance</span>.</h1>
+            <p class="description">Gouvernantes, directeurs et responsables d’étage partagent leur expérience avec nos équipes.</p>
+        </div>
+    </section>
+
+     
+        <!-- Section 1 : Synthèse sticky à gauche + Liste des avis à droite -->
+        <section class="avis-band" aria-labelledby="avis-list-title">
+            <div class="avis-container">
+                <div class="avis-layout">
+
+                    <!-- Colonne gauche : Synthèse des notes -->
+                    <aside class="avis-sidebar" aria-label="Note moyenne et répartition">
+                        <div class="avis-summary-box">
+                            <span class="section-tag">Note moyenne</span>
+                            <div class="avis-score-row">
+                                <span class="score" id="score">–</span>
+                                <span class="score-max">/ 5</span>
+                            </div>
+                            <div id="score-stars" class="avis-score-stars"></div>
+                            <p class="score-count" id="score-count">0 avis</p>
+                            <ul class="bars avis-bars" id="bars"></ul>
+                            <a href="#laisser-avis" class="avis-btn-primary">Laisser un avis</a>
+                        </div>
+                    </aside>
+
+                    <!-- Colonne droite : En-tête, filtres et grille 2 colonnes -->
+                    <div class="avis-content">
+                        <div class="avis-header">
+                            <p class="avis-eyebrow"><span class="avis-line" aria-hidden="true"></span>Avis vérifiés</p>
+                            <h2 class="section-title" id="avis-list-title">Ce qu’ils <span>en disent</span>.</h2>
+                            <p class="avis-notice">
+                                Les avis présentés servent d’exemples de démonstration pour le projet et reflètent les retours types des établissements partenaires.
+                            </p>
+                        </div>
+
+                        <div class="chips avis-filters" id="filters" role="group" aria-label="Filtrer les avis par note"></div>
+                        <p class="avis-count" id="avis-count" aria-live="polite"></p>
+
+                        <div class="avis-list avis-grid-2" id="avis-list"></div>
+                        <button type="button" class="btn-pill ghost more-btn" id="more" hidden>Voir plus d’avis</button>
+                    </div>
+
                 </div>
-                <h1 class="main_title" id="titre-avis">
-                    Ils nous font<br><span class="highlight"><em>confiance.</em></span>
-                </h1>
-                <p class="description">Directeurs et gouvernantes d’hôtels partagent leur expérience avec Jade Clean.</p>
-            </div>
-        </section>
-        
-        <section class="page-section" aria-labelledby="titre-note">
-            <h2 class="visually-hidden" id="titre-note">Note moyenne</h2>
-            <div class="card summary-card">
-                <div><div class="score"><span id="score">–</span> <small>/ 5</small></div><div id="score-stars"></div><p class="score-count" id="score-count"></p></div>
-                <ul class="bars" id="bars" aria-label="Répartition des notes"></ul>
             </div>
         </section>
 
-        <section class="page-section" aria-labelledby="titre-liste">
-            <h2 class="section-title" id="titre-liste">Ce que disent <span>nos clients.</span></h2>
-            <div class="chips" id="filters" role="group" aria-label="Filtrer les avis par prestation"></div>
-            <p class="avis-count" id="avis-count" aria-live="polite"></p>
-            <div class="avis-list" id="avis-list"></div>
-            <button type="button" class="btn-pill ghost more-btn" id="more" hidden>VOIR PLUS D’AVIS</button>
-        </section>
+        <!-- Section 2 : Formulaire dans une bande contrastée centrée -->
+        <section class="avis-form-band" id="laisser-avis" aria-labelledby="avis-form-title">
+            <div class="avis-container avis-form-container">
+                <div class="form-card avis-form-card">
+                    <span class="section-tag">Votre expérience</span>
+                    <h2 class="section-title" id="avis-form-title">Laisser <span>un avis</span>.</h2>
+                    <p class="required-note">Les champs marqués d’un astérisque (*) sont obligatoires.</p>
 
-        <section class="page-section narrow" aria-labelledby="titre-form">
-            <div class="form-card">
-                <span class="section-tag">Donner mon avis</span>
-                <h2 class="section-title" id="titre-form">Votre expérience, <span>en quelques mots.</span></h2>
-                <p class="required-note">Les champs marqués d’un * sont obligatoires. Votre avis est publié après vérification.</p>
-                <form id="avis-form" action="#" method="post" novalidate>
-                    <fieldset class="form-group"><legend>Votre note *</legend><div class="stars-input"><input type="radio" id="note5" name="note" value="5" required data-required="Choisissez une note."><label for="note5"><span aria-hidden="true">★</span><span class="visually-hidden">5 sur 5</span></label><input type="radio" id="note4" name="note" value="4"><label for="note4"><span aria-hidden="true">★</span><span class="visually-hidden">4 sur 5</span></label><input type="radio" id="note3" name="note" value="3"><label for="note3"><span aria-hidden="true">★</span><span class="visually-hidden">3 sur 5</span></label><input type="radio" id="note2" name="note" value="2"><label for="note2"><span aria-hidden="true">★</span><span class="visually-hidden">2 sur 5</span></label><input type="radio" id="note1" name="note" value="1"><label for="note1"><span aria-hidden="true">★</span><span class="visually-hidden">1 sur 5</span></label></div></fieldset>
-                    <div class="form-group"><label for="nom">Nom et prénom *</label><input type="text" id="nom" name="nom" autocomplete="name" required data-required="Indiquez votre nom."></div>
-                    <div class="form-group"><label for="etablissement">Établissement *</label><input type="text" id="etablissement" name="etablissement" autocomplete="organization" required data-required="Indiquez le nom de votre établissement."></div>
-                    <div class="form-group"><label for="fonction">Fonction</label><input type="text" id="fonction" name="fonction" autocomplete="organization-title" placeholder="Ex. gouvernante générale"></div>
-                    <div class="form-group"><label for="email">E-mail * (non publié)</label><input type="email" id="email" name="email" autocomplete="email" title="Entrez une adresse e-mail valide, par exemple nom@exemple.com." placeholder="contact@exemple.com" required data-required="Indiquez votre adresse e-mail."></div>
-                    <div class="form-group"><label for="prestation">Prestation concernée</label><select id="prestation" name="prestation"><option>Nettoyage quotidien</option><option>Remise à blanc</option><option>Vitrerie</option><option>Traitement des textiles</option><option>Abonnement annuel</option></select></div>
-                    <div class="form-group"><label for="avis">Votre avis *</label><textarea id="avis" name="avis" rows="5" minlength="20" maxlength="800" required title="Votre avis doit contenir au moins 20 caractères." data-required="Écrivez quelques lignes sur votre expérience." placeholder="Qualité du travail, ponctualité, relation avec les équipes..."></textarea></div>
-                    <div class="form-group consent"><input type="checkbox" id="consent" name="consent" required data-required="Veuillez accepter pour que nous puissions publier votre avis."><label for="consent">J’accepte que mon avis soit publié avec mon nom, ma fonction et mon établissement. *</label></div>
-                    <div class="hp-field" aria-hidden="true"><label for="website">Ne pas remplir</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
-                    <p class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
-                    <button type="submit" class="btn-submit">PUBLIER MON AVIS</button>
-                </form>
+                    <form id="avis-form" novalidate>
+                        <!-- Champ anti-spam conservé pour script.js -->
+                        <div class="hp-field" aria-hidden="true">
+                            <label for="website">Site web</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div class="avis-form-grid">
+                            <div class="form-group">
+                                <label for="avis-nom">Nom et prénom *</label>
+                                <input type="text" id="avis-nom" name="nom" autocomplete="name" placeholder="Ex. Claire Martin" required data-required="Indiquez votre nom et prénom.">
+                            </div>
+                            <div class="form-group">
+                                <label for="avis-fonction">Votre fonction *</label>
+                                <input type="text" id="avis-fonction" name="fonction" placeholder="Ex. Gouvernante générale" required data-required="Indiquez votre fonction.">
+                            </div>
+                        </div>
+
+                        <div class="avis-form-grid">
+                            <div class="form-group">
+                                <label for="avis-etablissement">Établissement *</label>
+                                <input type="text" id="avis-etablissement" name="etablissement" placeholder="Ex. Palace, Paris" required data-required="Indiquez le nom ou type d’établissement.">
+                            </div>
+                            <div class="form-group">
+                                <label for="avis-email">E-mail professionnel *</label>
+                                <input type="email" id="avis-email" name="email" autocomplete="email" placeholder="nom@hotel.com" required data-required="Indiquez votre adresse e-mail." title="Saisissez une adresse e-mail valide.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="avis-prestation">Prestation concernée</label>
+                            <select id="avis-prestation" name="prestation">
+                                <option value="Abonnement annuel">Abonnement annuel</option>
+                                <option value="Nettoyage quotidien">Nettoyage quotidien</option>
+                                <option value="Remise à blanc">Remise à blanc</option>
+                                <option value="Vitrerie">Vitrerie</option>
+                                <option value="Traitement des textiles">Traitement des textiles</option>
+                            </select>
+                        </div>
+
+                        <fieldset class="form-group">
+                            <legend>Votre note *</legend>
+                            <div class="stars-input">
+                                <input type="radio" id="note5" name="note" value="5" required data-required="Sélectionnez une note de 1 à 5 étoiles.">
+                                <label for="note5" title="5 étoiles">★<span class="visually-hidden">5 étoiles</span></label>
+                                <input type="radio" id="note4" name="note" value="4">
+                                <label for="note4" title="4 étoiles">★<span class="visually-hidden">4 étoiles</span></label>
+                                <input type="radio" id="note3" name="note" value="3">
+                                <label for="note3" title="3 étoiles">★<span class="visually-hidden">3 étoiles</span></label>
+                                <input type="radio" id="note2" name="note" value="2">
+                                <label for="note2" title="2 étoiles">★<span class="visually-hidden">2 étoiles</span></label>
+                                <input type="radio" id="note1" name="note" value="1">
+                                <label for="note1" title="1 étoile">★<span class="visually-hidden">1 étoile</span></label>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-group">
+                            <label for="avis-commentaire">Votre avis * (20 caractères minimum)</label>
+                            <textarea id="avis-commentaire" name="commentaire" rows="4" minlength="20" maxlength="600" placeholder="Qu’avez-vous pensé de l’intervention, de l’équipe, du suivi ?" required data-required="Rédigez votre avis." title="Votre avis doit contenir au moins 20 caractères."></textarea>
+                        </div>
+
+                        <div class="form-group consent">
+                            <input type="checkbox" id="avis-consent" name="consent" required data-required="Veuillez accepter la publication de votre avis.">
+                            <label for="avis-consent">J’accepte que mon avis soit publié sur le site Jade Clean après vérification.</label>
+                        </div>
+
+                        <p class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+
+                        <button type="submit" class="btn-submit avis-btn-submit">Publier mon avis</button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
@@ -111,7 +195,7 @@
             <div class="footer-col">
                 <span class="footer-heading">Contact</span>
                 <div class="footer-contact-items">
-                    <a href="tel:+33 6 89 96 78 21" class="footer-contact-link">+33 6 89 96 78 21</a>
+                    <a href="tel:+33689967821" class="footer-contact-link">+33 6 89 96 78 21</a>
                     <a href="mailto:info@jadeclean.net" class="footer-contact-link">info@jadeclean.net</a>
                 </div>
             </div>

@@ -4565,3 +4565,411 @@ body.light-mode .form-card .form-group.has-error input[type="checkbox"] {
     outline: 2px solid #B3261E;
     outline-offset: 2px;
 }
+
+/* ==========================================================================
+   Uniformisation visuelle Page Avis (alignée sur la maquette Bootstrap)
+   ========================================================================== */
+main.avis-main {
+    padding-bottom: 0;
+}
+
+.avis-band {
+    padding: 56px 20px 72px;
+}
+
+.avis-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Grille principale : empilée sur mobile, 1/3 + 2/3 sur desktop */
+.avis-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+/* Colonne gauche : carte synthèse */
+.avis-summary-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 32px 30px;
+}
+
+.avis-summary-box .section-tag {
+    margin-bottom: 14px;
+}
+
+.avis-score-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.avis-summary-box .score {
+    font-family: var(--font-serif);
+    font-size: 4.4rem;
+    line-height: 0.9;
+    color: var(--text-white);
+}
+
+.avis-summary-box .score-max {
+    padding-bottom: 6px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.avis-score-stars {
+    margin-top: 10px;
+}
+
+.avis-summary-box .score-count {
+    margin: 6px 0 24px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.avis-bars {
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.avis-bars li {
+    grid-template-columns: 36px 1fr 24px;
+    font-size: 0.78rem;
+}
+
+.avis-bars li > span:first-child {
+    white-space: nowrap;
+}
+
+.avis-bars li > span:last-child {
+    text-align: right;
+}
+
+.avis-bars .bar {
+    height: 4px;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.avis-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 46px;
+    border-radius: 999px;
+    background: var(--primary-bordeaux);
+    color: #F7F5F3;
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: background-color 0.25s ease;
+}
+
+.avis-btn-primary:hover {
+    background: #4E1922;
+}
+
+/* Colonne droite : titre, notice et filtres pilules par note */
+.avis-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.72rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--primary-hover);
+    margin-bottom: 12px;
+}
+
+.avis-line {
+    display: inline-block;
+    width: 34px;
+    height: 1px;
+    background: var(--primary-hover);
+}
+
+.avis-header .section-title {
+    margin-bottom: 10px;
+}
+
+.avis-notice {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.avis-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 24px;
+}
+
+.avis-filters .chip {
+    flex: 1 1 115px;
+    min-height: 46px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.avis-filters .chip[aria-pressed="true"] {
+    background: var(--primary-bordeaux);
+    border-color: var(--primary-bordeaux);
+    color: #F7F5F3;
+}
+
+.avis-filters .chip:not([aria-pressed="true"]):hover {
+    border-color: var(--primary-hover);
+    color: var(--text-white);
+}
+
+/* Compteur masqué visuellement mais conservé pour les lecteurs d'écran */
+.avis-content .avis-count {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Cartes d'avis (1 col mobile, 2 cols tablette/desktop) */
+.avis-list.avis-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.avis-grid-2 .avis-card {
+    padding: 0;
+    gap: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    justify-content: space-between;
+    transition: border-color 0.3s ease;
+}
+
+.avis-grid-2 .avis-card:hover {
+    border-color: var(--primary-bordeaux);
+}
+
+.avis-card-body {
+    padding: 26px 26px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex: 1;
+}
+
+.avis-grid-2 .avis-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #C2707E;
+    letter-spacing: 0;
+}
+
+.stars .off {
+    color: var(--border-color);
+}
+
+.avis-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.avis-badge.nouveau {
+    background: var(--primary-bordeaux);
+    border-color: var(--primary-bordeaux);
+    color: #F7F5F3;
+}
+
+.avis-grid-2 .avis-card blockquote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text-white);
+    margin: 0;
+}
+
+.avis-card-footer {
+    padding: 18px 26px 22px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.avis-card-footer strong {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-white);
+}
+
+.avis-card-footer span {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--text-muted);
+}
+
+.aucun-avis {
+    grid-column: 1 / -1;
+    padding: 32px;
+    border-radius: 24px;
+    border: 1px dashed var(--border-color);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Bande Formulaire centrée */
+.avis-form-band {
+    background: #271B25;
+    border-top: 1px solid var(--border-color);
+    padding: 64px 20px 80px;
+    transition: background-color 0.3s ease;
+}
+
+.avis-form-container {
+    max-width: 780px;
+}
+
+.avis-form-card {
+    border-radius: 28px;
+    padding: 26px 22px;
+    background: var(--bg-dark);
+}
+
+.avis-form-card .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 10px;
+}
+
+.avis-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.avis-btn-submit {
+    height: 54px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 14px;
+}
+
+/* Responsive Tablette & Desktop */
+@media (min-width: 768px) {
+    .avis-band {
+        padding: 72px 40px 88px;
+    }
+
+    .avis-list.avis-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .avis-form-band {
+        padding: 80px 40px 96px;
+    }
+
+    .avis-form-card {
+        padding: 40px;
+    }
+
+    .avis-form-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+}
+
+@media (min-width: 992px) {
+    .avis-layout {
+        grid-template-columns: minmax(290px, 340px) 1fr;
+        gap: 44px;
+    }
+
+    .avis-sidebar {
+        position: sticky;
+        top: 32px;
+    }
+}
+
+/* Maintient 2 colonnes sur grand écran malgré l'ancienne règle .avis-list (1100px) */
+@media (min-width: 1100px) {
+    .avis-list.avis-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mode clair : Page Avis uniformisée */
+body.light-mode .avis-summary-box,
+body.light-mode .avis-grid-2 .avis-card {
+    background: #FFFFFF;
+    box-shadow: 0 10px 28px rgba(28, 18, 26, 0.06);
+}
+
+body.light-mode .avis-grid-2 .avis-card:hover {
+    border-color: #C2707E;
+}
+
+body.light-mode .avis-bars .bar {
+    background: rgba(28, 18, 26, 0.08);
+}
+
+body.light-mode .avis-badge {
+    border-color: #DECED6;
+    color: #5C4D59;
+}
+
+body.light-mode .stars .off {
+    color: #D2BFC9;
+}
+
+body.light-mode .avis-form-band {
+    background: #EFE7EB;
+}
+
+body.light-mode .avis-form-card {
+    background: #FFFFFF;
+    box-shadow: 0 12px 30px rgba(28, 18, 26, 0.08);
+}
