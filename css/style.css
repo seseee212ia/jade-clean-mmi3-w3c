@@ -5758,39 +5758,143 @@ body.page-connexion.light-mode .icon-moon .theme-icon-img {
     }
 }
 
-/* REPRODUCTION À L'IDENTIQUE DES SECTIONS "SAVOIR-FAIRE" & "ENGAGEMENTS"
-   (Strictement isolé sur body.page-accueil — Ajout seul sans modification) */
+/* HARMONISATION À L'IDENTIQUE DES 3 SECTIONS SUR LA PAGE D'ACCUEIL W3C
+   (Strictement isolé sur body.page-accueil — Valide W3C) */
 
-/* SECTION "SAVOIR-FAIRE" — Grille asymétrique 7/5 - 5/7 & survol cartes*/
+/* BARRE DES CHIFFRES CLÉS (<2h | 7j/7 | 100%) */
+body.page-accueil .stats-bar,
+body.page-accueil [class*="stats-bar"],
+body.page-accueil [class*="stats-section"] {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.page-accueil .stats-bar [class*="grid"],
+body.page-accueil .stats-bar [class*="container"],
+body.page-accueil [class*="stats-grid"] {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    text-align: center;
+}
+
+body.page-accueil .stats-bar [class*="item"],
+body.page-accueil .stats-bar [class*="stat"],
+body.page-accueil [class*="stats-grid"] > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+body.page-accueil .stats-bar [class*="number"],
+body.page-accueil .stats-bar [class*="value"],
+body.page-accueil .stats-bar strong,
+body.page-accueil [class*="stat-number"] {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.2rem, 3.2vw, 2.85rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #F5EFE6;
+    letter-spacing: -0.01em;
+}
+
+body.page-accueil .stats-bar [class*="label"],
+body.page-accueil .stats-bar [class*="text"],
+body.page-accueil .stats-bar span:last-child,
+body.page-accueil [class*="stat-label"] {
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    color: rgba(245, 239, 230, 0.58);
+    margin-top: 0.45rem;
+}
+
+/* SECTION "LA MAISON" (#presentation) — Cadre visuel & survol */
+body.page-accueil #presentation [class*="image"],
+body.page-accueil #presentation [class*="visual"],
+body.page-accueil #presentation [class*="photo"],
+body.page-accueil #presentation figure {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+                box-shadow 0.5s ease,
+                border-color 0.5s ease;
+}
+
+body.page-accueil #presentation [class*="image"] img,
+body.page-accueil #presentation [class*="visual"] img,
+body.page-accueil #presentation figure img {
+    transition: transform 0.65s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body.page-accueil #presentation [class*="image"]:hover,
+body.page-accueil #presentation [class*="visual"]:hover,
+body.page-accueil #presentation figure:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: #C2707E;
+    box-shadow: 0 24px 48px rgba(106, 37, 49, 0.42);
+}
+
+body.page-accueil #presentation [class*="image"]:hover img,
+body.page-accueil #presentation [class*="visual"]:hover img,
+body.page-accueil #presentation figure:hover img {
+    transform: scale(1.04);
+}
+
+body.page-accueil #presentation a {
+    transition: color 0.3s ease;
+}
+
+body.page-accueil #presentation a:hover {
+    color: #C2707E;
+}
+
+/* SECTION "SAVOIR-FAIRE" (#competences) — Grille asymétrique 7/5 & 5/7*/
+body.page-accueil #competences [class*="grid"],
 body.page-accueil .services-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 24px;
 }
 
-body.page-accueil .services-grid .service-card-img:nth-child(1),
-body.page-accueil .services-grid .service-card-img:nth-child(4) {
+body.page-accueil #competences [class*="grid"] > *:nth-child(1),
+body.page-accueil #competences [class*="grid"] > *:nth-child(4),
+body.page-accueil .services-grid > *:nth-child(1),
+body.page-accueil .services-grid > *:nth-child(4) {
     grid-column: span 7;
 }
 
-body.page-accueil .services-grid .service-card-img:nth-child(2),
-body.page-accueil .services-grid .service-card-img:nth-child(3) {
+body.page-accueil #competences [class*="grid"] > *:nth-child(2),
+body.page-accueil #competences [class*="grid"] > *:nth-child(3),
+body.page-accueil .services-grid > *:nth-child(2),
+body.page-accueil .services-grid > *:nth-child(3) {
     grid-column: span 5;
 }
 
+body.page-accueil #competences [class*="grid"] > *,
 body.page-accueil .service-card-img {
     position: relative;
     min-height: 360px;
     border-radius: 16px;
     overflow: hidden;
-    background-color: #231720;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+    background-color: #21151E;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.42);
     transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
                 border-color 0.35s ease,
                 box-shadow 0.45s ease;
 }
 
+body.page-accueil #competences [class*="grid"] > * img,
 body.page-accueil .service-card-img img {
     width: 100%;
     height: 100%;
@@ -5798,27 +5902,18 @@ body.page-accueil .service-card-img img {
     transition: transform 0.65s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-body.page-accueil .service-card-img .card-overlay {
-    background: linear-gradient(
-        180deg,
-        rgba(23, 14, 21, 0.06) 0%,
-        rgba(23, 14, 21, 0.38) 52%,
-        rgba(23, 14, 21, 0.88) 100%
-    );
-    transition: background 0.4s ease;
-}
-
-/* Pastille flèche en haut à droite (identique à la carte "Vitres & Parois" survolée) */
+/* Pastille flèche en haut à droite (repos vs survol bordeaux #6E2635) */
+body.page-accueil #competences [class*="arrow"],
+body.page-accueil #competences [class*="circle"],
 body.page-accueil .service-card-img .card-arrow,
-body.page-accueil .service-card-img .arrow-circle,
-body.page-accueil .service-card-img .service-arrow {
+body.page-accueil .service-card-img .arrow-circle {
     width: 38px;
     height: 38px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.14);
+    background-color: rgba(255, 255, 255, 0.16);
     border: 1px solid rgba(255, 255, 255, 0.25);
     color: #F5EFE6;
     transition: background-color 0.35s ease,
@@ -5827,27 +5922,29 @@ body.page-accueil .service-card-img .service-arrow {
                 color 0.35s ease;
 }
 
-/* Animations au survol des cartes prestations */
+body.page-accueil #competences [class*="grid"] > *:hover,
 body.page-accueil .service-card-img:hover {
-    transform: translateY(-5px);
-    border-color: rgba(194, 112, 126, 0.55);
-    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.55);
+    transform: translateY(-4px);
+    border-color: rgba(194, 112, 126, 0.45);
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.55);
 }
 
+body.page-accueil #competences [class*="grid"] > *:hover img,
 body.page-accueil .service-card-img:hover img {
-    transform: scale(1.06);
+    transform: scale(1.05);
 }
 
+body.page-accueil #competences [class*="grid"] > *:hover [class*="arrow"],
+body.page-accueil #competences [class*="grid"] > *:hover [class*="circle"],
 body.page-accueil .service-card-img:hover .card-arrow,
-body.page-accueil .service-card-img:hover .arrow-circle,
-body.page-accueil .service-card-img:hover .service-arrow {
+body.page-accueil .service-card-img:hover .arrow-circle {
     background-color: #6E2635;
-    border-color: rgba(194, 112, 126, 0.75);
+    border-color: rgba(194, 112, 126, 0.65);
     color: #F5EFE6;
     transform: scale(1.05);
 }
 
-/* SECTION "NOS ENGAGEMENTS" — 3 colonnes & survol identique à la carte 01 */
+/* SECTION "NOS ENGAGEMENTS" — Trois promesses, tenues */
 body.page-accueil .engagements-grid,
 body.page-accueil .promises-grid {
     display: grid;
@@ -5857,8 +5954,8 @@ body.page-accueil .promises-grid {
 
 body.page-accueil .engagement-card,
 body.page-accueil .promise-card {
-    background-color: #231720;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #21151E;
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 20px;
     padding: 2.5rem 2.25rem;
     min-height: 310px;
@@ -5866,13 +5963,13 @@ body.page-accueil .promise-card {
     flex-direction: column;
     justify-content: flex-start;
     cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1),
                 border-color 0.35s ease,
                 background-color 0.35s ease,
-                box-shadow 0.4s ease;
+                box-shadow 0.35s ease;
 }
 
-/* Numéros 01, 02, 03 en italique bordeaux au repos */
+/* Numéros 01, 02, 03 en rose #C2707E au repos */
 body.page-accueil .engagement-card .engagement-number,
 body.page-accueil .engagement-card .card-number,
 body.page-accueil .promise-card .promise-number,
@@ -5882,15 +5979,16 @@ body.page-accueil .promise-card .card-number {
     font-size: 2.75rem;
     font-weight: 400;
     line-height: 1;
-    color: #6E2938;
+    color: #C2707E;
     margin-bottom: 1.75rem;
     transition: color 0.35s ease, transform 0.35s ease;
 }
 
+/* Titres en sans-serif blanc au repos */
 body.page-accueil .engagement-card h3,
 body.page-accueil .promise-card h3 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.45rem;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 1.25rem;
     font-weight: 400;
     color: #F5EFE6;
     margin-bottom: 0.75rem;
@@ -5899,74 +5997,88 @@ body.page-accueil .promise-card h3 {
 
 body.page-accueil .engagement-card p,
 body.page-accueil .promise-card p {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     line-height: 1.65;
-    color: rgba(245, 239, 230, 0.65);
+    color: rgba(245, 239, 230, 0.58);
     margin-bottom: 1.75rem;
 }
 
-/* Trait horizontal court au repos (32px) */
+/* Petit trait rose au repos */
 body.page-accueil .engagement-card .engagement-line,
 body.page-accueil .engagement-card .card-line,
 body.page-accueil .promise-card .promise-line,
 body.page-accueil .promise-card .card-line {
-    width: 32px;
-    height: 1px;
-    background-color: rgba(194, 112, 126, 0.45);
+    width: 28px;
+    height: 1.5px;
+    background-color: #9E5865;
     margin-top: auto;
-    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-                background-color 0.35s ease;
+    transition: width 0.35s cubic-bezier(0.165, 0.84, 0.44, 1),
+                background-color 0.35s ease,
+                box-shadow 0.35s ease;
 }
 
-/* État survolé identique à la carte "01 Réactivité absolue" de votre capture */
+/* État survolé exact de la carte "01 Réactivité absolue" */
 body.page-accueil .engagement-card:hover,
 body.page-accueil .promise-card:hover {
-    transform: translateY(-5px);
-    background-color: #271923;
+    transform: translateY(-4px);
+    background-color: #331923;
     border-color: #C2707E;
-    box-shadow: 0 18px 38px rgba(106, 37, 49, 0.25);
+    box-shadow: 0 0 28px rgba(194, 112, 126, 0.22),
+                0 16px 36px rgba(0, 0, 0, 0.45);
 }
 
 body.page-accueil .engagement-card:hover .engagement-number,
 body.page-accueil .engagement-card:hover .card-number,
 body.page-accueil .promise-card:hover .promise-number,
 body.page-accueil .promise-card:hover .card-number {
+    color: #FFFFFF;
+}
+
+body.page-accueil .engagement-card:hover h3,
+body.page-accueil .promise-card:hover h3 {
     color: #C2707E;
-    transform: translateX(4px);
 }
 
 body.page-accueil .engagement-card:hover .engagement-line,
 body.page-accueil .engagement-card:hover .card-line,
 body.page-accueil .promise-card:hover .promise-line,
 body.page-accueil .promise-card:hover .card-line {
-    width: 64px;
-    background-color: #C2707E;
+    width: 56px;
+    height: 2px;
+    background-color: #D48391;
+    box-shadow: 0 0 10px rgba(212, 131, 145, 0.85);
 }
 
-/* RESPONSIVE TABLETTE & MOBILE*/
+/* RESPONSIVE TABLETTE & MOBILE */
 @media (max-width: 900px) {
+    body.page-accueil #competences [class*="grid"],
     body.page-accueil .services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    body.page-accueil .services-grid .service-card-img:nth-child(1),
-    body.page-accueil .services-grid .service-card-img:nth-child(2),
-    body.page-accueil .services-grid .service-card-img:nth-child(3),
-    body.page-accueil .services-grid .service-card-img:nth-child(4) {
+    body.page-accueil #competences [class*="grid"] > *:nth-child(1),
+    body.page-accueil #competences [class*="grid"] > *:nth-child(2),
+    body.page-accueil #competences [class*="grid"] > *:nth-child(3),
+    body.page-accueil #competences [class*="grid"] > *:nth-child(4),
+    body.page-accueil .services-grid > * {
         grid-column: span 1;
     }
 
     body.page-accueil .engagements-grid,
-    body.page-accueil .promises-grid {
+    body.page-accueil .promises-grid,
+    body.page-accueil .stats-bar [class*="grid"],
+    body.page-accueil [class*="stats-grid"] {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 600px) {
+    body.page-accueil #competences [class*="grid"],
     body.page-accueil .services-grid {
         grid-template-columns: 1fr;
     }
 
+    body.page-accueil #competences [class*="grid"] > *,
     body.page-accueil .service-card-img {
         min-height: 290px;
     }
