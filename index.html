@@ -8,7 +8,6 @@
     <meta name="keywords" content="Jade Clean, nettoyage hôtelier, ménage hôtelier haut de gamme, entretien hôtel de luxe, nettoyage palace, ménage hôtel 5 étoiles, sous-traitance hôtelière, externalisation ménage hôtel, remise à blanc chambre, gouvernante hôtel, nettoyage conciergerie luxe, nettoyage B2B hôtellerie Paris">
     <meta name="author" content="Jade Clean">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="language" content="fr">
     <meta name="geo.region" content="FR-IDF">
     <meta name="geo.placename" content="Paris">
     <link rel="canonical" href="https://www.jade-clean.fr/index.html">
@@ -125,16 +124,16 @@
 
 </head>
 
-<!-- L'attribut ontouchstart active les animations CSS sur mobile -->
-<body class="page-accueil" ontouchstart="">
+<body class="page-accueil">
     
     <script>
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
         }
+        document.addEventListener('touchstart', function () {}, { passive: true });
     </script>
 
-   <!-- Header / navigation -->
+    <!-- Header / navigation -->
     <header class="site-header">
         <div class="logo-container">
             <a href="index.html">
@@ -153,17 +152,17 @@
         <!-- Actions regroupées pour le bouton suivi du burger -->
         <div class="header-right-actions">
             
-            <label class="theme-switch" id="themeToggle" aria-label="Changer de thème">
-                <input type="checkbox" id="themeCheckbox">
-                <div class="switch-track" style="pointer-events: none;">
+            <label class="theme-switch" id="themeToggle">
+                <input type="checkbox" id="themeCheckbox" aria-label="Changer de thème">
+                <span class="switch-track" style="pointer-events: none;">
                     <span class="icon-moon">
                         <img src="images/icons-lune.png" alt="Mode sombre" class="theme-icon-img" onerror="this.onerror=null; this.src='images/icons-lune.svg';">
                     </span>
                     <span class="icon-sun">
                         <img src="images/icons-soleil.png" alt="Mode clair" class="theme-icon-img" onerror="this.onerror=null; this.src='images/icons-soleil.svg';">
                     </span>
-                    <div class="switch-thumb"></div>
-                </div>
+                    <span class="switch-thumb"></span>
+                </span>
             </label>
             
             <a href="connexion.html" class="btn-login">SE CONNECTER</a>
@@ -178,7 +177,7 @@
     </header>
 
     <main>
-       <!-- Hero section -->
+        <!-- Hero section -->
         <section id="accueil" class="hero-section">
             <div class="hero-content">
                 <span class="hero-tagline">Ménage hôtelier haut de gamme</span>
@@ -243,7 +242,7 @@
             </div>
         </section>
 
-      <!-- Grille des prestations -->
+        <!-- Grille des prestations -->
         <section id="prestations" class="services-section">
             <span class="section-tag center">— SAVOIR-FAIRE</span>
             <h2 class="section-title center">Chaque geste, <span>une signature.</span></h2>
@@ -266,7 +265,7 @@
                 <article class="service-card-img" style="background-image: url('images/Salles de bain.png');">
                     <div class="card-overlay">
                         <div class="card-top">
-                           <div class="card-arrow"><a href="prestations.html" class="arrow-link">→</a></div>
+                            <div class="card-arrow"><a href="prestations.html" class="arrow-link">→</a></div>
                         </div>
                         <div class="card-content">
                             <h3>Salles de bain</h3>
@@ -304,7 +303,7 @@
             </div>
         </section>
 
-       <!-- Section nos engagements -->
+        <!-- Section nos engagements -->
         <section class="promises-section">
             <span class="section-tag center">— NOS ENGAGEMENTS</span>
             <h2 class="section-title center">Trois promesses, <span>tenues.</span></h2>
@@ -376,24 +375,24 @@
     </main>
     
     <!-- Section prise de contact direct -->
-        <section class="cta-section">
-            <div class="cta-banner">
-                <div class="cta-content">
-                    <span class="cta-tag">— PARLONS DE VOTRE ÉTABLISSEMENT</span>
-                    <h2>Une équipe à la hauteur de <span>vos étoiles.</span></h2>
-                    <p>Réponse sous 24 heures ouvrées. Urgences prises en charge en moins de deux heures.</p>
-                    
-                    <div class="cta-actions">
-                        <a href="contact.html" class="btn-cta-primary">DEMANDER UN DEVIS →</a>
-                        <a href="tel:+33145000000" class="btn-cta-phone">
-                            <span class="phone-icon">📞</span> +33 1 45 00 00 00
-                        </a>
-                    </div>
+    <section class="cta-section">
+        <div class="cta-banner">
+            <div class="cta-content">
+                <span class="cta-tag">— PARLONS DE VOTRE ÉTABLISSEMENT</span>
+                <h2>Une équipe à la hauteur de <span>vos étoiles.</span></h2>
+                <p>Réponse sous 24 heures ouvrées. Urgences prises en charge en moins de deux heures.</p>
+                
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn-cta-primary">DEMANDER UN DEVIS →</a>
+                    <a href="tel:+33145000000" class="btn-cta-phone">
+                        <span class="phone-icon">📞</span> +33 1 45 00 00 00
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-  <!-- Footer -->
+    <!-- Footer -->
     <footer class="site-footer">
         <h2 class="footer-quote">et votre Espace <span>devient Beauté</span></h2>
         
@@ -417,7 +416,7 @@
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="espace_client.html">Espace client</a></li>
                     <li><a href="espace-interne.html">Espace intern</a></li>
-                    <li><a href="cgv.html ">Conditions Générales de Vente</a></li>
+                    <li><a href="cgv.html">Conditions Générales de Vente</a></li>
                 </ul>
             </div>
 
@@ -455,6 +454,6 @@
         </span>
     </button>
     
-   <script src="js/script_index.js" defer></script>
+    <script src="js/script_index.js" defer></script>
 </body>
 </html>
