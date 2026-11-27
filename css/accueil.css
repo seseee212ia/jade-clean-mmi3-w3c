@@ -39,8 +39,8 @@
 .header h1 {
   margin-top: 0;
   font-family: var(--font-heading);
-  font-size: clamp(3.2rem, 6.5vw, 5.8rem);
-  line-height: 0.95;
+  font-size: clamp(2.7rem, 4.6vw, 4.35rem);
+  line-height: 0.98;
   color: var(--jade-cream);
   font-weight: 500;
 }
@@ -122,11 +122,13 @@
 
 .visuel-arche {
   position: absolute;
-  right: 5%;
-  top: 50%;
+  right: 4%;
+  top: 52%;
   transform: translateY(-50%);
-  width: 23%;
+  width: 33%;
+  max-width: 420px;
   display: none;
+  z-index: 1;
 }
 
 .cadre-arche {
@@ -143,6 +145,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 3/4;
+  max-height: 64vh;
   object-fit: cover;
   border-radius: 999px 999px 0 0;
 }
@@ -701,7 +704,7 @@
 .carte-banniere .fond {
   position: absolute;
   inset: 0;
-  background-image: url('../img/lobby.png');
+  background-image: url('../img/corridor-bg.jpg');
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -933,4 +936,28 @@
 :root[data-theme="light"] .scroll-indicator:hover {
   border-color: var(--jade-rose);
   color: var(--jade-rose);
+}
+
+/* ---------- Correction lisibilité cartes Abonnements / Engagement en mode clair ---------- */
+:root[data-theme="light"] .carte-forfait:not(.vedette) {
+  background: #ffffff;
+  border-color: rgba(28, 18, 25, 0.16);
+}
+
+:root[data-theme="light"] .carte-forfait:not(.vedette) h3,
+:root[data-theme="light"] .carte-forfait:not(.vedette) .prix {
+  color: #1c1219;
+}
+
+:root[data-theme="light"] .carte-forfait:not(.vedette) .periode {
+  color: #5a4f57;
+}
+
+:root[data-theme="light"] .carte-forfait:not(.vedette) .lien-carte {
+  color: #1c1219;
+  border-top-color: rgba(28, 18, 25, 0.14);
+}
+
+:root[data-theme="light"] .carte-forfait:not(.vedette):hover .lien-carte {
+  color: var(--jade-wine);
 }
